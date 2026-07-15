@@ -51,10 +51,17 @@
 .practice-status {
   display: flex;
   align-items: center;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 8px 16px;
   margin-bottom: 18px;
 }
-.practice-status .mono { font-size: 0.85rem; color: var(--ink-soft); white-space: nowrap; }
+.practice-status #statusLine { font-size: 0.85rem; color: var(--ink-soft); white-space: nowrap; }
+.storage-note {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
 .progress-track {
   flex: 1;
   height: 6px;

@@ -3,8 +3,35 @@
   var filtered = [];
   var currentIndex = 0;
   var currentTopic = 'All';
-  // answers[id] = 'correct' | 'incorrect' — persists in memory only, resets on page reload.
-  var answers = {};
+  // answers[id] = { state: 'correct' | 'incorrect', key: 'A'..'E' } — the outcome and
+  // which option was picked, so a reload can restore the exact selection. Persisted to
+  // localStorage; stays entirely in the visitor's own browser — nothing is transmitted.
+  var STORAGE_KEY = 'opentmua.answers.v1';
+  var answers = loadAnswers();
+
+  function loadAnswers() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      var parsed = raw ? JSON.parse(raw) : {};
+      // Migrate legacy entries that stored only the state string.
+      Object.keys(parsed).forEach(function (id) {
+        if (typeof parsed[id] === 'string') parsed[id] = { state: parsed[id], key: null };
+      });
+      return parsed;
+    } catch (e) {
+      // localStorage can throw (private mode, disabled storage, corrupt JSON).
+      // Fall back to in-memory only rather than breaking the page.
+      return {};
+    }
+  }
+
+  function saveAnswers() {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    } catch (e) {
+      // Storage unavailable/full — progress simply won't persist this session.
+    }
+  }
 
   var els = {
     pills: document.getElementById('topicPills'),
@@ -78,10 +105,16 @@
       btn.className = 'palette-item';
       btn.textContent = String(i + 1);
       btn.setAttribute('role', 'tab');
-      if (answers[q.id]) btn.setAttribute('data-state', answers[q.id]);
+      if (answers[q.id]) btn.setAttribute('data-state', answers[q.id].state);
       btn.addEventListener('click', function () { currentIndex = i; renderQuestion(); });
       els.palette.appendChild(btn);
     });
+  }
+
+  function countCompleted() {
+    var n = 0;
+    filtered.forEach(function (q) { if (answers[q.id]) n += 1; });
+    return n;
   }
 
   function refreshPaletteState() {
@@ -89,7 +122,7 @@
       btn.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
       var q = filtered[i];
       if (answers[q.id]) {
-        btn.setAttribute('data-state', answers[q.id]);
+        btn.setAttribute('data-state', answers[q.id].state);
       } else {
         btn.removeAttribute('data-state');
       }
@@ -111,9 +144,14 @@
     els.qLabel.textContent = 'Q. ' + q.topic;
     els.qSource.textContent = q.source;
     els.qStem.textContent = q.stem;
+
+    // Progress reflects how many questions in this view have been completed
+    // (answered either way), not the current position.
+    var completed = countCompleted();
     els.statusLine.textContent = 'Question ' + (currentIndex + 1) + ' of ' + filtered.length +
+      ' · ' + completed + ' done' +
       (currentTopic !== 'All' ? ' · ' + currentTopic : '');
-    els.progressFill.style.width = (((currentIndex + 1) / filtered.length) * 100) + '%';
+    els.progressFill.style.width = ((completed / filtered.length) * 100) + '%';
 
     els.options.innerHTML = '';
     q.options.forEach(function (opt) {
@@ -122,7 +160,14 @@
       btn.className = 'option';
       btn.dataset.key = opt.key;
       btn.dataset.correct = opt.correct;
-      btn.innerHTML = '<span class="tag mono">' + opt.key + '</span><span>' + opt.text + '</span>';
+      // Build spans via textContent so question data is never parsed as HTML.
+      var tag = document.createElement('span');
+      tag.className = 'tag mono';
+      tag.textContent = opt.key;
+      var text = document.createElement('span');
+      text.textContent = opt.text;
+      btn.appendChild(tag);
+      btn.appendChild(text);
       btn.addEventListener('click', function () { handleAnswer(q, btn); });
       li.appendChild(btn);
       els.options.appendChild(li);
@@ -131,8 +176,11 @@
     els.feedback.classList.remove('show');
     els.resetBtn.style.display = 'none';
 
-    var wasAnswered = !!answers[q.id];
-    if (wasAnswered) lockOptions(q);
+    var saved = answers[q.id];
+    if (saved) {
+      lockOptions(saved.key);
+      showFeedback(q, saved.state === 'correct', saved.key);
+    }
 
     els.prevBtn.disabled = currentIndex === 0;
     els.nextBtn.disabled = currentIndex === filtered.length - 1;
@@ -142,15 +190,15 @@
 
   function handleAnswer(q, selectedBtn) {
     var correct = selectedBtn.dataset.correct === 'true';
-    answers[q.id] = correct ? 'correct' : 'incorrect';
-    lockOptions(q, selectedBtn);
-    showFeedback(q, correct, selectedBtn);
+    answers[q.id] = { state: correct ? 'correct' : 'incorrect', key: selectedBtn.dataset.key };
+    saveAnswers();
+    lockOptions(selectedBtn.dataset.key);
+    showFeedback(q, correct, selectedBtn.dataset.key);
     refreshPaletteState();
   }
 
-  function lockOptions(q, selectedBtn) {
+  function lockOptions(selectedKey) {
     var buttons = els.options.querySelectorAll('.option');
-    var selectedKey = selectedBtn ? selectedBtn.dataset.key : null;
     buttons.forEach(function (btn) {
       btn.disabled = true;
       var isCorrect = btn.dataset.correct === 'true';
@@ -162,16 +210,15 @@
         btn.classList.add('dim');
       }
     });
-    if (!selectedBtn) showFeedback(q, answers[q.id] === 'correct', null);
     els.resetBtn.style.display = 'inline-block';
   }
 
-  function showFeedback(q, wasCorrect, selectedBtn) {
+  function showFeedback(q, wasCorrect, selectedKey) {
     els.feedbackTitle.textContent = wasCorrect ? 'Correct. ' : 'Not quite. ';
     var correctOpt = q.options.filter(function (o) { return o.correct; })[0];
     els.feedbackBody.textContent = wasCorrect
       ? 'Here\'s the working:'
-      : 'The answer is ' + correctOpt.key + (selectedBtn ? ', not ' + selectedBtn.dataset.key : '') + '. Here\'s the working:';
+      : 'The answer is ' + correctOpt.key + (selectedKey && selectedKey !== correctOpt.key ? ', not ' + selectedKey : '') + '. Here\'s the working:';
     els.feedbackWorking.textContent = q.working;
     els.feedback.classList.add('show');
   }
@@ -179,6 +226,7 @@
   els.resetBtn.addEventListener('click', function () {
     var q = filtered[currentIndex];
     delete answers[q.id];
+    saveAnswers();
     renderQuestion();
   });
 
