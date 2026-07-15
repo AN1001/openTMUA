@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenTMUA — Free, open-source TMUA practice</title>
+    <meta
+      name="description"
+      content="Practice questions for the TMUA, built in the open. No account, no paywall."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap">
+        <div class="wordmark">Open<span>TMUA</span></div>
+        <nav class="site-nav">
+          <a href="#practice">Practice</a>
+          <a href="#papers">Papers</a>
+          <a href="#open-source">Source</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero wrap" id="practice">
+        <h1>Practice like the real thing.</h1>
+        <p class="sub">
+          Free, open-source questions in the style of the TMUA — built by
+          students, for students applying to maths-heavy courses.
+          <b>No account. No paywall.</b>
+        </p>
+
+        <span class="eyebrow mono">PAPER 1 · MATHEMATICAL THINKING</span>
+        <div class="question-card" id="questionCard">
+          <div class="qc-head">
+            <span class="qlabel mono">Q. Algebra</span>
+            <span class="qsource mono">Original · OpenTMUA</span>
+          </div>
+          <div class="qc-body">
+            <p class="stem-math">
+              <em>x</em> and <em>y</em> are positive integers such that
+              <em>x</em>² − <em>y</em>² = 45. How many possible values of
+              <em>x</em> are there?
+            </p>
+
+            <ul class="options" id="options">
+              <li>
+                <button class="option" data-key="A" data-correct="false">
+                  <span class="tag mono">A</span><span>2</span>
+                </button>
+              </li>
+              <li>
+                <button class="option" data-key="B" data-correct="true">
+                  <span class="tag mono">B</span><span>3</span>
+                </button>
+              </li>
+              <li>
+                <button class="option" data-key="C" data-correct="false">
+                  <span class="tag mono">C</span><span>4</span>
+                </button>
+              </li>
+              <li>
+                <button class="option" data-key="D" data-correct="false">
+                  <span class="tag mono">D</span><span>5</span>
+                </button>
+              </li>
+              <li>
+                <button class="option" data-key="E" data-correct="false">
+                  <span class="tag mono">E</span><span>6</span>
+                </button>
+              </li>
+            </ul>
+
+            <div class="feedback" id="feedback">
+              <strong id="feedbackTitle"></strong>
+              <span id="feedbackBody"></span>
+              <span class="working mono"
+                >x² − y² = (x−y)(x+y) = 45. Factor pairs of 45: (1,45), (3,15),
+                (5,9) — each gives an integer (x,y). That's 3 values of x.</span
+              >
+            </div>
+            <button class="try-again" id="tryAgain">Reset question</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="strip">
+        <div class="wrap">
+          <div class="strip-item">
+            <span class="k mono">Open source</span>
+            <span class="v"
+              >Every question and line of code lives on GitHub — read it, fork
+              it, fix it.</span
+            >
+          </div>
+          <div class="strip-item">
+            <span class="k mono">Original questions</span>
+            <span class="v"
+              >Written in the style of the TMUA, not lifted from past
+              papers.</span
+            >
+          </div>
+          <div class="strip-item">
+            <span class="k mono">No account</span>
+            <span class="v"
+              >Nothing to sign up for. Open a paper and start.</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <section class="section wrap" id="papers">
+        <div class="section-head">
+          <span class="eyebrow-lite mono">WHAT'S COVERED</span>
+          <h2>Two papers, two skills</h2>
+          <p>
+            The TMUA is split into mathematical thinking and mathematical
+            reasoning. The bank is growing paper by paper, in the open.
+          </p>
+        </div>
+        <div class="paper-grid">
+          <div class="paper-card">
+            <span class="num mono">PAPER 1</span>
+            <h3>Mathematical Thinking</h3>
+            <p>
+              Applying maths you already know to unfamiliar, multi-step problems
+              — algebra, functions, sequences, and proof-adjacent reasoning.
+            </p>
+            <span class="status mono">IN PROGRESS</span>
+          </div>
+          <div class="paper-card">
+            <span class="num mono">PAPER 2</span>
+            <h3>Mathematical Reasoning</h3>
+            <p>
+              Evaluating mathematical arguments — spotting flawed logic,
+              necessary vs. sufficient conditions, and reading proofs
+              critically.
+            </p>
+            <span class="status mono">COMING SOON</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section wrap" id="open-source">
+        <div class="oss">
+          <div>
+            <h2>Built in the open, on purpose.</h2>
+            <p>
+              OpenTMUA is a static site and a JSON question bank — nothing more.
+              If you can write a good problem, you can contribute one.
+            </p>
+          </div>
+          <div class="oss-actions">
+            <a class="btn primary" href="https://github.com/an1001/opentmua"
+              >View on GitHub</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/an1001/opentmua/blob/main/CONTRIBUTING.md"
+              >Contribute a question</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap">
+        <span>OpenTMUA — released under the MIT License.</span>
+        <span
+          >Not affiliated with Durham University or the TMUA Consortium.</span
+        >
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
