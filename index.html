@@ -19,17 +19,17 @@
   <body>
     <header class="site">
       <div class="wrap">
-        <div class="wordmark">Open<span>TMUA</span></div>
+        <a class="wordmark" href="index.html">Open<span>TMUA</span></a>
         <nav class="site-nav">
-          <a href="#practice">Practice</a>
-          <a href="#papers">Papers</a>
-          <a href="#open-source">Source</a>
+          <a href="index.html#papers">Papers</a>
+          <a href="practice.html">Practice</a>
+          <a href="https://github.com/AN1001/openTMUA" target="_blank" rel="noopener">Source</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero wrap" id="practice">
+      <section class="hero wrap">
         <h1>Practice like the real thing.</h1>
         <p class="sub">
           Free, open-source questions in the style of the TMUA — built by
@@ -37,14 +37,16 @@
           <b>No account. No paywall.</b>
         </p>
 
+        <a class="hero-cta mono" href="practice.html">Start practising &rarr;</a>
+
         <span class="eyebrow mono">PAPER 1 · MATHEMATICAL THINKING</span>
         <div class="question-card" id="questionCard">
           <div class="qc-head">
-            <span class="qlabel mono">Q. Algebra</span>
+            <span class="qlabel mono" id="demoLabel">Q. Algebra</span>
             <span class="qsource mono">Original · OpenTMUA</span>
           </div>
           <div class="qc-body">
-            <p class="stem-math">
+            <p class="stem-math" id="demoStem">
               <em>x</em> and <em>y</em> are positive integers such that
               <em>x</em>² − <em>y</em>² = 45. How many possible values of
               <em>x</em> are there?
@@ -81,7 +83,7 @@
             <div class="feedback" id="feedback">
               <strong id="feedbackTitle"></strong>
               <span id="feedbackBody"></span>
-              <span class="working mono"
+              <span class="working mono" id="demoWorking"
                 >x² − y² = (x−y)(x+y) = 45. Factor pairs of 45: (1,45), (3,15),
                 (5,9) — each gives an integer (x,y). That's 3 values of x.</span
               >
@@ -158,12 +160,12 @@
             </p>
           </div>
           <div class="oss-actions">
-            <a class="btn primary" href="https://github.com/an1001/opentmua"
+            <a class="btn primary" href="https://github.com/AN1001/openTMUA"
               >View on GitHub</a
             >
             <a
               class="btn"
-              href="https://github.com/an1001/opentmua/blob/main/CONTRIBUTING.md"
+              href="https://github.com/AN1001/openTMUA/blob/main/CONTRIBUTING.md"
               >Contribute a question</a
             >
           </div>
