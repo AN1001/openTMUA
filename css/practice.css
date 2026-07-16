@@ -4,37 +4,37 @@
    .feedback / .qc-head / .qc-body / .stem-math / .eyebrow / mono classes. */
 
 :root {
-  --palette-w: 194px; /* 5 cols of 34px + 4 gaps of 6px */
-  --layout-gap: 18px;
+  --palette-w: 252px; /* 5 cols of 44px + 4 gaps of 8px */
+  --layout-gap: 24px;
 }
 
 /* Combined width of the palette column + gap + question box (+ side padding).
    Constraining .practice-main to this makes the title, pills, status/progress
    and the palette+box row all share the same left/right edges. */
 .practice-main {
-  padding: 26px 20px 72px;
-  max-width: calc(var(--palette-w) + var(--layout-gap) + var(--card-w) + 40px);
+  padding: 34px 26px 94px;
+  max-width: calc(var(--palette-w) + var(--layout-gap) + var(--card-w) + 52px);
 }
 
 .practice-title {
   font-family: "Spectral", serif;
   font-size: clamp(1.8rem, 3.6vw, 2.4rem);
-  margin: 14px 0 28px;
+  margin: 18px 0 36px;
 }
 
 /* ---------- Topic pills ---------- */
 .topic-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 28px;
+  gap: 10px;
+  margin-bottom: 36px;
 }
 .topic-pill {
   font-size: 0.8rem;
   background: var(--paper-raised);
   border: 1px solid var(--rule);
   border-radius: 999px;
-  padding: 6px 14px;
+  padding: 8px 18px;
   cursor: pointer;
   color: var(--ink-soft);
 }
@@ -52,8 +52,8 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px 16px;
-  margin-bottom: 18px;
+  gap: 10px 20px;
+  margin-bottom: 24px;
 }
 .practice-status #statusLine {
   font-size: 0.85rem;
@@ -68,7 +68,7 @@
 }
 .progress-track {
   flex: 1;
-  height: 6px;
+  height: 8px;
   background: var(--grid-line);
   border-radius: 999px;
   overflow: hidden;
@@ -96,14 +96,14 @@
 .palette {
   flex: 0 0 var(--palette-w);
   display: grid;
-  grid-template-columns: repeat(5, 34px);
-  grid-auto-rows: 34px;
+  grid-template-columns: repeat(5, 44px);
+  grid-auto-rows: 44px;
   align-content: start; /* numbers sit at the top when the box is taller */
-  gap: 6px;
+  gap: 8px;
 }
 .palette-item {
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,14 +139,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
+  padding: 18px 26px;
   border-top: 1px solid var(--grid-line);
 }
 .nav-btn {
   background: none;
   border: 1px solid var(--rule);
   border-radius: var(--radius);
-  padding: 8px 16px;
+  padding: 10px 20px;
   font-size: 0.8rem;
   color: var(--ink-soft);
   cursor: pointer;
@@ -165,14 +165,14 @@
 }
 
 /* Stack the palette above the box once there isn't room for a side column. */
-@media (max-width: 640px) {
+@media (max-width: 830px) {
   .question-layout {
     flex-direction: column;
   }
   .palette {
     flex: 0 0 auto;
-    grid-template-columns: repeat(auto-fill, 34px);
-    margin-bottom: 4px;
+    grid-template-columns: repeat(auto-fill, 44px);
+    margin-bottom: 5px;
   }
   /* Hide the reset button to keep the nav to Prev/Next on narrow screens.
      !important is needed because practice.js toggles resetBtn.style.display
@@ -182,9 +182,9 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 625px) {
   .qc-nav {
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
   }
 }
