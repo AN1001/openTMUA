@@ -78,7 +78,7 @@ python3 -m http.server
 
 - One question (or one coherent set) per PR — easier to review.
 - In the description, state the intended answer and a one-line justification, plus why each distractor is plausible if it isn't obvious.
-- By contributing you agree your work is released under the [MIT License](LICENSE).
+- By contributing a question you agree it is released under the [CC BY-SA 4.0 License](LICENSE-CONTENT) — anyone may reuse it with credit to OpenTMUA, and adaptations must stay under the same license. Code contributions are released under the [MIT License](LICENSE).
 
 ## Contributing code
 
