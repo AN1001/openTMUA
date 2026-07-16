@@ -49,6 +49,7 @@ const els = {
   statusLine: document.getElementById("statusLine"),
   progressFill: document.getElementById("progressFill"),
   qLabel: document.getElementById("qLabel"),
+  qDifficulty: document.getElementById("qDifficulty"),
   qSource: document.getElementById("qSource"),
   qStem: document.getElementById("qStem"),
   options: document.getElementById("options"),
@@ -163,6 +164,7 @@ function renderQuestion() {
     els.qStem.textContent = "No questions in this topic yet.";
     els.options.replaceChildren();
     els.qLabel.textContent = "Q. —";
+    els.qDifficulty.textContent = "";
     els.qSource.textContent = "—";
     els.statusLine.textContent = "Question 0 of 0";
     els.progressFill.style.width = "0%";
@@ -171,6 +173,8 @@ function renderQuestion() {
 
   const q = filtered[currentIndex];
   els.qLabel.textContent = `Q. ${q.topic}`;
+  els.qDifficulty.textContent =
+    typeof q.difficulty === "number" ? `Difficulty ${q.difficulty}` : "";
   els.qSource.textContent = q.source;
   renderMath(q.stem, els.qStem);
 

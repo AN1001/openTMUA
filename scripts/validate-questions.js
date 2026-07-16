@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 
 const file = path.join(__dirname, "..", "data", "questions.json");
-const KEYS = ["A", "B", "C", "D", "E"];
 const REQUIRED = ["paper", "topic", "source", "stem", "working"];
 const PAPERS = ["Paper 1", "Paper 2"];
 const errors = [];
@@ -35,6 +34,13 @@ questions.forEach((q, i) => {
       err(`missing or empty "${field}"`);
   }
 
+  // Difficulty mirrors the TMUA grade: a number from 1.0 to 9.0, shown next
+  // to the topic on the practice page.
+  if (typeof q.difficulty !== "number" || Number.isNaN(q.difficulty))
+    err(`missing or invalid "difficulty" (must be a number)`);
+  else if (q.difficulty < 1 || q.difficulty > 9)
+    err(`"difficulty" must be between 1.0 and 9.0 (got ${q.difficulty})`);
+
   if (typeof q.stem === "string" && q.stem.trim()) {
     if (seenStems.has(q.stem)) err(`duplicate stem (must be unique)`);
     seenStems.add(q.stem);
@@ -43,19 +49,21 @@ questions.forEach((q, i) => {
   if (typeof q.paper === "string" && !PAPERS.includes(q.paper))
     err(`"paper" must be one of ${PAPERS.join(", ")} (got "${q.paper}")`);
 
-  if (!Array.isArray(q.options) || q.options.length !== KEYS.length) {
-    err(`"options" must be an array of exactly ${KEYS.length} entries`);
+  if (!Array.isArray(q.options) || q.options.length < 2 || q.options.length > 8) {
+    err(`"options" must be an array of 2 to 8 entries`);
     return;
   }
 
   let correctCount = 0;
   q.options.forEach((opt, j) => {
-    if (opt.key !== KEYS[j])
-      err(`option ${j + 1} key must be "${KEYS[j]}" (got "${opt.key}")`);
+    // Keys must be sequential capitals starting at A (A, B, C, …).
+    const expectedKey = String.fromCharCode(65 + j);
+    if (opt.key !== expectedKey)
+      err(`option ${j + 1} key must be "${expectedKey}" (got "${opt.key}")`);
     if (typeof opt.text !== "string" || !opt.text.trim())
-      err(`option ${KEYS[j]} has missing or empty "text"`);
+      err(`option ${expectedKey} has missing or empty "text"`);
     if (typeof opt.correct !== "boolean")
-      err(`option ${KEYS[j]} "correct" must be a boolean`);
+      err(`option ${expectedKey} "correct" must be a boolean`);
     if (opt.correct === true) correctCount += 1;
   });
   if (correctCount !== 1)

@@ -42,6 +42,7 @@ A question looks like this (Field rules are enforced by CI.):
 {
   "paper": "Paper 1",
   "topic": "Algebra",
+  "difficulty": 5.5,
   "source": "[Your name]",
   "stem": "x and y are positive integers such that $x^2 - y^2 = 45$. How many possible values of x are there?",
   "options": [
@@ -54,6 +55,12 @@ A question looks like this (Field rules are enforced by CI.):
   "working": "$x^2 − y^2 = (x−y)(x+y) = 45$ Factor pairs of $45$: $(1,45)$, $(3,15)$, $(5,9)$ — each gives an integer $(x,y)$. That's $3$ values of x."
 }
 ```
+
+A few field rules to keep in mind:
+
+- **`difficulty`** mirrors the TMUA grade: a number from **1.0 to 9.0** (decimals are fine, e.g. `6.8`). It's shown next to the topic on the practice page.
+- **`options`** can hold anywhere from **2 to 8** answers. Keys must be sequential capitals starting at `A` (`A`, `B`, `C`, …), and exactly one option must be `"correct": true`.
+- Each question's stem must be unique — it's what identifies the question internally (progress is keyed off a hash of it).
 
 
 ### Maths notation

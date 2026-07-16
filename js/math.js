@@ -5,13 +5,24 @@
 // segments with KaTeX, and inserts everything else as plain text nodes —
 // so question data is never interpreted as HTML (no innerHTML on it).
 
+// Append a run of plain text, turning "\n" newlines into <br> line breaks —
+// otherwise HTML would collapse them to a single space. Everything is inserted
+// as text nodes, so question data is still never parsed as HTML.
+function appendText(target, text) {
+  const lines = text.split("\n");
+  lines.forEach((line, i) => {
+    if (i > 0) target.appendChild(document.createElement("br"));
+    if (line) target.appendChild(document.createTextNode(line));
+  });
+}
+
 export function renderMath(text, target) {
   target.textContent = "";
   const str = String(text ?? "");
 
   // No KaTeX or no maths present: fastest safe path is plain text.
   if (typeof window.katex === "undefined" || !str.includes("$")) {
-    target.textContent = str;
+    appendText(target, str);
     return target;
   }
 
@@ -22,7 +33,7 @@ export function renderMath(text, target) {
   let m;
   while ((m = math.exec(str)) !== null) {
     if (m.index > last) {
-      target.appendChild(document.createTextNode(str.slice(last, m.index)));
+      appendText(target, str.slice(last, m.index));
     }
     const isDisplay = m[1] != null;
     const source = isDisplay ? m[1] : m[2];
@@ -40,7 +51,7 @@ export function renderMath(text, target) {
     last = math.lastIndex;
   }
   if (last < str.length) {
-    target.appendChild(document.createTextNode(str.slice(last)));
+    appendText(target, str.slice(last));
   }
   return target;
 }

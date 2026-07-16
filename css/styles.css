@@ -187,10 +187,23 @@ nav.site-nav a:hover {
   padding: 18px 26px;
   border-bottom: 1px solid var(--grid-line);
 }
+.qc-head-main {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
 .qc-head .qlabel {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.85rem;
   color: var(--ink-soft);
+}
+.qc-head .qdifficulty {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+.qc-head .qdifficulty:empty {
+  display: none;
 }
 .qc-head .qsource {
   font-family: "IBM Plex Mono", monospace;
