@@ -1,0 +1,257 @@
+/* Question-builder page — assumes styles.css defines the :root tokens and the
+   .question-card family. Not linked from the site nav; reached only via
+   CONTRIBUTING.md. */
+
+.builder-main {
+  max-width: 1560px;
+  padding: 34px 26px 94px;
+}
+
+.builder-title {
+  font-family: "Spectral", serif;
+  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  margin: 18px 0 10px;
+}
+
+.builder-sub {
+  max-width: 62ch;
+  margin: 0 0 36px;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+/* ---------- Two-column layout: form (LHS) + preview (RHS) ---------- */
+.builder-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+.builder-form {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+.builder-preview {
+  flex: 1 1 520px;
+  min-width: 0;
+  position: sticky;
+  top: 24px;
+}
+.builder-preview .question-card {
+  max-width: none;
+}
+.preview-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+
+/* ---------- Form fields ---------- */
+.field {
+  margin-bottom: 22px;
+}
+.field label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.field-row .field {
+  flex: 1 1 140px;
+}
+.field-row .field-small {
+  flex: 0 1 190px;
+}
+
+.builder-form input[type="text"],
+.builder-form input[type="number"],
+.builder-form select,
+.builder-form textarea {
+  width: 100%;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+.builder-form textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+.builder-form input:focus,
+.builder-form select:focus,
+.builder-form textarea:focus {
+  outline: none;
+  border-color: var(--navy);
+}
+
+/* ---------- Option rows ---------- */
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.option-row .key {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  width: 1.2em;
+  flex: none;
+}
+.option-row input[type="text"] {
+  flex: 1;
+  min-width: 0;
+}
+.option-row .remove-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1;
+  color: var(--ink-faint);
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.option-row .remove-btn:hover {
+  color: var(--red);
+  border-color: var(--rule);
+}
+
+/* ---------- Correct-answer tiles (styled like the practice palette) ---------- */
+.correct-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.correct-tile {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.correct-tile:hover {
+  border-color: var(--ink-soft);
+}
+.correct-tile[aria-pressed="true"] {
+  background: var(--green-bg);
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 500;
+}
+
+.ghost-btn {
+  background: none;
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.ghost-btn:hover {
+  border-color: var(--ink-soft);
+  color: var(--ink);
+}
+.ghost-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ---------- Copy button + problems ---------- */
+.builder-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+}
+.copy-btn {
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 12px 26px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.copy-btn:hover {
+  opacity: 0.88;
+}
+.copy-status {
+  font-size: 0.78rem;
+  color: var(--green);
+}
+
+.builder-problems {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  background: var(--red-bg);
+  border: 1px solid var(--red);
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  color: var(--red);
+}
+.builder-problems:empty {
+  display: none;
+}
+.builder-problems li {
+  margin: 2px 0;
+}
+.builder-problems li::before {
+  content: "✗ ";
+}
+
+/* ---------- Raw JSON ---------- */
+.json-details {
+  margin-top: 26px;
+}
+.json-details summary {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.json-details pre {
+  margin: 12px 0 0;
+  padding: 14px 16px;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  font-size: 0.72rem;
+  line-height: 1.55;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* Stack the preview under the form once there isn't room for two columns. */
+@media (max-width: 1080px) {
+  .builder-layout {
+    flex-direction: column;
+  }
+  .builder-preview {
+    position: static;
+    width: 100%;
+  }
+}

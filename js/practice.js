@@ -174,7 +174,9 @@ function renderQuestion() {
   const q = filtered[currentIndex];
   els.qLabel.textContent = `Q. ${q.topic}`;
   els.qDifficulty.textContent =
-    typeof q.difficulty === "number" ? `Difficulty ${q.difficulty}` : "";
+    typeof q.difficulty === "number"
+      ? `Difficulty ${q.difficulty.toFixed(1)}`
+      : "";
   els.qSource.textContent = q.source;
   renderMath(q.stem, els.qStem);
 

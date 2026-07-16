@@ -2,16 +2,20 @@
 
 ### If you are non-technical or can't be bothered to upload questions, don't read the rest, just send me a message on [LinkedIn](https://www.linkedin.com/in/arnav-nagpure/) (or open an issue) and I'll do it:  
 
-It is however quite simple with AI read point (1)
+It is however quite simple read point (1)
 
 (1) To do this the easy way:
-- Paste this file into an LLM of your choice alongside your question
+- Use the [question builder](https://an1001.github.io/openTMUA/builder.html) and copy the JSON
+- Add that questions JSON into data/questions.json (at the end)
+
+(2) Alternatively (if you don't know LaTeX):
+- Paste this file and your question into an LLM of your choice.
 - Ask it to convert it into JSON for you
-- Add that question into data/questions.json (at the end)
+- Add that questions JSON into data/questions.json (at the end)
 
-(2) No build step, no dependencies: the site is plain HTML/CSS/JS and the questions live in one JSON file.
+(3) No build step, no dependencies: the site is plain HTML/CSS/JS and the questions live in one JSON file.
 
-(3) Thank you.
+(4) Thank you.
 
 ## Contributing a question
 

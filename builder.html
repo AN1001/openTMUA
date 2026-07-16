@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>OpenTMUA — Question builder</title>
+    <meta name="robots" content="noindex" />
+    <meta
+      name="description"
+      content="Write a question, preview it live, and copy the JSON for a pull request."
+    />
+    <link rel="stylesheet" href="vendor/fonts/fonts.css" />
+    <link rel="stylesheet" href="vendor/katex/katex.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/builder.css" />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap">
+        <a class="wordmark" href="index.html">Open<span>TMUA</span></a>
+        <nav class="site-nav">
+          <a href="practice.html">Practice</a>
+          <a href="index.html#papers">Papers</a>
+          <a
+            href="https://github.com/AN1001/openTMUA"
+            target="_blank"
+            rel="noopener"
+            >Source</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap builder-main">
+      <h1 class="builder-title">Question builder</h1>
+      <p class="builder-sub">
+        Fill in the fields, watch the live preview, then copy the JSON and add
+        it to the end of <span class="mono">data/questions.json</span> in your
+        PR. Wrap maths in <span class="mono">$…$</span> (inline) or
+        <span class="mono">$$…$$</span> (display) — plain LaTeX, single
+        backslashes; escaping is handled for you.
+      </p>
+
+      <div class="builder-layout">
+        <!-- ============ LHS: raw inputs ============ -->
+        <form class="builder-form" id="builderForm" autocomplete="off">
+          <div class="field-row">
+            <div class="field">
+              <label class="mono" for="fPaper">Paper</label>
+              <select id="fPaper">
+                <option>Paper 1</option>
+                <option>Paper 2</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="mono" for="fTopic">Topic</label>
+              <input id="fTopic" type="text" value="Algebra" />
+            </div>
+            <div class="field field-small">
+              <label class="mono" for="fDifficulty">Difficulty</label>
+              <input
+                id="fDifficulty"
+                type="number"
+                min="1"
+                max="9"
+                step="0.1"
+                value="1.0"
+                title="1.0 (easiest) to 9.0 (hardest) — mirrors the TMUA grade"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="mono" for="fSource">Source</label>
+            <input id="fSource" type="text" value="Your Name" />
+          </div>
+
+          <div class="field">
+            <label class="mono" for="fStem">Stem</label>
+            <textarea id="fStem" rows="6">What is the value of $1 + 1$?</textarea>
+          </div>
+
+          <div class="field">
+            <label class="mono">Options</label>
+            <div id="optionRows"></div>
+            <button type="button" class="ghost-btn mono" id="addOption">
+              + Add option
+            </button>
+          </div>
+
+          <div class="field">
+            <label class="mono">Correct answer</label>
+            <div
+              class="correct-tiles"
+              id="correctTiles"
+              aria-label="Select the correct option"
+            ></div>
+          </div>
+
+          <div class="field">
+            <label class="mono" for="fWorking">Working</label>
+            <textarea id="fWorking" rows="9">Your solution and explanation here — techniques, common pitfalls, why the distractors are wrong, how to make a good brownie…</textarea>
+          </div>
+
+          <div class="builder-actions">
+            <button type="button" class="copy-btn mono" id="copyBtn">
+              Copy JSON
+            </button>
+            <span class="copy-status mono" id="copyStatus"></span>
+          </div>
+          <ul class="builder-problems mono" id="problems"></ul>
+
+          <details class="json-details">
+            <summary class="mono">Raw JSON</summary>
+            <pre class="mono" id="jsonOut"></pre>
+          </details>
+        </form>
+
+        <!-- ============ RHS: rendered preview ============ -->
+        <div class="builder-preview">
+          <span class="preview-eyebrow mono">LIVE PREVIEW</span>
+          <div class="question-card">
+            <div class="qc-head">
+              <span class="qc-head-main">
+                <span class="qlabel mono" id="pLabel">Q. —</span>
+                <span class="qdifficulty mono" id="pDifficulty"></span>
+              </span>
+              <span class="qsource mono" id="pSource">—</span>
+            </div>
+            <div class="qc-body">
+              <p class="stem-math" id="pStem">Your question appears here…</p>
+              <ul class="options" id="pOptions"></ul>
+              <div class="feedback show" id="pFeedback">
+                <strong>Working</strong>
+                <span class="working mono" id="pWorking"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site">
+      <div class="wrap">
+        <span>OpenTMUA — code under MIT, questions under CC BY-SA 4.0.</span>
+        <span
+          >Not affiliated with or endorsed by University Admissions Tests
+          (UAT-UK) or Pearson VUE, who administer the TMUA. Questions are
+          provided as-is for practice.</span
+        >
+      </div>
+    </footer>
+
+    <script src="vendor/katex/katex.min.js"></script>
+    <script type="module" src="js/builder.js"></script>
+  </body>
+</html>
