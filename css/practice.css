@@ -1,10 +1,14 @@
-/* Practice page additions — assumes style.css already defines:
-   --paper, --paper-raised, --grid-line, --ink, --ink-soft, --ink-faint,
-   --rule, --red, --red-bg, --green, --green-bg, --navy, --radius
-   and the base .wrap / .site / .wordmark / .question-card / .options / .option /
-   .feedback / .qc-head / .qc-body / .stem-math / .eyebrow / mono classes from index.html. */
+/* Practice page additions — assumes styles.css already defines the
+   :root tokens (--paper, --ink, --rule, --card-w, --radius, …) and the base
+   .wrap / .site / .wordmark / .question-card / .options / .option /
+   .feedback / .qc-head / .qc-body / .stem-math / .eyebrow / mono classes. */
 
-/* Combined width of the palette column + gap + question box.
+:root {
+  --palette-w: 194px; /* 5 cols of 34px + 4 gaps of 6px */
+  --layout-gap: 18px;
+}
+
+/* Combined width of the palette column + gap + question box (+ side padding).
    Constraining .practice-main to this makes the title, pills, status/progress
    and the palette+box row all share the same left/right edges. */
 .practice-main {
@@ -12,14 +16,8 @@
   max-width: calc(var(--palette-w) + var(--layout-gap) + var(--card-w) + 40px);
 }
 
-:root {
-  --palette-w: 194px;   /* 5 cols of 34px + 4 gaps of 6px */
-  --layout-gap: 18px;
-  --card-w: 628px;
-}
-
 .practice-title {
-  font-family: 'Spectral', serif;
+  font-family: "Spectral", serif;
   font-size: clamp(1.8rem, 3.6vw, 2.4rem);
   margin: 14px 0 28px;
 }
@@ -40,8 +38,10 @@
   cursor: pointer;
   color: var(--ink-soft);
 }
-.topic-pill:hover { border-color: var(--ink-soft); }
-.topic-pill[aria-selected="true"] {
+.topic-pill:hover {
+  border-color: var(--ink-soft);
+}
+.topic-pill[aria-pressed="true"] {
   background: var(--ink);
   border-color: var(--ink);
   color: var(--paper);
@@ -55,7 +55,11 @@
   gap: 8px 16px;
   margin-bottom: 18px;
 }
-.practice-status #statusLine { font-size: 0.85rem; color: var(--ink-soft); white-space: nowrap; }
+.practice-status #statusLine {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
 .storage-note {
   flex-basis: 100%;
   margin: 0;
@@ -79,12 +83,12 @@
 /* ---------- Question layout: palette (LHS) + question box ---------- */
 .question-layout {
   display: flex;
-  align-items: stretch;   /* palette column matches the question box height */
+  align-items: stretch; /* palette column matches the question box height */
   gap: var(--layout-gap);
 }
 .question-layout .question-card {
   flex: 1 1 auto;
-  max-width: none;        /* override the 620px cap from styles.css */
+  max-width: none; /* override the --card-w cap from styles.css */
   min-width: 0;
 }
 
@@ -94,7 +98,7 @@
   display: grid;
   grid-template-columns: repeat(5, 34px);
   grid-auto-rows: 34px;
-  align-content: start;   /* numbers sit at the top when the box is taller */
+  align-content: start; /* numbers sit at the top when the box is taller */
   gap: 6px;
 }
 .palette-item {
@@ -110,15 +114,25 @@
   color: var(--ink-soft);
   cursor: pointer;
 }
-.palette-item:hover { border-color: var(--ink-soft); }
+.palette-item:hover {
+  border-color: var(--ink-soft);
+}
 .palette-item[aria-current="true"] {
   border-color: var(--navy);
   border-width: 2px;
   color: var(--ink);
   font-weight: 500;
 }
-.palette-item[data-state="correct"] { background: var(--green-bg); border-color: var(--green); color: var(--green); }
-.palette-item[data-state="incorrect"] { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+.palette-item[data-state="correct"] {
+  background: var(--green-bg);
+  border-color: var(--green);
+  color: var(--green);
+}
+.palette-item[data-state="incorrect"] {
+  background: var(--red-bg);
+  border-color: var(--red);
+  color: var(--red);
+}
 
 /* ---------- Question nav (prev/next/reset) ---------- */
 .qc-nav {
@@ -137,13 +151,24 @@
   color: var(--ink-soft);
   cursor: pointer;
 }
-.nav-btn:hover { border-color: var(--ink-soft); color: var(--ink); }
-.nav-btn:disabled { opacity: 0.4; cursor: default; }
-.nav-btn:disabled:hover { border-color: var(--rule); color: var(--ink-soft); }
+.nav-btn:hover {
+  border-color: var(--ink-soft);
+  color: var(--ink);
+}
+.nav-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.nav-btn:disabled:hover {
+  border-color: var(--rule);
+  color: var(--ink-soft);
+}
 
 /* Stack the palette above the box once there isn't room for a side column. */
 @media (max-width: 640px) {
-  .question-layout { flex-direction: column; }
+  .question-layout {
+    flex-direction: column;
+  }
   .palette {
     flex: 0 0 auto;
     grid-template-columns: repeat(auto-fill, 34px);
@@ -152,5 +177,8 @@
 }
 
 @media (max-width: 480px) {
-  .qc-nav { flex-wrap: wrap; gap: 8px; }
+  .qc-nav {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 }

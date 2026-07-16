@@ -83,8 +83,7 @@ function buildPills() {
     const btn = document.createElement("button");
     btn.className = "topic-pill";
     btn.textContent = topic;
-    btn.setAttribute("role", "tab");
-    btn.setAttribute("aria-selected", topic === currentTopic ? "true" : "false");
+    btn.setAttribute("aria-pressed", topic === currentTopic ? "true" : "false");
     btn.addEventListener("click", () => {
       applyFilter(topic);
     });
@@ -101,7 +100,7 @@ function applyFilter(topic) {
   currentIndex = 0;
   for (const btn of els.pills.children) {
     btn.setAttribute(
-      "aria-selected",
+      "aria-pressed",
       btn.textContent === topic ? "true" : "false",
     );
   }
@@ -115,8 +114,7 @@ function buildPalette() {
     const btn = document.createElement("button");
     btn.className = "palette-item";
     btn.textContent = String(i + 1);
-    btn.setAttribute("role", "tab");
-    if (answers[q.id]) btn.setAttribute("data-state", answers[q.id].state);
+    setAnsweredState(btn, q);
     btn.addEventListener("click", () => {
       currentIndex = i;
       renderQuestion();
@@ -129,15 +127,19 @@ function countCompleted() {
   return filtered.filter((q) => answers[q.id]).length;
 }
 
+// Reflect a question's saved outcome on its palette button (or clear it).
+function setAnsweredState(btn, q) {
+  if (answers[q.id]) {
+    btn.setAttribute("data-state", answers[q.id].state);
+  } else {
+    btn.removeAttribute("data-state");
+  }
+}
+
 function refreshPaletteState() {
   [...els.palette.children].forEach((btn, i) => {
     btn.setAttribute("aria-current", i === currentIndex ? "true" : "false");
-    const q = filtered[i];
-    if (answers[q.id]) {
-      btn.setAttribute("data-state", answers[q.id].state);
-    } else {
-      btn.removeAttribute("data-state");
-    }
+    setAnsweredState(btn, filtered[i]);
   });
 }
 

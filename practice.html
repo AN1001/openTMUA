@@ -36,7 +36,6 @@
       <div
         class="topic-pills mono"
         id="topicPills"
-        role="tablist"
         aria-label="Filter by topic"
       ></div>
 
@@ -54,7 +53,6 @@
         <div
           class="palette mono"
           id="palette"
-          role="tablist"
           aria-label="Jump to question"
         ></div>
 
@@ -68,7 +66,7 @@
 
             <ul class="options" id="options"></ul>
 
-            <div class="feedback" id="feedback">
+            <div class="feedback" id="feedback" aria-live="polite">
               <strong id="feedbackTitle"></strong>
               <span id="feedbackBody"></span>
               <span class="working mono" id="feedbackWorking"></span>

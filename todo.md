@@ -2,7 +2,7 @@
 
 ## Noted, deliberately deferred
 
-- [ ] **Accessibility pass** — `role="tab"`/`role="tablist"` misused on topic pills and question palette (no `aria-controls`/panels); feedback box needs `aria-live="polite"` so screen readers announce Correct/Not quite.
+- [x] **Accessibility pass** — tab roles removed (pills use `aria-pressed`, palette uses `aria-current`); feedback boxes have `aria-live="polite"`.
 - [ ] **Normalize questions.json escapes** — first 6 entries use `\uXXXX`, later ones use literal Unicode (², −, ×). Pick literal Unicode for readability.
 - [ ] **Favicon** — every page load currently 404s on `/favicon.ico`.
 - [ ] **Open Graph / twitter-card meta** — skipped for now (no socials); add before sharing links anywhere.
