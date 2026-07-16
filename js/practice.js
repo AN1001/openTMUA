@@ -78,11 +78,12 @@ function buildPills() {
   for (const q of allQuestions) {
     if (!topics.includes(q.topic)) topics.push(q.topic);
   }
-  els.pills.innerHTML = "";
+  els.pills.replaceChildren();
   for (const topic of topics) {
     const btn = document.createElement("button");
     btn.className = "topic-pill";
     btn.textContent = topic;
+    btn.dataset.topic = topic;
     btn.setAttribute("aria-pressed", topic === currentTopic ? "true" : "false");
     btn.addEventListener("click", () => {
       applyFilter(topic);
@@ -101,7 +102,7 @@ function applyFilter(topic) {
   for (const btn of els.pills.children) {
     btn.setAttribute(
       "aria-pressed",
-      btn.textContent === topic ? "true" : "false",
+      btn.dataset.topic === topic ? "true" : "false",
     );
   }
   buildPalette();
@@ -109,7 +110,7 @@ function applyFilter(topic) {
 }
 
 function buildPalette() {
-  els.palette.innerHTML = "";
+  els.palette.replaceChildren();
   filtered.forEach((q, i) => {
     const btn = document.createElement("button");
     btn.className = "palette-item";
@@ -146,7 +147,7 @@ function refreshPaletteState() {
 function renderQuestion() {
   if (!filtered.length) {
     els.qStem.textContent = "No questions in this topic yet.";
-    els.options.innerHTML = "";
+    els.options.replaceChildren();
     els.qLabel.textContent = "Q. —";
     els.qSource.textContent = "—";
     els.statusLine.textContent = "Question 0 of 0";
@@ -167,7 +168,7 @@ function renderQuestion() {
     (currentTopic !== "All" ? ` · ${currentTopic}` : "");
   els.progressFill.style.width = `${(completed / filtered.length) * 100}%`;
 
-  els.options.innerHTML = "";
+  els.options.replaceChildren();
   for (const opt of q.options) {
     const li = document.createElement("li");
     const btn = document.createElement("button");

@@ -52,7 +52,7 @@ function renderQuestion(q) {
   demoLabel.textContent = `Q. ${q.topic}`;
   renderMath(q.stem, demoStem);
   renderMath(q.working, demoWorking);
-  optionsList.innerHTML = "";
+  optionsList.replaceChildren();
   for (const opt of q.options) {
     const li = document.createElement("li");
     const btn = document.createElement("button");

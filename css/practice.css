@@ -174,6 +174,12 @@
     grid-template-columns: repeat(auto-fill, 34px);
     margin-bottom: 4px;
   }
+  /* Hide the reset button to keep the nav to Prev/Next on narrow screens.
+     !important is needed because practice.js toggles resetBtn.style.display
+     inline, which would otherwise win over this rule. */
+  #resetBtn {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {

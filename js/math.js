@@ -5,9 +5,6 @@
 // segments with KaTeX, and inserts everything else as plain text nodes —
 // so question data is never interpreted as HTML (no innerHTML on it).
 
-// $$...$$ (display) is matched before $...$ (inline). Content can't contain '$'.
-const MATH = /\$\$([^$]+)\$\$|\$([^$]+)\$/g;
-
 export function renderMath(text, target) {
   target.textContent = "";
   const str = String(text ?? "");
@@ -18,10 +15,12 @@ export function renderMath(text, target) {
     return target;
   }
 
+  // Fresh per call (stateful because of /g's lastIndex): $$...$$ (display) is
+  // matched before $...$ (inline). Content can't contain '$'.
+  const math = /\$\$([^$]+)\$\$|\$([^$]+)\$/g;
   let last = 0;
   let m;
-  MATH.lastIndex = 0;
-  while ((m = MATH.exec(str)) !== null) {
+  while ((m = math.exec(str)) !== null) {
     if (m.index > last) {
       target.appendChild(document.createTextNode(str.slice(last, m.index)));
     }
@@ -38,7 +37,7 @@ export function renderMath(text, target) {
       span.textContent = isDisplay ? `$$${source}$$` : `$${source}$`;
     }
     target.appendChild(span);
-    last = MATH.lastIndex;
+    last = math.lastIndex;
   }
   if (last < str.length) {
     target.appendChild(document.createTextNode(str.slice(last)));
