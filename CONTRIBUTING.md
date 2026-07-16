@@ -1,8 +1,8 @@
-### If you are non-technical or can't be bothered just send me a message on [LinkedIn](https://www.linkedin.com/in/arnav-nagpure/) (or open an issue) and I'll do it:  
+# Contributing questions to OpenTMUA
+
+### If you are non-technical or can't be bothered to upload questions, don't read the rest, just send me a message on [LinkedIn](https://www.linkedin.com/in/arnav-nagpure/) (or open an issue) and I'll do it:  
 
 It is however quite simple with AI read point (1)
-
-# Contributing to OpenTMUA
 
 (1) To do this the easy way:
 - Paste this file into an LLM of your choice alongside your question
