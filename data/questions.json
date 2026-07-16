@@ -34,7 +34,7 @@
     "paper": "Paper 1",
     "topic": "Sequences",
     "source": "Original · OpenTMUA",
-    "stem": "An arithmetic sequence has first term 5 and common difference 3. What is the smallest term greater than 100?",
+    "stem": "An arithmetic sequence has first term $5$ and common difference 3. What is the smallest term greater than 100?",
     "options": [
       { "key": "A", "text": "98", "correct": false },
       { "key": "B", "text": "99", "correct": false },
@@ -178,5 +178,20 @@
       { "key": "E", "text": "\u221a34", "correct": false }
     ],
     "working": "Completing the square: (x \u2212 3)\u00b2 \u2212 9 + (y + 4)\u00b2 \u2212 16 + 9 = 0, so (x \u2212 3)\u00b2 + (y + 4)\u00b2 = 16. The radius is 4."
+  },
+  {
+    "id": "p1-alg-03",
+    "paper": "Paper 1",
+    "topic": "Algebra",
+    "source": "Original \u00b7 OpenTMUA",
+    "stem": "Simplify $\\dfrac{\\sqrt{50} + \\sqrt{18}}{\\sqrt{2}}$.",
+    "options": [
+      { "key": "A", "text": "$4$", "correct": false },
+      { "key": "B", "text": "$6$", "correct": false },
+      { "key": "C", "text": "$8$", "correct": true },
+      { "key": "D", "text": "$8\\sqrt{2}$", "correct": false },
+      { "key": "E", "text": "$34$", "correct": false }
+    ],
+    "working": "Since $\\sqrt{50} = 5\\sqrt{2}$ and $\\sqrt{18} = 3\\sqrt{2}$, the numerator is $8\\sqrt{2}$. Dividing by $\\sqrt{2}$ gives $8$."
   }
 ]

@@ -143,7 +143,7 @@
     var q = filtered[currentIndex];
     els.qLabel.textContent = 'Q. ' + q.topic;
     els.qSource.textContent = q.source;
-    els.qStem.textContent = q.stem;
+    window.OpenTMUAMath.render(q.stem, els.qStem);
 
     // Progress reflects how many questions in this view have been completed
     // (answered either way), not the current position.
@@ -160,12 +160,13 @@
       btn.className = 'option';
       btn.dataset.key = opt.key;
       btn.dataset.correct = opt.correct;
-      // Build spans via textContent so question data is never parsed as HTML.
+      // Build spans without innerHTML so question data is never parsed as HTML;
+      // renderMath handles any $…$ LaTeX safely.
       var tag = document.createElement('span');
       tag.className = 'tag mono';
       tag.textContent = opt.key;
       var text = document.createElement('span');
-      text.textContent = opt.text;
+      window.OpenTMUAMath.render(opt.text, text);
       btn.appendChild(tag);
       btn.appendChild(text);
       btn.addEventListener('click', function () { handleAnswer(q, btn); });
@@ -219,7 +220,7 @@
     els.feedbackBody.textContent = wasCorrect
       ? 'Here\'s the working:'
       : 'The answer is ' + correctOpt.key + (selectedKey && selectedKey !== correctOpt.key ? ', not ' + selectedKey : '') + '. Here\'s the working:';
-    els.feedbackWorking.textContent = q.working;
+    window.OpenTMUAMath.render(q.working, els.feedbackWorking);
     els.feedback.classList.add('show');
   }
 

@@ -53,8 +53,8 @@
 
   function renderQuestion(q) {
     demoLabel.textContent = "Q. " + q.topic;
-    demoStem.textContent = q.stem;
-    demoWorking.textContent = q.working;
+    window.OpenTMUAMath.render(q.stem, demoStem);
+    window.OpenTMUAMath.render(q.working, demoWorking);
     optionsList.innerHTML = "";
     q.options.forEach(function (opt) {
       var li = document.createElement("li");
@@ -62,12 +62,13 @@
       btn.className = "option";
       btn.dataset.key = opt.key;
       btn.dataset.correct = String(opt.correct);
-      // Build spans via textContent so question data is never parsed as HTML.
+      // Build spans without innerHTML so question data is never parsed as HTML;
+      // renderMath handles any $…$ LaTeX safely.
       var tag = document.createElement("span");
       tag.className = "tag mono";
       tag.textContent = opt.key;
       var text = document.createElement("span");
-      text.textContent = opt.text;
+      window.OpenTMUAMath.render(opt.text, text);
       btn.appendChild(tag);
       btn.appendChild(text);
       li.appendChild(btn);

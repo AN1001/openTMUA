@@ -1,75 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Practice — OpenTMUA</title>
-<meta name="description" content="Work through TMUA-style practice questions by topic.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/practice.css">
-</head>
-<body>
-
-<header class="site">
-  <div class="wrap">
-    <a class="wordmark" href="index.html">Open<span>TMUA</span></a>
-    <nav class="site-nav">
-      <a href="index.html#papers">Papers</a>
-      <a href="practice.html">Practice</a>
-      <a href="https://github.com/AN1001/openTMUA" target="_blank" rel="noopener">Source</a>
-    </nav>
-  </div>
-</header>
-
-<main class="wrap practice-main">
-  <h1 class="practice-title">Practice</h1>
-
-  <div class="topic-pills mono" id="topicPills" role="tablist" aria-label="Filter by topic"></div>
-
-  <div class="practice-status">
-    <span class="mono" id="statusLine">Question 1 of 1</span>
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-    <p class="storage-note mono">Progress is saved in this browser only — nothing leaves your device.</p>
-  </div>
-
-  <div class="question-layout">
-    <div class="palette mono" id="palette" role="tablist" aria-label="Jump to question"></div>
-
-    <div class="question-card" id="questionCard">
-    <div class="qc-head">
-      <span class="qlabel mono" id="qLabel">Q. —</span>
-      <span class="qsource mono" id="qSource">—</span>
-    </div>
-    <div class="qc-body">
-      <p class="stem-math" id="qStem">Loading questions…</p>
-
-      <ul class="options" id="options"></ul>
-
-      <div class="feedback" id="feedback">
-        <strong id="feedbackTitle"></strong>
-        <span id="feedbackBody"></span>
-        <span class="working mono" id="feedbackWorking"></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenTMUA</title>
+    <meta
+      name="description"
+      content="Work through TMUA-style practice questions by topic."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="vendor/katex/katex.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/practice.css" />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap">
+        <a class="wordmark" href="index.html">Open<span>TMUA</span></a>
+        <nav class="site-nav">
+          <a href="index.html#papers">Papers</a>
+          <a href="practice.html">Practice</a>
+          <a
+            href="https://github.com/AN1001/openTMUA"
+            target="_blank"
+            rel="noopener"
+            >Source</a
+          >
+        </nav>
       </div>
-    </div>
-    <div class="qc-nav">
-      <button class="nav-btn mono" id="prevBtn">&larr; Prev</button>
-      <button class="nav-btn mono" id="resetBtn" style="display:none;">Reset question</button>
-      <button class="nav-btn mono" id="nextBtn">Next &rarr;</button>
-    </div>
-    </div>
-  </div>
-</main>
+    </header>
 
-<footer class="site">
-  <div class="wrap">
-    <span>OpenTMUA — released under the MIT License.</span>
-    <span>Not affiliated with Durham University or the TMUA Consortium.</span>
-  </div>
-</footer>
+    <main class="wrap practice-main">
+      <h1 class="practice-title">Practice</h1>
 
-<script src="js/practice.js"></script>
-</body>
+      <div
+        class="topic-pills mono"
+        id="topicPills"
+        role="tablist"
+        aria-label="Filter by topic"
+      ></div>
+
+      <div class="practice-status">
+        <span class="mono" id="statusLine">Question 1 of 1</span>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="storage-note mono">
+          Progress is saved in this browser only — nothing leaves your device.
+        </p>
+      </div>
+
+      <div class="question-layout">
+        <div
+          class="palette mono"
+          id="palette"
+          role="tablist"
+          aria-label="Jump to question"
+        ></div>
+
+        <div class="question-card" id="questionCard">
+          <div class="qc-head">
+            <span class="qlabel mono" id="qLabel">Q. —</span>
+            <span class="qsource mono" id="qSource">—</span>
+          </div>
+          <div class="qc-body">
+            <p class="stem-math" id="qStem">Loading questions…</p>
+
+            <ul class="options" id="options"></ul>
+
+            <div class="feedback" id="feedback">
+              <strong id="feedbackTitle"></strong>
+              <span id="feedbackBody"></span>
+              <span class="working mono" id="feedbackWorking"></span>
+            </div>
+          </div>
+          <div class="qc-nav">
+            <button class="nav-btn mono" id="prevBtn">&larr; Prev</button>
+            <button class="nav-btn mono" id="resetBtn" style="display: none">
+              Reset question
+            </button>
+            <button class="nav-btn mono" id="nextBtn">Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site">
+      <div class="wrap">
+        <span>OpenTMUA — released under the MIT License.</span>
+        <span
+          >Not affiliated with Durham University or the TMUA Consortium.</span
+        >
+      </div>
+    </footer>
+
+    <script src="vendor/katex/katex.min.js"></script>
+    <script src="js/math.js"></script>
+    <script src="js/practice.js"></script>
+  </body>
 </html>

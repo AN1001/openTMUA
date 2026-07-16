@@ -44,9 +44,20 @@ Field rules (enforced by CI — see below):
 | `paper` | `"Paper 1"` (Mathematical Thinking) or `"Paper 2"` (Mathematical Reasoning). |
 | `topic` | One of the existing topics where possible: `Algebra`, `Functions`, `Sequences`, `Number`, `Probability`, `Geometry`. New topics are welcome — mention it in the PR. |
 | `source` | `"Original · OpenTMUA"` for new questions. |
-| `stem` | The question text, plain text. Use Unicode maths characters directly: `²`, `−`, `×`, `√`, `≤`, `π`. |
-| `options` | Exactly 5, keyed `"A"`–`"E"` in order, each with non-empty `text` and boolean `correct`. Exactly one `correct: true`. |
-| `working` | Full solution a student can follow. |
+| `stem` | The question text. See **Maths notation** below. |
+| `options` | Exactly 5, keyed `"A"`–`"E"` in order, each with non-empty `text` and boolean `correct`. Exactly one `correct: true`. Option `text` may contain maths too. |
+| `working` | Full solution a student can follow. May contain maths. |
+
+### Maths notation
+
+`stem`, `working`, and each option's `text` are rendered with [KaTeX](https://katex.org/). Wrap LaTeX in delimiters:
+
+- **Inline:** `$ ... $` — e.g. `"Solve $x^2 - 5x + 6 = 0$."`
+- **Display** (centred, own line): `$$ ... $$` — e.g. `"$$\\sum_{n=1}^{N} n = \\frac{N(N+1)}{2}$$"`
+
+Because these are JSON strings, every LaTeX backslash must be **doubled**: write `\\frac`, `\\sqrt`, `\\pm`, `\\le`. Anything outside the delimiters is shown as plain text, so you can mix prose and maths freely. Simple expressions that don't need LaTeX can still use Unicode characters directly (`²`, `−`, `√`) — both work.
+
+See `p1-alg-03` in the bank for a worked example.
 
 ### 3. Check it locally
 
