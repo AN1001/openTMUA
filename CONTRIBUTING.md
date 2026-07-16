@@ -85,7 +85,7 @@ python3 -m http.server
 Bug fixes and improvements are welcome. Ground rules:
 
 - **No frameworks, no build step, no npm.** Plain HTML/CSS/JS is a deliberate choice.
-- Match the existing style: ES5-flavoured JS in IIFEs, CSS custom properties from `css/styles.css`'s `:root`, and `textContent` (never `innerHTML`) for anything derived from question data.
+- Match the existing style: native ES modules (`import`/`export`, `const`/`let`, arrow functions — no transpiler), CSS custom properties from `css/styles.css`'s `:root`, and `textContent` (never `innerHTML`) for anything derived from question data.
 - For anything bigger than a small fix, open an issue first so we can agree on the approach.
 
 ## Questions?
