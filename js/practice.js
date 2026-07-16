@@ -1,5 +1,13 @@
 import { renderMath } from "./math.js";
 
+// A small, stable FNV-ish string hash → short base-36 id, used to key each
+// question's saved progress in localStorage without hand-numbering the JSON.
+function hashId(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+  return "q" + (h >>> 0).toString(36);
+}
+
 let allQuestions = [];
 let filtered = [];
 let currentIndex = 0;
@@ -59,6 +67,12 @@ fetch("data/questions.json")
     return res.json();
   })
   .then((data) => {
+    // Derive a stable id from each question's stem so the JSON doesn't have to
+    // carry hand-written ids. The id is only ever a localStorage progress key
+    // (never shown), so it just needs to stay constant across loads — which it
+    // does unless a stem is materially rewritten, when resetting its saved
+    // state is reasonable anyway.
+    for (const q of data) q.id = hashId(q.stem);
     allQuestions = data;
     buildPills();
     applyFilter("All");
@@ -163,10 +177,9 @@ function renderQuestion() {
   // Progress reflects how many questions in this view have been completed
   // (answered either way), not the current position.
   const completed = countCompleted();
-  els.statusLine.textContent =
-    `Question ${currentIndex + 1} of ${filtered.length} · ${completed} done` +
-    (currentTopic !== "All" ? ` · ${currentTopic}` : "");
-  els.progressFill.style.width = `${(completed / filtered.length) * 100}%`;
+  const pct = Math.round((completed / filtered.length) * 100);
+  els.statusLine.textContent = `${pct}%`;
+  els.progressFill.style.width = `${pct}%`;
 
   els.options.replaceChildren();
   for (const opt of q.options) {

@@ -5,10 +5,8 @@ const path = require("path");
 
 const file = path.join(__dirname, "..", "data", "questions.json");
 const KEYS = ["A", "B", "C", "D", "E"];
-const REQUIRED = ["id", "paper", "topic", "source", "stem", "working"];
+const REQUIRED = ["paper", "topic", "source", "stem", "working"];
 const PAPERS = ["Paper 1", "Paper 2"];
-// Kebab-case ids like p1-alg-03 (see CONTRIBUTING.md).
-const ID_FORMAT = /^p[12]-[a-z]+(-[a-z]+)*-\d{2,}$/;
 const errors = [];
 let questions;
 
@@ -24,10 +22,12 @@ if (!Array.isArray(questions)) {
   process.exit(1);
 }
 
-const seenIds = new Set();
+// Progress is keyed off a hash of the stem (see js/practice.js), so two
+// questions sharing an identical stem would share saved progress — treat that
+// as an error rather than a silent collision.
+const seenStems = new Set();
 questions.forEach((q, i) => {
-  const where =
-    `question ${i + 1}` + (q && typeof q.id === "string" ? ` (${q.id})` : "");
+  const where = `question ${i + 1}`;
   const err = (msg) => errors.push(`${where}: ${msg}`);
 
   for (const field of REQUIRED) {
@@ -35,13 +35,9 @@ questions.forEach((q, i) => {
       err(`missing or empty "${field}"`);
   }
 
-  if (typeof q.id === "string") {
-    if (seenIds.has(q.id)) err(`duplicate id "${q.id}"`);
-    seenIds.add(q.id);
-    if (!ID_FORMAT.test(q.id))
-      err(
-        `id "${q.id}" must be kebab-case like "p1-alg-03" (p<paper>-<topic-abbrev>-<number>)`,
-      );
+  if (typeof q.stem === "string" && q.stem.trim()) {
+    if (seenStems.has(q.stem)) err(`duplicate stem (must be unique)`);
+    seenStems.add(q.stem);
   }
 
   if (typeof q.paper === "string" && !PAPERS.includes(q.paper))
