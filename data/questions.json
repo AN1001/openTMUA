@@ -29,7 +29,7 @@
       { "key": "E", "text": "$32$", "correct": false },
       { "key": "F", "text": "$1000$", "correct": false }
     ],
-    "working": "First rationalise\n$$\\frac{1}{\\sqrt{n} + \\sqrt{n+1}}$$ $$=\\frac{\\sqrt{n+1} - \\sqrt{n}}{(\\sqrt{n} + \\sqrt{n+1})(\\sqrt{n+1} - \\sqrt{n})}$$ $$=\\frac{\\sqrt{n+1} - \\sqrt{n}}{n+1-n}$$ $$=\\sqrt{n+1} - \\sqrt{n}$$\nNow Consider\n$$S_N = \\sum_{n=1}^{N} (\\sqrt{n+1} - \\sqrt{n})$$ $$S_N = (\\cancel{\\sqrt{2}} - \\sqrt{1}) + (\\cancel{\\sqrt{3}} - \\cancel{\\sqrt{2}}) + (\\cancel{\\sqrt{4}} - \\cancel{\\sqrt{3}}) + ... + (\\sqrt{N+1} - \\cancel{\\sqrt{N}})$$\nNotice that most terms cancel (as shown above) giving:\n$$S_N=-\\sqrt{1}+\\sqrt{N+1}=\\sqrt{N+1}-1$$\nWe require that $S_N$ is an integer. We can see this happens when $\\sqrt{N+1}$ is also an integer, which only happens when $N+1$ is a square number i.e. $N+1=k^2$ for an integer $k$.\n\nSince $1 \\leq N \\leq 1000$ we can see that $2 \\leq N+1 \\leq 1001$ thus: $$2 \\leq k^2 \\leq 1001$$ and since $$32 \\times 32= 1024$$ $$31 \\times 31=961$$ We see there are $30$ values for $k$, namely $k=2,3,4,...,31$, hence $\\boxed{30}$ values for $N$."
+    "working": "First rationalise\n$$\\frac{1}{\\sqrt{n} + \\sqrt{n+1}}$$ $$=\\frac{\\sqrt{n+1} - \\sqrt{n}}{(\\sqrt{n} + \\sqrt{n+1})(\\sqrt{n+1} - \\sqrt{n})}$$ $$=\\frac{\\sqrt{n+1} - \\sqrt{n}}{n+1-n}$$ $$=\\sqrt{n+1} - \\sqrt{n}$$\nNow consider\n$$S_N = \\sum_{n=1}^{N} (\\sqrt{n+1} - \\sqrt{n})$$ $$S_N = (\\cancel{\\sqrt{2}} - \\sqrt{1}) + (\\cancel{\\sqrt{3}} - \\cancel{\\sqrt{2}}) + (\\cancel{\\sqrt{4}} - \\cancel{\\sqrt{3}}) + ... + (\\sqrt{N+1} - \\cancel{\\sqrt{N}})$$\nNotice that most terms cancel (as shown above) giving:\n$$S_N=-\\sqrt{1}+\\sqrt{N+1}=\\sqrt{N+1}-1$$\nWe require that $S_N$ is an integer. We can see this happens when $\\sqrt{N+1}$ is also an integer, which only happens when $N+1$ is a square number i.e. $N+1=k^2$ for an integer $k$.\n\nSince $1 \\leq N \\leq 1000$ we can see that $2 \\leq N+1 \\leq 1001$ thus: $$2 \\leq k^2 \\leq 1001$$ and since $$32 \\times 32= 1024$$ $$31 \\times 31=961$$ We see there are $30$ values for $k$, namely $k=2,3,4,...,31$, hence $\\boxed{30}$ values for $N$."
   },
   {
     "paper": "Paper 1",
@@ -62,5 +62,21 @@
       { "key": "F", "text": "Infinitely many", "correct": false }
     ],
     "working": "First simplify:\n\n$$\\log_3(x^2 - a) = \\log_3(x) + 1$$ $$\\log_3(x^2 - a) = \\log_3(x) + \\log_3(3)$$ $$\\log_3(x^2 - a) = \\log_3(3x)$$\nSo the equation becomes $x^2 - a = 3x$, subject to the domain conditions $x^2 - a > 0$ and $x > 0$.\n\nWe can simplify the first domain condition: $$x^2 - a > 0$$ $$3x > 0$$ $$x > 0$$ Which is the same as the first domain condition so we only need to consider $x>0$.\n\nLooking back at our original equation $x^2 - a = 3x$ we can write this as $$x^2 - 3x - a= 0$$ and consider for what values of $a$ it has two positive solutions. Hence complete the square.\n\n$$\\bigg(x-\\frac{3}{2}\\bigg)^2 - \\frac{9}{4}-a=0$$ $$x = \\frac{3}{2} \\pm \\sqrt{\\frac{9}{4}+a} $$ $$0 < \\frac{3}{2} \\pm \\sqrt{\\frac{9}{4}+a} $$\nRearranging for both positive and negative options we get that $a < 0$ and $-\\frac{9}{4} < a$. Combining these we get $-\\frac{9}{4}<a<0$. Finally, looking for integer $a$ we see that $a=-2$ or $a=-1$ giving $\\boxed{2}$ values for $a$."
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Algebra",
+    "difficulty": 8.0,
+    "source": "Original · OpenTMUA",
+    "stem": "How many ordered pairs $(x,y)$ of real numbers satisfy both $$x+y=2$$ $$x^5+y^5=32$$",
+    "options": [
+      { "key": "A", "text": "$0$", "correct": false },
+      { "key": "B", "text": "$1$", "correct": false },
+      { "key": "C", "text": "$2$", "correct": true },
+      { "key": "D", "text": "$3$", "correct": false },
+      { "key": "E", "text": "$4$", "correct": false },
+      { "key": "F", "text": "Infinitely many", "correct": false }
+    ],
+    "working": "Since we have $x^5+y^5$ and $x+y$, consider writing one in terms of the other:\n\n$$(x+y)^5 = x^5 + 5x^4y + 10x^3y^2 + 10x^2y^3 + 5xy^4 + y^5$$\nNow collect terms and rearrange\n\n$$(x+y)^5 = x^5 + y^5 + 5xy(x^3+y^3) + 10(xy)^2(x+y)$$\nNow repeat for $x^3+y^3$:\n\n$$(x+y)^3 = x^3 + y^3 + 3xy(x+y)$$$$\\implies x^3+y^3 = (x+y)^3 - 3xy(x+y)$$\nHence, substituting this into the first expansion:\n\n$$(x+y)^5 = x^5+y^5 + 5xy\\big[(x+y)^3 - 3xy(x+y)\\big] + 10(xy)^2(x+y)$$\nNow simplify using the given equations $x+y=2$ and $x^5+y^5=32$:\n\n$$2^5 = 32 + 5xy\\big[2^3 - 3xy(2)\\big] + 10(xy)^2(2)$$ $$32 = 32 + 5xy[8 - 6xy] + 20(xy)^2$$\nNow let $u = xy$:\n\n$$32 = 32 + 5u(8-6u) + 20u^2$$ $$0 = 5u(8-6u) + 20u^2$$ $$0 = 40u - 30u^2 + 20u^2$$ $$0 = 40u - 10u^2$$ $$0 = 10u(4-u)$$\nGiving us $u=0$ and $u=4$.\nNow consider each case in turn:\n\n(Case 1) If $xy=0$ then at least one of $x$ or $y$ is $0$. Since $x+y=2$, this gives the pairs $(x,y) = (0,2)$ and $(x,y)=(2,0)$.\n\n(Case 2) If $xy=4$ then $y=\\frac{4}{x}$ and so\n\n$$x + \\frac{4}{x} = 2$$ $$x^2 + 4 = 2x$$ $$x^2 - 2x + 4 = 0$$\nThe discriminant is $\\Delta = (-2)^2 - 4(1)(4) = -12 < 0$, hence no real solutions for this case.\n\nHence there are only $\\boxed{2}$ ordered pair solutions: $(0,2)$ and $(2,0)$."
   }
 ]

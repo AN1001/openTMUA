@@ -79,7 +79,11 @@ Because these are JSON strings, every LaTeX backslash must be **doubled**: write
 
 (2) For consitency make the multiple choice options LaTeX if they are math - even if they are standard numbers e.g. \$ 2 \$ instead of 2.
 
+(3) Please box the final answer (where relavent) using '\boxed{}'
+
 ### 3. Check it locally ...or don't
+
+If using the recomended question builder then you should already be able to see the output.
 
 ```sh
 node scripts/validate-questions.js
@@ -105,7 +109,7 @@ Bug fixes and improvements are welcome. Check the `todo.md` for todos.
 
 ## Questions?
 
-Ask me on LinkedIn
+Ask me on LinkedIn (at top of file)
 
 
 or
