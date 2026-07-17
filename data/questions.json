@@ -2,7 +2,7 @@
   {
     "paper": "Paper 1",
     "topic": "Calculus",
-    "difficulty": 6.8,
+    "difficulty": 6.3,
     "source": "Original · OpenTMUA",
     "stem": "Let $I(k) = \\int_0^1 |x^2 - k| \\, dx$ for real $k$. What is the minimum value of $I(k)$?",
     "options": [
@@ -14,5 +14,53 @@
       { "key": "F", "text": "$\\frac{5}{24}$", "correct": false }
     ],
     "working": "Consider the range $0 \\leq x \\leq 1$, let $c = \\sqrt{k}$ be the crossover where $x^2 = k$. \n For $x < c$ we have $|x^2 - k| = k - x^2$, and for $x > c$ we have $|x^2 - k| = x^2 - k$. Hence we can write $I(k)$ as $$I(k) = \\int_0^c (k - x^2)\\,dx + \\int_c^1 (x^2 - k)\\,dx$$ $$I(k)=\\left[kx - \\tfrac{x^3}{3}\\right]_0^c + \\left[\\tfrac{x^3}{3} - kx\\right]_c^1$$ $$I(k) = kc - \\tfrac{c^3}{3} + \\tfrac{1}{3} - k - \\tfrac{c^3}{3} + kc$$ $$I(k) = \\tfrac{4}{3}k^{3/2} - k + \\tfrac{1}{3}.$$ \n Now simply find the minimum of $I(k)$ \n $$I'(k) = 2\\sqrt{k} - 1 = 0 \\Rightarrow k = \\tfrac{1}{4}$$ $$I(\\tfrac{1}{4}) = \\tfrac{1}{6} - \\tfrac{1}{4} + \\tfrac{1}{3} = \\tfrac{2 - 3 + 4}{12} = \\boxed{\\tfrac{1}{4}}$$"
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Series",
+    "difficulty": 7.0,
+    "source": "Original · OpenTMUA",
+    "stem": "For a positive integer $N$, let  $$S_N = \\sum_{n=1}^{N} \\frac{1}{\\sqrt{n} + \\sqrt{n+1}}$$  How many positive integers $N \\le 1000$ are such that $S_N$ is an integer?",
+    "options": [
+      { "key": "A", "text": "$0$", "correct": false },
+      { "key": "B", "text": "$29$", "correct": false },
+      { "key": "C", "text": "$30$", "correct": true },
+      { "key": "D", "text": "$31$", "correct": false },
+      { "key": "E", "text": "$32$", "correct": false },
+      { "key": "F", "text": "$1000$", "correct": false }
+    ],
+    "working": "First rationalise\n$$\\frac{1}{\\sqrt{n} + \\sqrt{n+1}}$$ $$=\\frac{\\sqrt{n+1} - \\sqrt{n}}{(\\sqrt{n} + \\sqrt{n+1})(\\sqrt{n+1} - \\sqrt{n})}$$ $$=\\frac{\\sqrt{n+1} - \\sqrt{n}}{n+1-n}$$ $$=\\sqrt{n+1} - \\sqrt{n}$$\nNow Consider\n$$S_N = \\sum_{n=1}^{N} (\\sqrt{n+1} - \\sqrt{n})$$ $$S_N = (\\cancel{\\sqrt{2}} - \\sqrt{1}) + (\\cancel{\\sqrt{3}} - \\cancel{\\sqrt{2}}) + (\\cancel{\\sqrt{4}} - \\cancel{\\sqrt{3}}) + ... + (\\sqrt{N+1} - \\cancel{\\sqrt{N}})$$\nNotice that most terms cancel (as shown above) giving:\n$$S_N=-\\sqrt{1}+\\sqrt{N+1}=\\sqrt{N+1}-1$$\nWe require that $S_N$ is an integer. We can see this happens when $\\sqrt{N+1}$ is also an integer, which only happens when $N+1$ is a square number i.e. $N+1=k^2$ for an integer $k$.\n\nSince $1 \\leq N \\leq 1000$ we can see that $2 \\leq N+1 \\leq 1001$ thus: $$2 \\leq k^2 \\leq 1001$$ and since $$32 \\times 32= 1024$$ $$31 \\times 31=961$$ We see there are $30$ values for $k$, namely $k=2,3,4,...,31$, hence $\\boxed{30}$ values for $N$."
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Number",
+    "difficulty": 6.5,
+    "source": "Original · OpenTMUA",
+    "stem": "Let $a$ and $b$ be real numbers such that $a + b$ and $ab$ are both rational. Consider the following:\n\n$\n\\begin{array}{ll}\n\\text{I.} & a^2 + b^2 \\\\\n\\text{II.} & a - b \\\\\n\\text{III.} & a^3 + b^3 \\\\\n\\text{IV.} & (a-b)^2\n\\end{array}\n$\n\nWhich of these must be rational?",
+    "options": [
+      { "key": "A", "text": "$I$ only", "correct": false },
+      { "key": "B", "text": "$I$ and $III$ only", "correct": false },
+      { "key": "C", "text": "$I$, $III$ and $IV$ only", "correct": true },
+      { "key": "D", "text": "$I$, $II$, $III$ and $IV$", "correct": false },
+      { "key": "E", "text": "$I$ and $IV$ only", "correct": false },
+      { "key": "F", "text": "None of them", "correct": false }
+    ],
+    "working": "Let $s = a+b$ and $p = ab$, both rational by assumption.\n\n$I$: $a^2+b^2 = (a+b)^2 - 2ab = s^2 - 2p \\in \\mathbb{Q}$\n\n$III$: $a^3+b^3 = (a+b)^3 - 3ab(a+b) = s^3 - 3ps \\in \\mathbb{Q}$\n\n$IV$: $(a-b)^2 = (a+b)^2 - 4ab = s^2 - 4p \\in \\mathbb{Q}$\n\nSo $I$, $III$, $IV$ must be rational, since each can be written purely in terms of $s$ and $p$.\n\nWe can see $II$ fails by looking at a counterexample:\n\nLet $a = 1+\\sqrt{2}$, $b = 1-\\sqrt{2}$.\nThen $s = 2 \\in \\mathbb{Q}$ and $p = 1 - 2 = -1 \\in \\mathbb{Q}$, but $a - b = 2\\sqrt{2} \\notin \\mathbb{Q}$."
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Algebra",
+    "difficulty": 6.2,
+    "source": "Original · OpenTMUA",
+    "stem": "For how many integer values of $a$ does the equation\n\n$$\\log_3(x^2 - a) = \\log_3(x) + 1$$ \nhave exactly two distinct real solutions?",
+    "options": [
+      { "key": "A", "text": "$0$", "correct": false },
+      { "key": "B", "text": "$1$", "correct": false },
+      { "key": "C", "text": "$2$", "correct": true },
+      { "key": "D", "text": "$3$", "correct": false },
+      { "key": "E", "text": "$4$", "correct": false },
+      { "key": "F", "text": "Infinitely many", "correct": false }
+    ],
+    "working": "First simplify:\n\n$$\\log_3(x^2 - a) = \\log_3(x) + 1$$ $$\\log_3(x^2 - a) = \\log_3(x) + \\log_3(3)$$ $$\\log_3(x^2 - a) = \\log_3(3x)$$\nSo the equation becomes $x^2 - a = 3x$, subject to the domain conditions $x^2 - a > 0$ and $x > 0$.\n\nWe can simplify the first domain condition: $$x^2 - a > 0$$ $$3x > 0$$ $$x > 0$$ Which is the same as the first domain condition so we only need to consider $x>0$.\n\nLooking back at our original equation $x^2 - a = 3x$ we can write this as $$x^2 - 3x - a= 0$$ and consider for what values of $a$ it has two positive solutions. Hence complete the square.\n\n$$\\bigg(x-\\frac{3}{2}\\bigg)^2 - \\frac{9}{4}-a=0$$ $$x = \\frac{3}{2} \\pm \\sqrt{\\frac{9}{4}+a} $$ $$0 < \\frac{3}{2} \\pm \\sqrt{\\frac{9}{4}+a} $$\nRearranging for both positive and negative options we get that $a < 0$ and $-\\frac{9}{4} < a$. Combining these we get $-\\frac{9}{4}<a<0$. Finally, looking for integer $a$ we see that $a=-2$ or $a=-1$ giving $\\boxed{2}$ values for $a$."
   }
 ]
