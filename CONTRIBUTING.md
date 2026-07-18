@@ -1,6 +1,6 @@
 # Contributing questions to OpenTMUA
 
-### If you are non-technical or can't be bothered to upload questions, don't read the rest, just send me a message on [LinkedIn](https://www.linkedin.com/in/arnav-nagpure/) (or open an issue) and I'll do it:  
+### If you are non-technical or don't have the time to upload questions, don't read the rest, just send me a message on [LinkedIn](https://www.linkedin.com/in/arnav-nagpure/) (or open an issue) and I'll do it:  
 
 It is however quite simple read point (1)
 
@@ -22,6 +22,9 @@ It is however quite simple read point (1)
 ### 1. Overview
 
 When making a question ensure it is **original.** written by you. Don't copy it from past papers, textbooks, other question banks, etc...
+
+
+This site mainly is for harder questions 6.0+ difficulty. This is because I have found AI can make the eaiser ones quite well and there are quite a lot of resources for easier questions online.
 
 
 For the multiple choice answers make some of the choices plausibly wrong i.e wrong options should be the result of realistic mistakes (sign slips, off-by-one, misread conditions)
