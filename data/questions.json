@@ -133,5 +133,20 @@
       }
     ],
     "working": "First consider statement II. By experimenting$^*$ we find every square leaves a remainder of $0$ or $1$ when divided by $4$, so a sum of two squares leaves remainder $0$, $1$ or $2$. $$2027 = 4 \\times 506 + 3$$ Since $2027$ leaves remainder $3$, statement II is true.\n\nNow repeat for statement I with cubes. Checking a few cubes we see that$^*$, every cube leaves remainder $0$, $1$ or $8$ when divided by $9$, so a sum of two cubes leaves remainder $0$, $1$, $2$, $7$ or $8$. $$2029 = 9 \\times 225 + 4$$ Since $2029$ leaves remainder $4$, statement I is true.\n\nFor statement III, notice that $$1027 = 1000 + 27 = 10^3 + 3^3$$ Thus at least one solution exists and statement III is false.\n\nHence the answer is $\\boxed{\\text{D}}$, statements I and II only.\n\n\n\n$^*$In this explanation we simply conjectured/guessed that these properties were true but we can be certain by only checking a few numbers.\n\nFor divisibility by 4 we only need to check $0^2,1^2,2^2 \\text{ and } 3^2$. This is because any number greater than this can just be represented as a [multiple of 4] + 0,1,2 or 3 i.e.\n$$(4k + i)^2$$ Where $i$ is just $0,1,2 \\text{ or } 3$. Expanding we get\n$$16k^2+8ki+i^2$$ It is clear that the first $2$ terms always give zero so only the last term $i^2$ determines the remainder when divided by $4$. So we only need to check the remainders of $0^2,1^2,2^2 \\text{ and } 3^2$ to get all possible remainders for all possible square numbers!\n\nWe can use the same idea for cubes and dividing by 9 where we only need to check $0^3, 1^3, 2^3, ..., 8^3$."
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Algebra",
+    "difficulty": 7.6,
+    "source": "Kevin Hu",
+    "stem": "Find the minimum value of the following expression for $x \\in \\mathbb{R}:$\n$$\\sqrt{x^2+4}+\\sqrt{x^2-10x+29}$$",
+    "options": [
+      { "key": "A", "text": "$\\sqrt{39}$", "correct": false },
+      { "key": "B", "text": "$\\sqrt{41}$", "correct": true },
+      { "key": "C", "text": "$\\sqrt{43}$", "correct": false },
+      { "key": "D", "text": "$\\sqrt{45}$", "correct": false },
+      { "key": "E", "text": "$\\sqrt{47}$", "correct": false }
+    ],
+    "working": "$\\text{Standard Method}$\nDifferentiate the given expression to get\n\n$$\\frac{x}{\\sqrt{x^2+4}}+\\frac{2x-10}{2\\sqrt{x^2-10x+29}}$$\nNow set to zero and solve for x\n\n$$\\frac{x}{\\sqrt{x^2+4}}+\\frac{2x-10}{2\\sqrt{x^2-10x+29}}=0$$ \n$$2x\\sqrt{x^2-10x+29}+(2x-10)\\sqrt{x^2+4}=0$$\n$$2x\\sqrt{x^2-10x+29}=-(2x-10)\\sqrt{x^2+4}$$\nSquare both sides\n\n$$4x^2(x^2-10x+29)=(4x^2-40x+100)(x^2+4)$$ $$4x^4-40x^3+116x^2=4x^4-40x^3+100x^2+16x^2-160x+400$$ $$\\cancel{4x^4-40x^3+116x^2}=\\cancel{4x^4-40x^3+116x^2}-160x+400$$ $$160x=400$$ $$x=\\frac{5}{2}$$\nNow substitute back into the equation:\n\n$$\\sqrt{\\frac{5}{2}^2+4}+\\sqrt{\\frac{5}{2}^2-10\\cdot\\frac{5}{2}+29}$$ $$=\\sqrt{\\frac{41}{4}}+\\sqrt{\\frac{41}{4}}$$ $$=\\boxed{\\sqrt{41}}$$\n\n$\\text{Faster Method}$\nWe can rewrite the expression as $$\\sqrt{(x-0)^2 + (0-2)^2} + \\sqrt{(x-5)^2 + (0-2)^2}$$ This represents the sum of the distances from a point $X(x,0)$ on the x-axis to the point $A(0,2)$ and the point $B(5,2)$.\n\nTo minimize this distance, reflect $A$ across the x-axis to $A'(0,-2)$. The shortest path from $A'$ to $B$ is a straight line, which intersects the x-axis at the optimal point $X^*$. By the distance formula, the minimum value is $$A'B = \\sqrt{(5-0)^2 + (2 - (-2))^2} = \\sqrt{25 + 16} = \\boxed{\\sqrt{41}}$$"
   }
 ]
