@@ -38,11 +38,27 @@
     "source": "Original · OpenTMUA",
     "stem": "Let $a$ and $b$ be real numbers such that $a + b$ and $ab$ are both rational. Consider the following:\n\n$\n\\begin{array}{ll}\n\\text{I.} & a^2 + b^2 \\\\\n\\text{II.} & a - b \\\\\n\\text{III.} & a^3 + b^3 \\\\\n\\text{IV.} & (a-b)^2\n\\end{array}\n$\n\nWhich of these must be rational?",
     "options": [
-      { "key": "A", "text": "$I$ only", "correct": false },
-      { "key": "B", "text": "$I$ and $III$ only", "correct": false },
-      { "key": "C", "text": "$I$, $III$ and $IV$ only", "correct": true },
-      { "key": "D", "text": "$I$, $II$, $III$ and $IV$", "correct": false },
-      { "key": "E", "text": "$I$ and $IV$ only", "correct": false },
+      { "key": "A", "text": "$\\text{I}$ only", "correct": false },
+      {
+        "key": "B",
+        "text": "$\\text{I}$ and $\\text{III}$ only",
+        "correct": false
+      },
+      {
+        "key": "C",
+        "text": "$\\text{I}$, $\\text{III}$ and $\\text{IV}$ only",
+        "correct": true
+      },
+      {
+        "key": "D",
+        "text": "$\\text{I}$, $\\text{II}$, $\\text{III}$ and $\\text{IV}$",
+        "correct": false
+      },
+      {
+        "key": "E",
+        "text": "$\\text{I}$ and $\\text{IV}$ only",
+        "correct": false
+      },
       { "key": "F", "text": "None of them", "correct": false }
     ],
     "working": "Let $s = a+b$ and $p = ab$, both rational by assumption.\n\n$I$: $a^2+b^2 = (a+b)^2 - 2ab = s^2 - 2p \\in \\mathbb{Q}$\n\n$III$: $a^3+b^3 = (a+b)^3 - 3ab(a+b) = s^3 - 3ps \\in \\mathbb{Q}$\n\n$IV$: $(a-b)^2 = (a+b)^2 - 4ab = s^2 - 4p \\in \\mathbb{Q}$\n\nSo $I$, $III$, $IV$ must be rational, since each can be written purely in terms of $s$ and $p$.\n\nWe can see $II$ fails by looking at a counterexample:\n\nLet $a = 1+\\sqrt{2}$, $b = 1-\\sqrt{2}$.\nThen $s = 2 \\in \\mathbb{Q}$ and $p = 1 - 2 = -1 \\in \\mathbb{Q}$, but $a - b = 2\\sqrt{2} \\notin \\mathbb{Q}$."
@@ -61,7 +77,7 @@
       { "key": "E", "text": "$4$", "correct": false },
       { "key": "F", "text": "Infinitely many", "correct": false }
     ],
-    "working": "First simplify:\n\n$$\\log_3(x^2 - a) = \\log_3(x) + 1$$ $$\\log_3(x^2 - a) = \\log_3(x) + \\log_3(3)$$ $$\\log_3(x^2 - a) = \\log_3(3x)$$\nSo the equation becomes $x^2 - a = 3x$, subject to the domain conditions $x^2 - a > 0$ and $x > 0$.\n\nWe can simplify the first domain condition: $$x^2 - a > 0$$ $$3x > 0$$ $$x > 0$$ Which is the same as the first domain condition so we only need to consider $x>0$.\n\nLooking back at our original equation $x^2 - a = 3x$ we can write this as $$x^2 - 3x - a= 0$$ and consider for what values of $a$ it has two positive solutions. Hence complete the square.\n\n$$\\bigg(x-\\frac{3}{2}\\bigg)^2 - \\frac{9}{4}-a=0$$ $$x = \\frac{3}{2} \\pm \\sqrt{\\frac{9}{4}+a} $$ $$0 < \\frac{3}{2} \\pm \\sqrt{\\frac{9}{4}+a} $$\nRearranging for both positive and negative options we get that $a < 0$ and $-\\frac{9}{4} < a$. Combining these we get $-\\frac{9}{4}<a<0$. Finally, looking for integer $a$ we see that $a=-2$ or $a=-1$ giving $\\boxed{2}$ values for $a$."
+    "working": "First simplify:\n\n$$\\log_3(x^2 - a) = \\log_3(x) + 1$$ $$\\log_3(x^2 - a) = \\log_3(x) + \\log_3(3)$$ $$\\log_3(x^2 - a) = \\log_3(3x)$$\nSo the equation becomes $x^2 - a = 3x$, subject to the domain conditions $x^2 - a > 0$ and $x > 0$.\n\nWe can simplify the first domain condition: $$x^2 - a > 0$$ $$3x > 0$$ $$x > 0$$ Which is the same as the second domain condition so we only need to consider $x>0$.\n\nLooking back at our original equation $x^2 - a = 3x$ we can write this as $$x^2 - 3x - a= 0$$ and consider for what values of $a$ it has two positive solutions. Hence complete the square.\n\n$$\\bigg(x-\\frac{3}{2}\\bigg)^2 - \\frac{9}{4}-a=0$$ $$x = \\frac{3}{2} \\pm \\sqrt{\\frac{9}{4}+a} $$ $$0 < \\frac{3}{2} \\pm \\sqrt{\\frac{9}{4}+a} $$\nRearranging for both positive and negative options we get that $a < 0$ and $-\\frac{9}{4} < a$. Combining these we get $-\\frac{9}{4}<a<0$. Finally, looking for integer $a$ we see that $a=-2$ or $a=-1$ giving $\\boxed{2}$ values for $a$."
   },
   {
     "paper": "Paper 1",
@@ -77,6 +93,45 @@
       { "key": "E", "text": "$4$", "correct": false },
       { "key": "F", "text": "Infinitely many", "correct": false }
     ],
-    "working": "Since we have $x^5+y^5$ and $x+y$, consider writing one in terms of the other:\n\n$$(x+y)^5 = x^5 + 5x^4y + 10x^3y^2 + 10x^2y^3 + 5xy^4 + y^5$$\nNow collect terms and rearrange\n\n$$(x+y)^5 = x^5 + y^5 + 5xy(x^3+y^3) + 10(xy)^2(x+y)$$\nNow repeat for $x^3+y^3$:\n\n$$(x+y)^3 = x^3 + y^3 + 3xy(x+y)$$$$\\implies x^3+y^3 = (x+y)^3 - 3xy(x+y)$$\nHence, substituting this into the first expansion:\n\n$$(x+y)^5 = x^5+y^5 + 5xy\\big[(x+y)^3 - 3xy(x+y)\\big] + 10(xy)^2(x+y)$$\nNow simplify using the given equations $x+y=2$ and $x^5+y^5=32$:\n\n$$2^5 = 32 + 5xy\\big[2^3 - 3xy(2)\\big] + 10(xy)^2(2)$$ $$32 = 32 + 5xy[8 - 6xy] + 20(xy)^2$$\nNow let $u = xy$:\n\n$$32 = 32 + 5u(8-6u) + 20u^2$$ $$0 = 5u(8-6u) + 20u^2$$ $$0 = 40u - 30u^2 + 20u^2$$ $$0 = 40u - 10u^2$$ $$0 = 10u(4-u)$$\nGiving us $u=0$ and $u=4$.\nNow consider each case in turn:\n\n(Case 1) If $xy=0$ then at least one of $x$ or $y$ is $0$. Since $x+y=2$, this gives the pairs $(x,y) = (0,2)$ and $(x,y)=(2,0)$.\n\n(Case 2) If $xy=4$ then $y=\\frac{4}{x}$ and so\n\n$$x + \\frac{4}{x} = 2$$ $$x^2 + 4 = 2x$$ $$x^2 - 2x + 4 = 0$$\nThe discriminant is $\\Delta = (-2)^2 - 4(1)(4) = -12 < 0$, hence no real solutions for this case.\n\nHence there are only $\\boxed{2}$ ordered pair solutions: $(0,2)$ and $(2,0)$."
+    "working": "Since we have $x^5+y^5$ and $x+y$, consider writing one in terms of the other:\n\n$$(x+y)^5 = x^5 + 5x^4y + 10x^3y^2 + 10x^2y^3 + 5xy^4 + y^5$$\nNow collect terms and rearrange\n\n$$(x+y)^5 = x^5 + y^5 + 5xy(x^3+y^3) + 10(xy)^2(x+y)$$\nNow repeat for $x^3+y^3$:\n\n$$(x+y)^3 = x^3 + y^3 + 3xy(x+y)$$$$\\implies x^3+y^3 = (x+y)^3 - 3xy(x+y)$$\nHence, substituting this into the first expansion:\n\n$$(x+y)^5 = x^5+y^5 + 5xy\\big[(x+y)^3 - 3xy(x+y)\\big] + 10(xy)^2(x+y)$$\nNow simplify using the given equations $x+y=2$ and $x^5+y^5=32$:\n\n$$2^5 = 32 + 5xy\\big[2^3 - 3xy(2)\\big] + 10(xy)^2(2)$$ $$32 = 32 + 5xy[8 - 6xy] + 20(xy)^2$$\nNow let $u = xy$:\n\n$$32 = 32 + 5u(8-6u) + 20u^2$$ $$0 = 40u - 30u^2 + 20u^2$$ $$0 = 40u - 10u^2$$ $$0 = 10u(4-u)$$\nGiving us $u=0$ and $u=4$.\nNow consider each case in turn:\n\n(Case 1) If $xy=0$ then at least one of $x$ or $y$ is $0$. Since $x+y=2$, this gives the pairs $(x,y) = (0,2)$ and $(x,y)=(2,0)$.\n\n(Case 2) If $xy=4$ then $y=\\frac{4}{x}$ and so\n\n$$x + \\frac{4}{x} = 2$$ $$x^2 + 4 = 2x$$ $$x^2 - 2x + 4 = 0$$\nThe discriminant is $\\Delta = (-2)^2 - 4(1)(4) = -12 < 0$, hence no real solutions for this case.\n\nHence there are only $\\boxed{2}$ ordered pair solutions: $(0,2)$ and $(2,0)$."
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Series",
+    "difficulty": 7.6,
+    "source": "Original · OpenTMUA",
+    "stem": "In the binomial expansion of $(1 + 2x)^{30}$, the largest coefficient is the coefficient of $x^k$. What is the value of $k$?",
+    "options": [
+      { "key": "A", "text": "$15$", "correct": false },
+      { "key": "B", "text": "$19$", "correct": false },
+      { "key": "C", "text": "$20$", "correct": true },
+      { "key": "D", "text": "$21$", "correct": false },
+      { "key": "E", "text": "$22$", "correct": false },
+      { "key": "F", "text": "$23$", "correct": false }
+    ],
+    "working": "The expansion of $(1+2x)^{30}$ is\n\n$$1 + \\binom{30}{1}(2x) + \\binom{30}{2}(2x)^2 + ... + \\binom{30}{30}(2x)^{30}$$\nso the coefficient of $x^r$ is $a_r = \\binom{30}{r} 2^r$.\n\nTo find where the coefficients stop growing, consider the ratio of consecutive coefficients\n\n\n$$\\frac{a_{r+1}}{a_r} = \\frac{\\dbinom{30}{r+1} 2^{r+1}}{\\dbinom{30}{r} 2^r}$$\n$$ = \\frac{2 \\cdot \\dfrac{30!}{(r+1)!(29-r)!}}{\\dfrac{30!}{r!(30-r)!}}$$\n$$= \\frac{2(30-r)}{r+1}$$\nThe coefficients grow while this ratio exceeds $1$\n\n$$\\frac{2(30-r)}{r+1} > 1$$ $$60 - 2r > r + 1$$ $$59 > 3r$$ $$r < \\frac{59}{3} = 19.666...$$\nWe can see the ratio is greater than $1$ for $r = 0, 1, 2, ..., 19$, so the first $20$ ratios are greater than $1$ and the coefficients keep growing up to the $21$st coefficient, which is the maximum. After this the ratio drops below $1$ and the coefficients decrease.\n\nThe $21$st coefficient is that of $x^{20}$ (namely $31504481648640$), hence $k = \\boxed{20}$."
+  },
+  {
+    "paper": "Paper 2",
+    "topic": "Number",
+    "difficulty": 9.0,
+    "source": "Original · OpenTMUA",
+    "stem": "Which of the following statements are true?\n$$\\begin{array}{ll}\n        \\text{I.} & \\text{The equation } x^3 + y^3 = 2029 \\text{ has no integer solutions.} \\\\\n        \\text{II.} & \\text{The equation } x^2 + y^2 = 2027 \\text{ has no integer solutions.} \\\\\n        \\text{III.} & \\text{The equation } x^3 + y^3 = 1027 \\text{ has no integer solutions.}\n        \\end{array}$$ Hint: consider remainders.",
+    "options": [
+      { "key": "A", "text": "$\\text{I}$ only", "correct": false },
+      { "key": "B", "text": "$\\text{II}$ only", "correct": false },
+      { "key": "C", "text": "$\\text{III}$ only", "correct": false },
+      {
+        "key": "D",
+        "text": "$\\text{I}$ and $\\text{II}$ only",
+        "correct": true
+      },
+      {
+        "key": "E",
+        "text": "$\\text{II}$ and $\\text{III}$ only",
+        "correct": false
+      }
+    ],
+    "working": "First consider statement II. By experimenting$^*$ we find every square leaves a remainder of $0$ or $1$ when divided by $4$, so a sum of two squares leaves remainder $0$, $1$ or $2$. $$2027 = 4 \\times 506 + 3$$ Since $2027$ leaves remainder $3$, statement II is true.\n\nNow repeat for statement I with cubes. Checking a few cubes we see that$^*$, every cube leaves remainder $0$, $1$ or $8$ when divided by $9$, so a sum of two cubes leaves remainder $0$, $1$, $2$, $7$ or $8$. $$2029 = 9 \\times 225 + 4$$ Since $2029$ leaves remainder $4$, statement I is true.\n\nFor statement III, notice that $$1027 = 1000 + 27 = 10^3 + 3^3$$ Thus at least one solution exists and statement III is false.\n\nHence the answer is $\\boxed{\\text{D}}$, statements I and II only.\n\n\n\n$^*$In this explanation we simply conjectured/guessed that these properties were true but we can be certain by only checking a few numbers.\n\nFor divisibility by 4 we only need to check $0^2,1^2,2^2 \\text{ and } 3^2$. This is because any number greater than this can just be represented as a [multiple of 4] + 0,1,2 or 3 i.e.\n$$(4k + i)^2$$ Where $i$ is just $0,1,2 \\text{ or } 3$. Expanding we get\n$$16k^2+8ki+i^2$$ It is clear that the first $2$ terms always give zero so only the last term $i^2$ determines the remainder when divided by $4$. So we only need to check the remainders of $0^2,1^2,2^2 \\text{ and } 3^2$ to get all possible remainders for all possible square numbers!\n\nWe can use the same idea for cubes and dividing by 9 where we only need to check $0^3, 1^3, 2^3, ..., 8^3$."
   }
 ]
