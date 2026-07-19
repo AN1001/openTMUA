@@ -244,6 +244,26 @@ nav.site-nav a:hover {
   overflow-x: auto;
   overflow-y: hidden;
   padding-bottom: 2px;
+  /* Scroll affordance (macOS overlay scrollbars are invisible until you touch
+     them, so the equation could look cut off with no hint it scrolls). Lea
+     Verou's pure-CSS scroll shadows: a soft shadow at each edge that shows only
+     when the equation overflows there and fades as you scroll to that end.
+     How it works — two "cover" gradients (paper-coloured, background-attachment:
+     local) scroll with the equation and sit on top; two "shadow" gradients
+     (attachment: scroll) are pinned to the container's left/right edges beneath.
+     At an end, the matching cover lines up with that edge and hides its shadow;
+     scroll away and the cover moves off, revealing the shadow. If the equation
+     fits, both covers sit at both edges and no shadow ever shows.
+     Colours are hard-coded to --paper-raised (#fbfbf8) because a gradient stop
+     needs that colour at zero alpha, which a CSS var can't express. */
+  background:
+    linear-gradient(to right, #fbfbf8 30%, rgba(251, 251, 248, 0)) left center,
+    linear-gradient(to left, #fbfbf8 30%, rgba(251, 251, 248, 0)) right center,
+    linear-gradient(to right, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0)) left center,
+    linear-gradient(to left, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0)) right center;
+  background-repeat: no-repeat;
+  background-size: 34px 100%, 34px 100%, 16px 100%, 16px 100%;
+  background-attachment: local, local, scroll, scroll;
 }
 /* KaTeX centres display maths and adds vertical margins; keep those but let
    the scroll container own the horizontal overflow. */
