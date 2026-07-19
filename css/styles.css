@@ -221,6 +221,35 @@ nav.site-nav a:hover {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.98rem;
 }
+.question-diagram {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 14px auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+}
+
+/* KaTeX doesn't line-wrap maths. A long display equation ($$…$$) would
+   otherwise run off the card. renderMath wraps each display equation in a
+   .math-scroll block whose width is capped at the card and which scrolls
+   horizontally when the equation is wider. It must be display:block (not the
+   default inline span) so max-width resolves against the card, not the
+   equation's own content width. overflow-y stays visible so tall fractions
+   aren't clipped; the small padding keeps the scrollbar off the equation. */
+.math-scroll {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 2px;
+}
+/* KaTeX centres display maths and adds vertical margins; keep those but let
+   the scroll container own the horizontal overflow. */
+.math-scroll .katex-display {
+  margin: 0.6em 0;
+}
 
 .options {
   display: grid;

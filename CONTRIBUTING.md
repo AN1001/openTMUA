@@ -84,6 +84,17 @@ Because these are JSON strings, every LaTeX backslash must be **doubled**: write
 
 (3) Please box the final answer (where relavent) using '\boxed{}'
 
+### Diagrams
+
+If a question needs a picture (a graph, a geometry figure, etc.), drop the image file into [`assets/diagrams/`](assets/diagrams) and reference it in `stem` or `working` with:
+
+```
+\\diagram{assets/diagrams/your-file.png}
+\\diagram{assets/diagrams/your-file.png}{Alt text describing the diagram}
+```
+
+The second `{...}` is optional alt text for screen readers — include it when the diagram conveys information not already in the question text. `\\diagram{...}` can go anywhere in the string, mixed freely with prose and `$...$` maths, but it isn't itself wrapped in `$`. CI checks that every referenced file actually exists under `assets/diagrams/`.
+
 ### 3. Check it locally ...or don't
 
 If using the recomended question builder then you should already be able to see the output.

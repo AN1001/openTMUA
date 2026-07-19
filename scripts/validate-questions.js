@@ -3,11 +3,29 @@
 const fs = require("fs");
 const path = require("path");
 
-const file = path.join(__dirname, "..", "data", "questions.json");
+const root = path.join(__dirname, "..");
+const file = path.join(root, "data", "questions.json");
 const REQUIRED = ["paper", "topic", "source", "stem", "working"];
 const PAPERS = ["Paper 1", "Paper 2"];
+const DIAGRAM = /\\diagram\{([^{}]+)\}/g;
 const errors = [];
 let questions;
+
+// \diagram{path} paths must point at a real file inside assets/diagrams —
+// checked here so a typo'd path fails CI instead of showing a broken image.
+function checkDiagrams(text, where, err) {
+  if (typeof text !== "string") return;
+  for (const m of text.matchAll(DIAGRAM)) {
+    const src = m[1].trim();
+    if (!src.startsWith("assets/diagrams/")) {
+      err(`${where} references diagram "${src}" outside assets/diagrams/`);
+      continue;
+    }
+    if (!fs.existsSync(path.join(root, src))) {
+      err(`${where} references missing diagram file "${src}"`);
+    }
+  }
+}
 
 try {
   questions = JSON.parse(fs.readFileSync(file, "utf8"));
@@ -46,6 +64,9 @@ questions.forEach((q, i) => {
     seenStems.add(q.stem);
   }
 
+  checkDiagrams(q.stem, `"stem"`, err);
+  checkDiagrams(q.working, `"working"`, err);
+
   if (typeof q.paper === "string" && !PAPERS.includes(q.paper))
     err(`"paper" must be one of ${PAPERS.join(", ")} (got "${q.paper}")`);
 
@@ -62,6 +83,7 @@ questions.forEach((q, i) => {
       err(`option ${j + 1} key must be "${expectedKey}" (got "${opt.key}")`);
     if (typeof opt.text !== "string" || !opt.text.trim())
       err(`option ${expectedKey} has missing or empty "text"`);
+    checkDiagrams(opt.text, `option ${expectedKey}`, err);
     if (typeof opt.correct !== "boolean")
       err(`option ${expectedKey} "correct" must be a boolean`);
     if (opt.correct === true) correctCount += 1;

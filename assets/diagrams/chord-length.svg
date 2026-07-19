@@ -1,0 +1,22 @@
+<svg viewBox="-140 -140 280 260" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif" font-size="15">
+  <!-- circle -->
+  <circle cx="0" cy="0" r="100" fill="none" stroke="#222" stroke-width="1.5"/>
+  <!-- chord at distance d=0.6 below centre -->
+  <line x1="-80" y1="60" x2="80" y2="60" stroke="#1a6fb5" stroke-width="2"/>
+  <!-- perpendicular from centre to chord midpoint -->
+  <line x1="0" y1="0" x2="0" y2="60" stroke="#222" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <!-- radius to chord endpoint -->
+  <line x1="0" y1="0" x2="80" y2="60" stroke="#222" stroke-width="1.2"/>
+  <!-- right-angle marker at midpoint -->
+  <path d="M 8 60 L 8 52 L 0 52" fill="none" stroke="#222" stroke-width="1"/>
+  <!-- centre dot -->
+  <circle cx="0" cy="0" r="2.2" fill="#222"/>
+  <text x="-4" y="-8" text-anchor="end" font-style="italic">O</text>
+  <!-- labels -->
+  <text x="-6" y="34" text-anchor="end" font-style="italic">d</text>
+  <text x="34" y="24" font-style="italic">1</text>
+  <text x="30" y="80" text-anchor="middle"><tspan>&#8730;</tspan><tspan text-decoration="overline" font-style="italic">1 &#8722; d&#178;</tspan></text>
+  <!-- endpoint dots -->
+  <circle cx="80" cy="60" r="2.2" fill="#1a6fb5"/>
+  <circle cx="-80" cy="60" r="2.2" fill="#1a6fb5"/>
+</svg>

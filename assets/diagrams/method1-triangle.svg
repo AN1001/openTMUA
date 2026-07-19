@@ -1,0 +1,23 @@
+<svg viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif" font-size="15">
+  <!-- long-chord arc (bottom third, between the two base vertices, through (0,100)) -->
+  <path d="M 86.6 50 A 100 100 0 0 1 -86.6 50" fill="none" stroke="#1a6fb5" stroke-width="6" stroke-linecap="round"/>
+  <!-- circle -->
+  <circle cx="0" cy="0" r="100" fill="none" stroke="#222" stroke-width="1.5"/>
+  <!-- inscribed equilateral triangle -->
+  <path d="M 0 -100 L 86.6 50 L -86.6 50 Z" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <!-- sample long chord from top point to bottom of circle (diameter) -->
+  <line x1="0" y1="-100" x2="0" y2="100" stroke="#1a6fb5" stroke-width="1.6"/>
+  <!-- sample short chord from top point -->
+  <line x1="0" y1="-100" x2="98" y2="-20" stroke="#c0392b" stroke-width="1.6"/>
+  <circle cx="98" cy="-20" r="2.4" fill="#c0392b"/>
+  <!-- fixed point -->
+  <circle cx="0" cy="-100" r="3.2" fill="#222"/>
+  <text x="0" y="-112" text-anchor="middle">fixed point</text>
+  <!-- vertex dots -->
+  <circle cx="86.6" cy="50" r="2.4" fill="#888"/>
+  <circle cx="-86.6" cy="50" r="2.4" fill="#888"/>
+  <!-- labels -->
+  <text x="112" y="-24" fill="#c0392b">short</text>
+  <text x="10" y="66" fill="#1a6fb5">long</text>
+  <text x="0" y="132" text-anchor="middle" fill="#1a6fb5">long-chord arc (120&#176;)</text>
+</svg>

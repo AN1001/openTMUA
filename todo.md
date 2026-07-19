@@ -10,14 +10,10 @@
 
 ## Feature roadmap
 
-- [ ] "Reset all progress" button on the practice page.
-- [ ] Per-topic score summary ("Algebra: 5/12 correct").
 - [ ] Grow the bank (~20 questions/topic), then Paper 2 (Mathematical Reasoning).
 - [x] Vendored (self-hosted) KaTeX for real maths notation — `$…$` / `$$…$$` in question fields.
 - [ ] Timed mock mode: fixed set, 75 minutes, no instant feedback, results at the end.
-- [ ] Past-attempt history from localStorage; difficulty tags.
-- [ ] Confirm GitHub Pages deployment; optional custom domain.
+- [x] Confirm GitHub Pages deployment; optional custom domain.
 - [ ] Add a question counter on home page that displays how many questions in the bank.
-- [ ] Add support for diagrams as pictures (pngs)
-- [ ] Report question button
-- [ ] Question builder hidden page
+- [x] Add support for diagrams as pictures (pngs) — `\diagram{path}` / `\diagram{path}{alt}` in `stem`/`working`
+- [x] Question builder hidden page
