@@ -169,7 +169,7 @@
     "topic": "Geometry",
     "difficulty": 7.6,
     "source": "Original · OpenTMUA",
-    "stem": "A chord of a circle of radius $1$ is called $\\textit{long}$ if its length exceeds the side length of an equilateral triangle inscribed in the same circle. A chord is drawn at random by one of three methods:\n\nMethod 1: two points are chosen independently and uniformly at random on the circumference, and joined.\n\nMethod 2: a point is chosen uniformly at random inside the disc, and taken as the midpoint of the chord.\n\nMethod 3: a radius is fixed; a point is chosen uniformly at random on that radius, and the chord through it perpendicular to the radius is drawn.\n\nConsider the following statements.\n\n$\n\\begin{array}{ll}\n\\text{I.} & \\text{Methods 1 and 3 give different probabilities that the chord is \\textit{long}.} \\\\\n\\text{II.} & \\text{Method 2 gives the smallest of the three probabilities that the chord is \\textit{long}.} \\\\\n\\text{III.} & \\text{Under Method 2, the midpoint of the chord is equally likely to lie inside as outside} \\\\\n& \\text{the concentric disc of radius } \\frac{1}{2}.\n\\end{array}\n$\n\nWhich of these statements are true?",
+    "stem": "A chord of a circle of radius $1$ is called $\\textit{long}$ if its length exceeds the side length of an equilateral triangle inscribed in the same circle. A chord is drawn at random by one of three methods:\n\nMethod 1: two points are chosen independently and uniformly at random on the circumference, and joined.\n\nMethod 2: a point is chosen uniformly at random inside the disc, and taken as the midpoint of the chord.\n\nMethod 3: a radius is fixed; a point is chosen uniformly at random on that radius, and the chord through it perpendicular to the radius is drawn.\n\nConsider the following statements.\n\n$\n\\begin{array}{ll}\n\\text{I.} & \\text{Methods 1 and 3 give different probabilities that the chord is \\textit{long}.} \\\\\n\\text{II.} & \\text{Method 2 gives the smallest of the three probabilities that the chord is \\textit{long}.} \\\\\n\\text{III.} & \\text{Under Method 2, the midpoint of the chord is equally likely to lie inside as outside} \\\\\n& \\text{the concentric disc of radius } \\frac{1}{2}.\n\\end{array}\n$\nWhich of these statements are true?",
     "options": [
       {
         "key": "A",
@@ -209,10 +209,10 @@
     "topic": "Algebra",
     "difficulty": 8.0,
     "source": "Original · OpenTMUA",
-    "stem": "Let $I$ be an interval of real numbers, and let $f$ be a continuous function defined on $I$ such that $f(x) \\in I$ for all $x \\in I$ (we say $f$ maps $I$ into itself). A number $c \\in I$ is called a fixed point of $f$ if $f(c) = c$.\n\nConsider the following statements:\n\n$\n\\begin{array}{ll}\n\\text{I.} & \\text{If } I = [0,1] \\text{, then } f \\text{ has at least one fixed point.} \\\\\n\\text{II.} & \\text{If } I = (0,1) \\text{, then } f \\text{ has at least one fixed point.} \\\\\n\\text{III.} & \\text{If } I = [0,1] \\text{ and } f \\text{ is strictly decreasing, then } f \\text{ has exactly one fixed point.}\n\\end{array}\n$\n\nWhich of these must be true?",
+    "stem": "Let $I$ be an interval of real numbers, and let $f$ be a continuous function defined on $I$ such that $f(x) \\in I$ for all $x \\in I$ (we say $f$ maps $I$ into itself). A number $c \\in I$ is called a fixed point of $f$ if $f(c) = c$.\n\nConsider the following statements:\n\n$\n\\begin{array}{ll}\n\\text{I.} & \\text{If } I = [0,1] \\text{, then } f \\text{ has at least one fixed point.} \\\\\n\\text{II.} & \\text{If } I = (0,1) \\text{, then } f \\text{ has at least one fixed point.} \\\\\n\\text{III.} & \\text{If } I = [0,1] \\text{ and } f \\text{ is strictly decreasing, then } f \\text{ has exactly one fixed point.}\n\\end{array}\n$\nWhich of these must be true?",
     "options": [
       { "key": "A", "text": "None of them", "correct": false },
-      { "key": "B", "text": "$\\text{I}$ only", "correct": true },
+      { "key": "B", "text": "$\\text{I}$ only", "correct": false },
       {
         "key": "C",
         "text": "$\\text{I}$ and $\\text{II}$ only",
@@ -221,7 +221,7 @@
       {
         "key": "D",
         "text": "$\\text{I}$ and $\\text{III}$ only",
-        "correct": false
+        "correct": true
       },
       {
         "key": "E",
