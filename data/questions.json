@@ -148,5 +148,20 @@
       { "key": "E", "text": "$\\sqrt{47}$", "correct": false }
     ],
     "working": "$\\text{Standard Method}$\nDifferentiate the given expression to get\n\n$$\\frac{x}{\\sqrt{x^2+4}}+\\frac{2x-10}{2\\sqrt{x^2-10x+29}}$$\nNow set to zero and solve for x\n\n$$\\frac{x}{\\sqrt{x^2+4}}+\\frac{2x-10}{2\\sqrt{x^2-10x+29}}=0$$ \n$$2x\\sqrt{x^2-10x+29}+(2x-10)\\sqrt{x^2+4}=0$$\n$$2x\\sqrt{x^2-10x+29}=-(2x-10)\\sqrt{x^2+4}$$\nSquare both sides\n\n$$4x^2(x^2-10x+29)=(4x^2-40x+100)(x^2+4)$$ $$4x^4-40x^3+116x^2=4x^4-40x^3+100x^2+16x^2-160x+400$$ $$\\cancel{4x^4-40x^3+116x^2}=\\cancel{4x^4-40x^3+116x^2}-160x+400$$ $$160x=400$$ $$x=\\frac{5}{2}$$\nNow substitute back into the equation:\n\n$$\\sqrt{\\frac{5}{2}^2+4}+\\sqrt{\\frac{5}{2}^2-10\\cdot\\frac{5}{2}+29}$$ $$=\\sqrt{\\frac{41}{4}}+\\sqrt{\\frac{41}{4}}$$ $$=\\boxed{\\sqrt{41}}$$\n\n$\\text{Faster Method}$\nWe can rewrite the expression as $$\\sqrt{(x-0)^2 + (0-2)^2} + \\sqrt{(x-5)^2 + (0-2)^2}$$ This represents the sum of the distances from a point $X(x,0)$ on the x-axis to the point $A(0,2)$ and the point $B(5,2)$.\n\nTo minimize this distance, reflect $A$ across the x-axis to $A'(0,-2)$. The shortest path from $A'$ to $B$ is a straight line, which intersects the x-axis at the optimal point $X^*$. By the distance formula, the minimum value is $$A'B = \\sqrt{(5-0)^2 + (2 - (-2))^2} = \\sqrt{25 + 16} = \\boxed{\\sqrt{41}}$$"
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Algebra",
+    "difficulty": 8.9,
+    "source": "Kevin Hu",
+    "stem": "Evaluate the exact value of the following infinite series:\n $$\\sum_{n=1}^{\\infty} \\frac{n}{n^4 + 4}$$",
+    "options": [
+      { "key": "A", "text": "$\\frac{7}{16}$", "correct": false },
+      { "key": "B", "text": "$\\frac{1}{3}$", "correct": false },
+      { "key": "C", "text": "$\\frac{1}{2}$", "correct": false },
+      { "key": "D", "text": "$\\frac{4}{7}$", "correct": false },
+      { "key": "E", "text": "$\\frac{3}{8}$", "correct": true }
+    ],
+    "working": "$\\text{(Proper Method)}$\nFactor the denominator using the Sophie Germain identity: $$n^4 + 4$$ $$= (n^2+2)^2 - 4n^2$$ $$= (n^2-2n+2)(n^2+2n+2)$$ $$= ((n-1)^2+1)((n+1)^2+1)$$ We can now use partial fractions to decompose $$\\frac{n}{n^4+4} = \\frac{1}{4} \\left( \\frac{1}{(n-1)^2+1} - \\frac{1}{(n+1)^2+1} \\right)$$Let $u_n = \\frac{1}{(n-1)^2+1}$. The sum is $\\frac{1}{4} \\sum_{n=1}^\\infty (u_n - u_{n+2})$, which is a telescoping series that skips one term.\n\nThe 'remaining' terms are $\\frac{1}{4}(u_1 + u_2)$. We calculate $u_1 = \\frac{1}{0^2+1} = 1$ and $u_2 = \\frac{1}{1^2+1} = \\frac{1}{2}$. Hence, sum evaluates to $\\frac{1}{4}(1 + \\frac{1}{2}) = \\boxed{\\frac{3}{8}}$\n\n$\\text{(Guessing Method)}^*$\nIf we evaluate the first 3 elements of the series we get $$\\frac{1}{5} + \\frac{1}{10} + \\frac{3}{85}=\\frac{57}{170}$$Calculating $170 \\div 3=56.666...$ we can see that\n$$\\frac{57}{170}>\\frac{56.66...}{170}=\\frac{1}{3}$$Also guessing that, due to the power of 4 term in the denominator, the terms get very small, very quickly and so the sum to infinity won't exceed $0.4$. Leaving only $\\boxed{\\frac{3}{8}}$ as a possible answer.\n\n$^*$Methods like these aren't typically safe to use but can be very helpful if you have limited time or can't spot the proper method."
   }
 ]

@@ -33,7 +33,7 @@ function reveal(selectedBtn) {
   const gotItRight = selectedBtn.dataset.correct === "true";
   feedbackTitle.textContent = gotItRight ? "Correct. " : "Not quite. ";
   feedbackBody.textContent = gotItRight
-    ? `The answer is ${correctKey} — here's the working:`
+    ? `The answer is ${correctKey}.`
     : `The answer is ${correctKey}, not ${selectedBtn.dataset.key}. Here's the working:`;
   feedback.classList.add("show");
   tryAgain.classList.add("show");
