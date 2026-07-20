@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 440" font-family="Georgia, 'Times New Roman', serif" font-size="16">
+  <!-- Triangle ABC: B=(60,390) C=(280,390) A=(170,51.5); D=(238,260.7) -->
+  <g fill="none" stroke="#000" stroke-width="1.5">
+    <polygon points="170,51.5 60,390 280,390"/>
+    <line x1="60" y1="390" x2="238" y2="260.7"/>
+  </g>
+
+  <!-- angle arcs -->
+  <g fill="none" stroke="#000" stroke-width="1">
+    <!-- A: 36 deg between AB and AC -->
+    <path d="M 158.9 85.7 A 36 36 0 0 0 181.1 85.7"/>
+    <!-- B: 36 (AB to BD) and 36 (BD to BC) -->
+    <path d="M 71.1 355.8 A 36 36 0 0 1 89.1 368.8"/>
+    <path d="M 95.6 364.1 A 44 44 0 0 1 104.0 390.0"/>
+    <!-- C: 72 deg between CB and CA -->
+    <path d="M 250.0 390.0 A 30 30 0 0 1 270.7 361.5"/>
+    <!-- D: 108 deg between DA and DB -->
+    <path d="M 230.6 237.9 A 24 24 0 0 0 218.6 274.8"/>
+  </g>
+
+  <!-- vertex labels -->
+  <text x="170" y="40" text-anchor="middle">A</text>
+  <text x="46" y="402">B</text>
+  <text x="290" y="402">C</text>
+  <text x="248" y="256">D</text>
+
+  <!-- angle labels -->
+  <text x="170" y="112" text-anchor="middle" font-size="13">36&#176;</text>
+  <text x="94" y="347" font-size="13">36&#176;</text>
+  <text x="113" y="379" font-size="13">36&#176;</text>
+  <text x="243" y="367" text-anchor="middle" font-size="13">72&#176;</text>
+  <text x="199" y="251" text-anchor="end" font-size="13">108&#176;</text>
+
+  <!-- side length labels -->
+  <text x="170" y="416" text-anchor="middle" font-style="italic">BC = 1</text>
+  <text x="140" y="310" text-anchor="middle" font-style="italic">BD = 1</text>
+  <text x="228" y="148" font-style="italic">AD = 1</text>
+</svg>

@@ -235,5 +235,37 @@
       }
     ],
     "working": "Any function $f$ mapping $[0,1]$ into $[0,1]$ is a curve contained in the unit box, starting somewhere on the left edge at $(0, f(0))$ and ending somewhere on the right edge at $(1, f(1))$. Fixed points are exactly the solutions of $f(x) = x$, i.e. the intersections of this curve with the line $y = x$. \\diagram{assets/diagrams/fixed_point_unit_box_three_cases_v2.svg}\n$\\text{I}$: The curve starts on-or-above the line, since $f(0) \\geq 0$, and ends on-or-below it, since $f(1) \\leq 1$. An unbroken curve passing from one side of the line to the other must cross it, or already touch it at an endpoint — the function is squeezed into a position where meeting $y = x$ is unavoidable. Hence $\\text{I}$ must be true.\n\nMore precisely, consider $g(x) = f(x) - x$: then $g(0) \\geq 0$ and $g(1) \\leq 0$, and a continuous function cannot pass from non-negative to non-positive without being zero somewhere, so $f(c) = c$ for some $c$.\n\n$\\text{II}$: Since the endpoints are excluded, the curve can be squeezed into the corner without ever meeting the line. Let $f(x) = x^2$ on $(0,1)$: the curve approaches $(1,1)$ but that point is not part of the interval, and solving $x^2 = x$ gives only $x = 0$ and $x = 1$, both excluded. Hence $\\text{II}$ need not be true.\n\n$\\text{III}$: The curve must cross the line for the same reason as in $\\text{I}$ — it still runs from the left edge to the right edge of the closed box. Once it crosses, it can never cross again: past the crossing the line $y = x$ keeps increasing while $f$ only keeps decreasing, so the curve stays strictly below the line forever after. Hence there is exactly one fixed point and $\\text{III}$ must be true.\n\nSo $\\text{I}$ and $\\text{III}$ must be true."
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Geometry",
+    "difficulty": 9.0,
+    "source": "Original · OpenTMUA",
+    "stem": "In triangle $ABC$, $AB = AC$ and $\\angle BAC = 36^\\circ$, with $BC = 1$. The bisector of $\\angle ABC$ meets $AC$ at $D$. Consider the following statements, where $[XYZ]$ denotes the area of triangle $XYZ$.\n\n$\n\\begin{array}{ll}\n\\text{I.} & AC \\cdot CD = 1 \\\\\n\\text{II.} & [ABD] : [BCD] \\text{ exceeds } \\frac{8}{5} : 1 \\\\\n\\text{III.} & \\text{There exist positive integers } m,\\ n \\text{ with } m\\,[ABD] = n\\,[BCD]\n\\end{array}\n$\nWhich of these statements are true?",
+    "options": [
+      { "key": "A", "text": "$\\text{None of them}$", "correct": false },
+      {
+        "key": "B",
+        "text": "$\\text{I}$ and $\\text{III}$ only",
+        "correct": false
+      },
+      {
+        "key": "C",
+        "text": "$\\text{I}$, $\\text{II}$ and $\\text{III}$",
+        "correct": false
+      },
+      { "key": "D", "text": "$\\text{I}$ only", "correct": false },
+      {
+        "key": "E",
+        "text": "$\\text{I}$ and $\\text{II}$ only",
+        "correct": true
+      },
+      {
+        "key": "F",
+        "text": "$\\text{II}$ and $\\text{III}$ only",
+        "correct": false
+      }
+    ],
+    "working": "Since $AB = AC$ and $\\angle BAC = 36^\\circ$, the base angles are $\\angle ABC = \\angle ACB = 72^\\circ$. The bisector splits $\\angle ABC$ into\n$$\\angle ABD = \\angle DBC = 36^\\circ$$In triangle $BCD$ the angles are $\\angle DBC = 36^\\circ$, $\\angle BCD = 72^\\circ$, so $\\angle BDC = 72^\\circ$. Two equal angles give an isosceles triangle, hence $$BD = BC = 1$$ In triangle $ABD$ the angles are $\\angle BAD = 36^\\circ$, $\\angle ABD = 36^\\circ$, so it too is isosceles with $$AD = BD = 1$$ \\diagram{assets/diagrams/golden-triangle-bisection.svg}{Isosceles triangle ABC with apex angle 36 degrees at A and base angles 72 degrees; the bisector from B meets AC at D, splitting angle B into two 36 degree angles, and marking AD = BD = BC = 1 with angle ADB = 108 degrees} $\\text{I}$: triangles $ABC$ and $BCD$ both have angles $36^\\circ, 72^\\circ, 72^\\circ$, so they are similar. Matching the sides opposite equal angles,\n\n$$\\frac{AC}{BC} = \\frac{BC}{CD}$$ $$AC \\cdot CD = BC^2 = 1$$ Hence we see that $\\text{I}$ is true.\n\nTo evaluate the remaining statements, find $CD$. Writing $AC = AD + DC = 1 + DC$ and substituting into $AC \\cdot DC = 1$: \n\n$$DC^2 + DC - 1 = 0$$ $$DC = \\frac{\\sqrt{5} - 1}{2}$$\n$\\text{II}$: triangles $ABD$ and $BCD$ have bases $AD$ and $DC$ on the line $AC$ and share the same apex $B$, so they have equal height and\n\n$$\\frac{[ABD]}{[BCD]} = \\frac{AD}{DC} = \\frac{1}{DC} = \\frac{2}{\\sqrt5 - 1} = \\frac{\\sqrt5 + 1}{2}^*$$\nComparing with $\\frac{8}{5}$:\n\n$$\\frac{\\sqrt5+1}{2} > \\frac{8}{5} \\iff 5\\sqrt5 > 11 \\iff 125 > 121$$\nWe find that $\\text{II}$ is true.\n\n$\\text{III}$: integers $m, n$ with $m\\,[ABD] = n\\,[BCD]$ exist precisely when $\\frac{[ABD]}{[BCD]} = \\frac{\\sqrt5+1}{2}$ is rational, which requires $\\sqrt5$ rational. But $\\sqrt5$ is irrational, so no such $m,\\ n$ exist, hence false.\n\nHence only $\\text{I}$ and $\\text{II}$ hold, giving $\\boxed{\\text{I and II only}}$.\n\n$^*$This is the golden ratio ($\\phi$)!"
   }
 ]
