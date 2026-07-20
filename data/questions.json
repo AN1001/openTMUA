@@ -286,7 +286,7 @@
   },
   {
     "paper": "Paper 2",
-    "topic": "Algebra",
+    "topic": "Logic",
     "difficulty": 7.2,
     "source": "Original · OpenTMUA",
     "stem": "A $\\textbf{string}$ is a sequence of one or more digits, each equal to $0$ or $1$; its $\\textbf{length}$ is the number of digits. A collection of distinct strings is called $\\textbf{separated}$ if no string in the collection can be obtained from another string in the collection by appending$^*$ further digits to its end.\n\nFor example, the collection $0, \\; 10, \\; 11$ is separated, but the collection $0, \\; 01$ is not, since $01$ is obtained from $0$ by appending a digit.\n\nWhich of the following statements are true?\n\n$$\\begin{array}{ll} \\text{I.} & \\text{There is a separated collection of five strings whose lengths are } 2, 2, 2, 3, 3. \\\\ \\text{II.} & \\text{There is a separated collection of four strings whose lengths are } 1, 2, 2, 3. \\\\ \\text{III.} & \\text{Every separated collection in which each string has length at most } 3 \\text{ contains at most } 8 \\text{ strings.} \\end{array}$$\n$^*$Append means to add to the end, e.g. appending a zero to $1111$ would produce $11110.$",
@@ -332,5 +332,21 @@
       }
     ],
     "working": "First count the strings with a given number of runs. A binary string of length $10$ is determined by its first digit together with the set of positions where the digit changes. There are $9$ gaps between consecutive positions, and a string has exactly $k$ runs precisely when the digit changes in exactly $k-1$ of these gaps. Hence, writing $f(k)$ for the number of length-$10$ binary strings with exactly $k$ runs,\n\n$$f(k) = 2\\binom{9}{k-1}.$$\n$\\text{I}$: $f(1) = 2\\binom{9}{0} = 2$, namely $0000000000$ and $1111111111$. Hence true.\n\n$\\text{II}$: $$f(4) = 2\\binom{9}{3}, \\qquad f(7) = 2\\binom{9}{6}.$$Since $\\binom{9}{3} = \\binom{9}{6}$, these are equal. Hence true.\n\n$\\text{III}$: the values $\\binom{9}{k-1}$ are largest when $k-1 = 4$ or $k-1 = 5$, and $$\\binom{9}{4} = \\binom{9}{5} = 126,$$ so exactly $5$ runs and exactly $6$ runs are equally common, with $f(5) = f(6) = 252$. Neither count strictly exceeds the other. Hence false.\n\nHence $\\boxed{\\text{I and II only}}$."
+  },
+  {
+    "paper": "Paper 2",
+    "topic": "Number",
+    "difficulty": 6.4,
+    "source": "Original · OpenTMUA",
+    "stem": "For a function $f$ defined on the positive integers and a positive integer $a_1$, define a sequence by $a_{k+1} = f(a_k)$. Say that $f$ terminates if, for every choice of $a_1$, the sequence eventually takes the value $1$.\n\nConsider the following statements:\n\n$\n\\begin{array}{ll}\n\\text{I.} & \\text{If } f(n) = \\frac{n}{2} \\text{ for even } n \\text{ and } f(n) = n+1 \\text{ for odd } n \\text{, then } f \\text{ terminates.} \\\\\n\\text{II.} & \\text{If } f(n) = \\frac{n}{2} \\text{ for even } n \\text{ and } f(n) = 3n-1 \\text{ for odd } n \\text{, then } f \\text{ terminates.} \\\\\n\\text{III.} & \\text{If } f(n) = \\frac{n}{2} \\text{ for even } n \\text{ and } f(n) = 3n+1 \\text{ for odd } n \\text{, then for every choice of } a_1 \\text{, no two consecutive terms of the sequence are both odd.}\n\\end{array}\n$\nWhich of these statements are true?",
+    "options": [
+      { "key": "A", "text": "$\\text{I only}$", "correct": false },
+      { "key": "B", "text": "$\\text{III only}$", "correct": false },
+      { "key": "C", "text": "$\\text{I and II only}$", "correct": false },
+      { "key": "D", "text": "$\\text{I and III only}$", "correct": true },
+      { "key": "E", "text": "$\\text{I, II and III}$", "correct": false },
+      { "key": "F", "text": "$\\text{None of them}$", "correct": false }
+    ],
+    "working": "$\\text{I}$: If $a_k$ is even then $a_{k+1} = \\frac{a_k}{2} < a_k$. If $a_k$ is odd and $a_k > 1$, then $a_{k+1} = a_k + 1$ is even, so $$a_{k+2} = \\frac{a_k+1}{2} < a_k$$ since $a_k + 1 < 2a_k$ whenever $a_k > 1$. Hence while the sequence stays above $1$, every one or two steps it strictly decreases, and a decreasing sequence of positive integers cannot continue forever. Thus the sequence reaches $1$, so $\\text{I}$ is true.\n\n$\\text{II}$: Consider $a_1 = 5$: $$5 \\to 14 \\to 7 \\to 20 \\to 10 \\to 5$$ The sequence repeats this cycle forever and never takes the value $1$, so $\\text{II}$ is false.\n\n$\\text{III}$: Suppose $a_k$ is odd. Then $3a_k$ is odd, so $$a_{k+1} = 3a_k + 1$$ is even. Hence an odd term is always followed by an even term, so no two consecutive terms are both odd, and $\\text{III}$ is true.\n\nSo only $\\boxed{\\text{I} \\text{ and } \\text{III}}$ are true."
   }
 ]
