@@ -348,5 +348,49 @@
       { "key": "F", "text": "$\\text{None of them}$", "correct": false }
     ],
     "working": "$\\text{I}$: If $a_k$ is even then $a_{k+1} = \\frac{a_k}{2} < a_k$. If $a_k$ is odd and $a_k > 1$, then $a_{k+1} = a_k + 1$ is even, so $$a_{k+2} = \\frac{a_k+1}{2} < a_k$$ since $a_k + 1 < 2a_k$ whenever $a_k > 1$. Hence while the sequence stays above $1$, every one or two steps it strictly decreases, and a decreasing sequence of positive integers cannot continue forever. Thus the sequence reaches $1$, so $\\text{I}$ is true.\n\n$\\text{II}$: Consider $a_1 = 5$: $$5 \\to 14 \\to 7 \\to 20 \\to 10 \\to 5$$ The sequence repeats this cycle forever and never takes the value $1$, so $\\text{II}$ is false.\n\n$\\text{III}$: Suppose $a_k$ is odd. Then $3a_k$ is odd, so $$a_{k+1} = 3a_k + 1$$ is even. Hence an odd term is always followed by an even term, so no two consecutive terms are both odd, and $\\text{III}$ is true.\n\nSo only $\\boxed{\\text{I} \\text{ and } \\text{III}}$ are true."
+  },
+  {
+    "paper": "Paper 2",
+    "topic": "Logic",
+    "difficulty": 8.2,
+    "source": "Original · OpenTMUA",
+    "stem": "A machine $M$ reads mathematical statements and stamps some of them PROVED. Call $M$ $\\textbf{sound}$ if it only ever stamps true statements. Let $G$ be the statement:\n\n$$G:\\ \\text{“}M\\text{ does not stamp }G\\text{ as PROVED.”}$$\nWhich of the following are necessarily true?\n\n$$\\begin{array}{ll} \\text{I.} & \\text{If } M \\text{ is sound, then } M \\text{ stamps } G. \\\\ \\text{II.} & \\text{If } M \\text{ is sound, then } G \\text{ is true.} \\\\ \\text{III.} & \\text{If } M \\text{ does not stamp } G, \\text{ then } M \\text{ is sound.} \\\\ \\text{IV.} & \\text{If } M \\text{ is sound, then there is a true statement that } M \\text{ does not stamp.} \\end{array}$$",
+    "options": [
+      { "key": "A", "text": "$\\text{II only}$", "correct": false },
+      { "key": "B", "text": "$\\text{I, II and IV only}$", "correct": false },
+      { "key": "C", "text": "$\\text{II, III and IV only}$", "correct": false },
+      { "key": "D", "text": "$\\text{II and IV only}$", "correct": true },
+      { "key": "E", "text": "$\\text{I, II, III and IV}$", "correct": false },
+      { "key": "F", "text": "$\\text{IV only}$", "correct": false }
+    ],
+    "working": "Let us first consider statement $\\text{II}$: $$\\text{If } M \\text{ is sound, then } G \\text{ is true}$$ We will do this using proof by contradiction.\n\nAssume $M$ is sound. If $G$ were false then $M$ stamps $G$ - but $G$ is false and $M$ only stamps true statements, leading to a contradiction. Hence $G$ is true, and $\\text{II}$ holds.\n\nBy proving $\\text{II}$ is true we have automatically proven that $\\text{I}$ is false, because if $M$ is sound then $G$ is true and $G$ tells us that $M$ doesn't stamp it.\n\nBy proving $\\text{II}$ is true we have also automatically proven that $\\text{IV}$ is true because $G$ is a concrete example of \"a true statement that $M$ does not stamp\".\n\nFinally to disprove $\\text{III}$ we can look at a counterexample machine $M$ that only stamps the statement $1+1=3$ and nothing else. This machine does not stamp $G$ but since it stamps a false statement it cannot be sound; thus disproving $\\text{III}$.\n\nPutting everything together we get $\\boxed{\\text{II and IV only}}$.\n\n\n$^*$It is important to read the question carefully where it says the machine $M$ stamps $\\textbf{some}$ of them proved. I highlight some because it is easy to mix this up with all and believe that if a statement is true then the machine $\\textbf{must}$ stamp it. This is not true, rather the machine may or may not stamp it in this case."
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Number",
+    "difficulty": 6.2,
+    "source": "Original · OpenTMUA",
+    "stem": "Three positive integers are written on a board. A move consists of choosing two of the numbers currently on the board, erasing both, and writing their absolute difference $|x-y|$ in their place. After two moves a single number $N$ remains.\n\nConsider the following statements.\n\n$\n\\begin{array}{ll}\n\\text{I.} & \\text{Whatever three positive integers we start with, the value of } N \\text{ does} \\\\\n& \\text{not depend on the choices made.} \\\\\n\\text{II.} & \\text{For every starting choice, } N \\text{ and the sum of the three starting integers} \\\\\n& \\text{are either both odd or both even.} \\\\\n\\text{III.} & \\text{For some starting integers it is possible to make } N \\text{ larger than the} \\\\\n& \\text{largest of the three.}\n\\end{array}\n$\nWhich of these statements are true?",
+    "options": [
+      { "key": "A", "text": "$\\text{II}$ only", "correct": true },
+      { "key": "B", "text": "$\\text{I}$ only", "correct": false },
+      {
+        "key": "C",
+        "text": "$\\text{II}$ and $\\text{III}$ only",
+        "correct": false
+      },
+      { "key": "D", "text": "None of them", "correct": false },
+      {
+        "key": "E",
+        "text": "$\\text{I}$ and $\\text{II}$ only",
+        "correct": false
+      },
+      {
+        "key": "F",
+        "text": "$\\text{I}$, $\\text{II}$ and $\\text{III}$",
+        "correct": false
+      }
+    ],
+    "working": "$\\text{I}$: the final value is not forced. Starting from $1$, $2$, $3$:\n\n$$|1-2| = 1, \\quad |1-3| = 2 \\;\\Rightarrow\\; N = 2$$ $$|2-3| = 1, \\quad |1-1| = 0 \\;\\Rightarrow\\; N = 0$$\nTwo different outcomes from the same start, so $N$ depends on the choices making $\\text{I}$ false.\n\n$\\text{II}$: First track the sum of the numbers under a single move. Replacing $x$ and $y$ by $|x-y|$ changes the sum by $$|x-y| - (x+y)$$ Now $|x-y|$ equals $x-y$ or $y-x$, and each of these differs from $x+y$ by an even number, so $|x-y|$ and $x+y$ always have the same parity. Hence the change in the sum is even, and the parity of the sum is unchanged by every move. So after both moves $N$ has the same parity as the starting sum. $\\text{II}$ is true.\n\n$\\text{III}$: every move satisfies $$|x-y| \\le \\max(x,y)$$ so the largest number on the board never increases, and therefore $$N \\le \\max(a,b,c)$$ The final value can never exceed the largest starting integer. False.\n\nHence only $\\text{II}$ holds, giving $\\boxed{\\text{II only}}$."
   }
 ]
