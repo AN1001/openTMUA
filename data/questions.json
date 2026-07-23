@@ -392,5 +392,53 @@
       }
     ],
     "working": "$\\text{I}$: the final value is not forced. Starting from $1$, $2$, $3$:\n\n$$|1-2| = 1, \\quad |1-3| = 2 \\;\\Rightarrow\\; N = 2$$ $$|2-3| = 1, \\quad |1-1| = 0 \\;\\Rightarrow\\; N = 0$$\nTwo different outcomes from the same start, so $N$ depends on the choices making $\\text{I}$ false.\n\n$\\text{II}$: First track the sum of the numbers under a single move. Replacing $x$ and $y$ by $|x-y|$ changes the sum by $$|x-y| - (x+y)$$ Now $|x-y|$ equals $x-y$ or $y-x$, and each of these differs from $x+y$ by an even number, so $|x-y|$ and $x+y$ always have the same parity. Hence the change in the sum is even, and the parity of the sum is unchanged by every move. So after both moves $N$ has the same parity as the starting sum. $\\text{II}$ is true.\n\n$\\text{III}$: every move satisfies $$|x-y| \\le \\max(x,y)$$ so the largest number on the board never increases, and therefore $$N \\le \\max(a,b,c)$$ The final value can never exceed the largest starting integer. False.\n\nHence only $\\text{II}$ holds, giving $\\boxed{\\text{II only}}$."
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Algebra",
+    "difficulty": 8.3,
+    "source": "Original · OpenTMUA",
+    "stem": "The function $f$ is defined for all real $x$ by\n\n$$f(x) = \\cos x + 2\\cos 2x + 3\\cos 3x + \\cdots + 20\\cos 20x$$\nFind the value of\n\n$$f\\left(\\frac{\\pi}{8}\\right) + f\\left(\\frac{5\\pi}{8}\\right) + f\\left(\\frac{9\\pi}{8}\\right) + f\\left(\\frac{13\\pi}{8}\\right)$$",
+    "options": [
+      { "key": "A", "text": "$-8$", "correct": false },
+      { "key": "B", "text": "$0$", "correct": false },
+      { "key": "C", "text": "$8$", "correct": false },
+      { "key": "D", "text": "$16$", "correct": false },
+      { "key": "E", "text": "$32$", "correct": true },
+      { "key": "F", "text": "$240$", "correct": false }
+    ],
+    "working": "Evaluating $80$ cosines is hopeless, so collect the four values by frequency instead. Write the four arguments as $$x_k = \\frac{\\pi}{8} + \\frac{k\\pi}{2}, \\qquad k = 0,\\ 1,\\ 2,\\ 3$$ and for each $n$ set $$C_n = \\sum_{k=0}^{3} \\cos(n x_k)$$ so that the required sum is $$S = \\sum_{n=1}^{20} n\\,C_n$$\nNow fix $n$ and write $A = \\frac{n\\pi}{8}$. The four arguments become\n\n$$A, \\qquad A + \\frac{n\\pi}{2}, \\qquad A + n\\pi, \\qquad A + \\frac{3n\\pi}{2}$$\nPair the first with the third and the second with the fourth, since each pair differs by $n\\pi$. Since $\\cos(\\theta + \\pi) = -\\cos\\theta$ and $\\cos(\\theta + 2\\pi) = \\cos\\theta$, we have $$\\cos(\\theta + n\\pi) = (-1)^n \\cos\\theta$$\n(Case 1) If $n$ is odd, each pair is $\\cos\\theta + (-\\cos\\theta)$, so $C_n = 0$.\n\n(Case 2) If $n = 2m$ with $m$ odd, each pair doubles instead of cancelling, giving $$C_n = 2\\cos A + 2\\cos\\left(A + \\frac{n\\pi}{2}\\right) = 2\\cos A + 2\\cos(A + m\\pi)$$ and $m$ is odd, so the second term is $-2\\cos A$ and $C_n = 0$.\n\n(Case 3) If $n = 4j$ then $\\frac{n\\pi}{2} = 2j\\pi$, so all four arguments differ from $A$ by multiples of $2\\pi$ and $$C_n = 4\\cos\\frac{n\\pi}{8} = 4\\cos\\frac{j\\pi}{2}$$\nThus only multiples of $4$ contribute. Now consider each in turn:\n\n$\n\\begin{array}{rl}\nn = 4: & C_4 = 4\\cos\\frac{\\pi}{2} = 0 \\\\\nn = 8: & C_8 = 4\\cos\\pi = -4 \\\\\nn = 12: & C_{12} = 4\\cos\\frac{3\\pi}{2} = 0 \\\\\nn = 16: & C_{16} = 4\\cos 2\\pi = 4 \\\\\nn = 20: & C_{20} = 4\\cos\\frac{5\\pi}{2} = 0\n\\end{array}\n$\n\nOnly $n = 8$ and $n = 16$ survive, so\n\n$$S = 8(-4) + 16(4)$$ $$S = -32 + 64 = \\boxed{32}$$"
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Number",
+    "difficulty": 9.0,
+    "source": "Original · OpenTMUA",
+    "stem": "Let $S$ be the set of positive integers which have no prime factor greater than $3$; note that $1 \\in S$.\n\nFor $n \\in S$, let $f(n) = 1$ if $n$ is a product of an even number of primes, and $f(n) = -1$ if $n$ is a product of an odd number of primes, where repeated prime factors are counted separately. For example $f(1) = 1$, $f(4) = 1$ and $f(12) = -1$.\n\nWhat is the value of $$\\sum_{n \\in S} \\frac{f(n)}{n}$$",
+    "options": [
+      { "key": "A", "text": "$\\frac{1}{2}$", "correct": true },
+      { "key": "B", "text": "$\\frac{1}{3}$", "correct": false },
+      { "key": "C", "text": "$3$", "correct": false },
+      { "key": "D", "text": "$\\frac{2}{3}$", "correct": false },
+      { "key": "E", "text": "$1$", "correct": false },
+      { "key": "F", "text": "$\\frac{3}{4}$", "correct": false }
+    ],
+    "working": "First identify $S$. A positive integer all of whose prime factors are at most $3$ is exactly one of the form $$n = 2^a 3^b$$ for integers $a,\\ b \\geq 0$, and distinct pairs $(a,\\ b)$ give distinct $n$.\n\nNow count the prime factors of such an $n$. Counting repeats there are $a+b$ of them, so \n\n$$f(n) = (-1)^{a+b} = (-1)^a(-1)^b$$\nHence the sum runs over all pairs $(a,\\ b)$:\n\n$$\\sum_{n \\in S} \\frac{f(n)}{n} = \\sum_{a \\geq 0} \\sum_{b \\geq 0} \\frac{(-1)^a(-1)^b}{2^a 3^b}$$\nNotice that each term splits into a factor depending only on $a$ and a factor depending only on $b$:\n\n$$\\frac{(-1)^a(-1)^b}{2^a3^b} = \\bigg(-\\frac{1}{2}\\bigg)^{a} \\bigg(-\\frac{1}{3}\\bigg)^{b}$$\nSo for each fixed $a$ we may take $\\bigg(-\\dfrac{1}{2}\\bigg)^{a}$ outside the inner sum, and the inner sum that remains is the same for every $a$. Thus\n\n$$\\sum_{n \\in S} \\frac{f(n)}{n} = \\bigg(\\sum_{a \\geq 0} \\bigg(-\\frac{1}{2}\\bigg)^{a}\\bigg)\\bigg(\\sum_{b \\geq 0} \\bigg(-\\frac{1}{3}\\bigg)^{b}\\bigg)$$\nBoth are geometric series with $|r| < 1$, so each sums to $\\frac{1}{1-r}$:\n\n$$\\sum_{a \\geq 0} \\bigg(-\\frac{1}{2}\\bigg)^{a} = \\frac{1}{1+\\frac{1}{2}} = \\frac{2}{3}$$ $$\\sum_{b \\geq 0} \\bigg(-\\frac{1}{3}\\bigg)^{b} = \\frac{1}{1+\\frac{1}{3}} = \\frac{3}{4}$$ Finally $$\\frac{2}{3} \\times \\frac{3}{4} = \\boxed{\\frac{1}{2}}$$"
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Graphs",
+    "difficulty": 5.9,
+    "source": "Original · OpenTMUA",
+    "stem": "How many solutions does the equation $$\\tan x = \\frac{\\sqrt{100 - x^2}}{x}$$ have for $0 < x < 10$, where $x$ is measured in radians?",
+    "options": [
+      { "key": "A", "text": "$3$", "correct": false },
+      { "key": "B", "text": "$4$", "correct": true },
+      { "key": "C", "text": "$1$", "correct": false },
+      { "key": "D", "text": "$7$", "correct": false },
+      { "key": "E", "text": "$5$", "correct": false },
+      { "key": "F", "text": "Infinitely many", "correct": false }
+    ],
+    "working": "This is best done by sketching both sides.\n\nNotice that $$\\frac{\\sqrt{100-x^2}}{x}$$ is decreasing on $0 < x < 10$, since the numerator $\\sqrt{100-x^2}$ decreases while the denominator $x$ increases. It is also positive throughout, so any solution needs $\\tan x > 0$.\n\nNow consider its extremes. As $x \\to 0$ the numerator tends to $10$ while the denominator tends to $0$, so the curve shoots off to infinity. At the other end $$\\frac{\\sqrt{100-100}}{10} = 0$$ so the curve comes right down to $0$ at $x = 10$.\n\nNow consider where $\\tan x > 0$. This happens on $$\\bigg(0,\\ \\frac{\\pi}{2}\\bigg), \\qquad \\bigg(\\pi,\\ \\frac{3\\pi}{2}\\bigg), \\qquad \\bigg(2\\pi,\\ \\frac{5\\pi}{2}\\bigg), \\qquad \\bigg(3\\pi,\\ 10\\bigg)$$ the last of these being cut short at $x = 10$, since $3\\pi \\approx 9.42$ but the following asymptote $\\frac{7\\pi}{2} \\approx 11.0$ lies outside our range. Sketching both curves gives four intersections, one on each of these intervals.\n\n\\diagram{assets/diagrams/tan-branch-count.svg}{Graph of y = tan x showing four branches with dashed asymptotes at pi/2, 3pi/2 and 5pi/2, together with the dashed decreasing curve y = root(100 minus x squared) over x, which falls from large values near the origin to zero at x = 10; the two curves meet at four marked points, one on each rising portion of the tangent}\n\nWe need to be careful with the fourth one, because that interval stops at $x = 10$ before $\\tan x$ has run off to infinity, so the crossing is not guaranteed the way it is on the first three.\n\nAt the left end $\\tan 3\\pi = 0$ while the decreasing curve is still positive, so $\\tan x$ starts below it. At the right end the curve has fallen to $0$, while $\\tan 10 > 0$: since $10$ is only about $0.58$ past $3\\pi$, it has not yet reached the asymptote at $\\frac{7\\pi}{2}$, so $\\tan x$ is still on its rising positive stretch. So $\\tan x$ starts below the curve and finishes above it, and the two must cross somewhere before $x = 10$.\n\nHence there are $\\boxed{4}$ solutions."
   }
 ]
