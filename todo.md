@@ -17,3 +17,7 @@
 - [ ] Add a question counter on home page that displays how many questions in the bank.
 - [x] Add support for diagrams as pictures (pngs) — `\diagram{path}` / `\diagram{path}{alt}` in `stem`/`working`
 - [x] Question builder hidden page
+- [ ] KaTeX pre rendering
+- [ ] Move to TS
+- [ ] Implement proper testing
+- [ ] better CI/CD
