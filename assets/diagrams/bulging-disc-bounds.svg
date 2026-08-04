@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 386" width="640" height="386" font-family="Georgia, 'Times New Roman', serif">
+
+  <!-- cross-section through the axis; 200 px per unit, axis at x=320, base at y=270 -->
+
+  <!-- bounding cylinder: radius 1, height 1 -->
+  <rect x="120" y="70" width="400" height="200"
+        fill="none" stroke="#7a7a7a" stroke-width="1.4" stroke-dasharray="7 5"/>
+
+  <!-- truncated cone: straight sides from the unit circle to the rim of the flat top -->
+  <path d="M 120 270 L 520 270 L 420 70 L 220 70 Z"
+        fill="#e6e6e6" stroke="#4a4a4a" stroke-width="1.3"/>
+
+  <!-- one admissible solid -->
+  <path d="M 120 270 L 520 270 Q 512 120 420 70 L 220 70 Q 128 120 120 270 Z"
+        fill="none" stroke="#111111" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- axis of symmetry -->
+  <line x1="320" y1="56" x2="320" y2="292"
+        stroke="#8a8a8a" stroke-width="1" stroke-dasharray="9 4 2 4"/>
+
+  <!-- height dimension: 1 -->
+  <line x1="90" y1="70" x2="90" y2="270" stroke="#4a4a4a" stroke-width="1"/>
+  <line x1="84" y1="70" x2="96" y2="70" stroke="#4a4a4a" stroke-width="1"/>
+  <line x1="84" y1="270" x2="96" y2="270" stroke="#4a4a4a" stroke-width="1"/>
+  <line x1="96" y1="70" x2="120" y2="70" stroke="#b0b0b0" stroke-width="0.8"/>
+  <line x1="96" y1="270" x2="120" y2="270" stroke="#b0b0b0" stroke-width="0.8"/>
+  <text x="78" y="177" font-size="17" fill="#111111" text-anchor="end">1</text>
+
+  <!-- flat top radius: 1/2 -->
+  <line x1="420" y1="70" x2="420" y2="36" stroke="#b0b0b0" stroke-width="0.8"/>
+  <line x1="320" y1="46" x2="420" y2="46" stroke="#4a4a4a" stroke-width="1"/>
+  <line x1="320" y1="40" x2="320" y2="52" stroke="#4a4a4a" stroke-width="1"/>
+  <line x1="420" y1="40" x2="420" y2="52" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="370" y="33" font-size="17" fill="#111111" text-anchor="middle">&#189;</text>
+
+  <!-- base radius: 1 -->
+  <line x1="520" y1="270" x2="520" y2="306" stroke="#b0b0b0" stroke-width="0.8"/>
+  <line x1="320" y1="296" x2="520" y2="296" stroke="#4a4a4a" stroke-width="1"/>
+  <line x1="320" y1="290" x2="320" y2="302" stroke="#4a4a4a" stroke-width="1"/>
+  <line x1="520" y1="290" x2="520" y2="302" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="420" y="290" font-size="17" fill="#111111" text-anchor="middle">1</text>
+
+  <!-- key -->
+  <line x1="120" y1="326" x2="154" y2="326" stroke="#7a7a7a" stroke-width="1.4" stroke-dasharray="7 5"/>
+  <text x="166" y="331" font-size="15" fill="#111111">Cylinder (overestimate)</text>
+
+  <rect x="120" y="342" width="34" height="11" fill="#e6e6e6" stroke="#4a4a4a" stroke-width="1.3"/>
+  <text x="166" y="353" font-size="15" fill="#111111">Truncated cone (underestimate)</text>
+
+  <line x1="120" y1="370" x2="154" y2="370" stroke="#111111" stroke-width="2.2"/>
+  <text x="166" y="375" font-size="15" fill="#111111">Example <tspan font-style="italic">f</tspan>(<tspan font-style="italic">x</tspan>,&#8202;<tspan font-style="italic">y</tspan>)</text>
+
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" width="640" height="600" font-family="Georgia, 'Times New Roman', serif">
+
+  <path d="M 60.0 210.0 A 100.0 32.0 0 0 1 260.0 210.0" fill="none" stroke="#7a7a7a" stroke-width="1.20" stroke-dasharray="5 4" opacity="0.55"/>
+  <path d="M 60.0 210.0 A 100.0 32.0 0 0 0 260.0 210.0 L 260.0 100.0 A 100.0 32.0 0 0 0 60.0 100.0 L 60.0 210.0 Z" fill="#f2f2f2" fill-opacity="1.0" stroke="#7a7a7a" stroke-width="1.6" stroke-dasharray="7 5" stroke-linejoin="round"/>
+  <path d="M 60.0 100.0 A 100.0 32.0 0 0 0 260.0 100.0" fill="none" stroke="#7a7a7a" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <path d="M 380.0 210.0 A 100.0 32.0 0 0 1 580.0 210.0" fill="none" stroke="#4a4a4a" stroke-width="1.12" stroke-dasharray="5 4" opacity="0.55"/>
+  <path d="M 380.0 210.0 A 100.0 32.0 0 0 0 580.0 210.0 L 530.0 100.0 A 50.0 16.0 0 0 0 430.0 100.0 L 380.0 210.0 Z" fill="#e6e6e6" fill-opacity="1.0" stroke="#4a4a4a" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M 430.0 100.0 A 50.0 16.0 0 0 0 530.0 100.0" fill="none" stroke="#4a4a4a" stroke-width="1.5"/>
+  <path d="M 60.0 510.0 A 100.0 32.0 0 0 1 260.0 510.0" fill="none" stroke="#111111" stroke-width="1.58" stroke-dasharray="5 4" opacity="0.55"/>
+  <path d="M 60.0 510.0 A 100.0 32.0 0 0 0 260.0 510.0 Q 256.0 427.5 210.0 400.0 A 50.0 16.0 0 0 0 110.0 400.0 Q 64.0 427.5 60.0 510.0 Z" fill="#ffffff" fill-opacity="1.0" stroke="#111111" stroke-width="2.1" stroke-linejoin="round"/>
+  <path d="M 110.0 400.0 A 50.0 16.0 0 0 0 210.0 400.0" fill="none" stroke="#111111" stroke-width="2.1"/>
+  <path d="M 380.0 510.0 A 100.0 32.0 0 0 1 580.0 510.0" fill="none" stroke="#7a7a7a" stroke-width="1.12" stroke-dasharray="5 4" opacity="0.55"/>
+  <path d="M 380.0 510.0 A 100.0 32.0 0 0 0 580.0 510.0 L 580.0 400.0 A 100.0 32.0 0 0 0 380.0 400.0 L 380.0 510.0 Z" fill="#ffffff" fill-opacity="0.0" stroke="#7a7a7a" stroke-width="1.5" stroke-dasharray="7 5" stroke-linejoin="round"/>
+  <path d="M 380.0 400.0 A 100.0 32.0 0 0 0 580.0 400.0" fill="none" stroke="#7a7a7a" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <path d="M 380.0 510.0 A 100.0 32.0 0 0 1 580.0 510.0" fill="none" stroke="#111111" stroke-width="1.50" stroke-dasharray="5 4" opacity="0.55"/>
+  <path d="M 380.0 510.0 A 100.0 32.0 0 0 0 580.0 510.0 Q 576.0 427.5 530.0 400.0 A 50.0 16.0 0 0 0 430.0 400.0 Q 384.0 427.5 380.0 510.0 Z" fill="#f4f4f4" fill-opacity="0.95" stroke="#111111" stroke-width="2.0" stroke-linejoin="round"/>
+  <path d="M 430.0 400.0 A 50.0 16.0 0 0 0 530.0 400.0" fill="none" stroke="#111111" stroke-width="2.0"/>
+  <path d="M 380.0 510.0 A 100.0 32.0 0 0 1 580.0 510.0" fill="none" stroke="#4a4a4a" stroke-width="1.05" stroke-dasharray="5 4" opacity="0.55"/>
+  <path d="M 380.0 510.0 A 100.0 32.0 0 0 0 580.0 510.0 L 530.0 400.0 A 50.0 16.0 0 0 0 430.0 400.0 L 380.0 510.0 Z" fill="#b8b8b8" fill-opacity="0.55" stroke="#4a4a4a" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M 430.0 400.0 A 50.0 16.0 0 0 0 530.0 400.0" fill="none" stroke="#4a4a4a" stroke-width="1.4"/>
+  <text x="160" y="280" font-size="16" fill="#111111" text-anchor="middle">Cylinder (overestimate)</text>
+  <text x="480" y="280" font-size="16" fill="#111111" text-anchor="middle">Truncated cone (underestimate)</text>
+  <text x="160" y="580" font-size="16" fill="#111111" text-anchor="middle" font-style="italic">Example f(x, y)</text>
+  <text x="480" y="580" font-size="16" fill="#111111" text-anchor="middle">All three, superimposed</text>
+
+</svg>
