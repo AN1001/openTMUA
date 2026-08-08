@@ -484,5 +484,21 @@
       { "key": "F", "text": "None of them", "correct": false }
     ],
     "working": "$\\text{I}$: Disprove by counterexample. Take $c = 7$, which is prime, and $n = 1$, which satisfies $0 \\leq n \\leq 5$\n\n$$1^2 + 1 + 7 = 9 = 3 \\times 3$$\nso $f_7(1) = 0$ and therefore false.\n\n\n$\\text{II}$: To prove this statement consider substituting a value of $n$ that makes $n^2+n+c$ visibly factorise.\n\nTake $n = c-1$, which lies in the range $0 \\leq n \\leq c-1$ since $c \\geq 1$.\n\n$$(c-1)^2 + (c-1) + c = c^2 - 2c + 1 + 2c - 1 = c^2$$\nA square is never prime: $1^2 = 1$ is not prime, and for $c \\geq 2$ the number $c^2$ has the factor $c$ with $1 < c < c^2$. So $f_c(c-1) = 0$ and such an $n$ always exists.\n\n\n$\\text{III}$: notice that\n\n$$n^2 + n = n(n+1)$$\nis a product of consecutive integers and so is always even. If $c$ is even then $n^2+n+c$ is even, and for $n \\geq 1$\n\n$$n^2+n+c \\geq 1 + 1 + 2 = 4$$\nso it is an even number greater than $2$, and cannot be prime. Hence $f_c(n) = 0$ for every $n \\geq 1$.\n\nHence the statements that hold are $\\boxed{\\text{II and III only}}$."
+  },
+  {
+    "paper": "Paper 2",
+    "topic": "Calculus",
+    "difficulty": 8.0,
+    "source": "Original · OpenTMUA",
+    "stem": "A solid stands on the square base $-1 \\leq x \\leq 1$, $-1 \\leq y \\leq 1$. Its height above the point $(x,\\ y)$ of the base is\n\n$$h(x,\\ y) = 6 + 2y^2 + x^2y^2 + x^3 - 3xy + xy^2 - 2x^2y$$\nand this height is positive at every point of the base. What is the volume of the solid?",
+    "options": [
+      { "key": "A", "text": "$\\frac{240}{9}$", "correct": false },
+      { "key": "B", "text": "$\\frac{252}{9}$", "correct": false },
+      { "key": "C", "text": "$\\frac{228}{9}$", "correct": false },
+      { "key": "D", "text": "$\\frac{216}{9}$", "correct": false },
+      { "key": "E", "text": "$\\frac{276}{9}$", "correct": false },
+      { "key": "F", "text": "$\\frac{244}{9}$", "correct": true }
+    ],
+    "working": "First apply the fact that odd terms cancel (with symmetric limits) and extend to 2D$^*$.\n\nThe terms $x^3$, $-3xy$ and $xy^2$ have an odd power of $x$, and $-2x^2y$ has an odd power of $y$, so all four contribute nothing. Hence the solid has the same volume as the one of height\n\n$$6 + 2y^2 + x^2y^2$$ \\diagram{assets/diagrams/symmetry-solid-panels.svg}{Three solids drawn on the same square base: the given solid with a deep trough on one side and a tall corner on the other, the same solid after the odd terms are removed, and the prism of height 6 plus 2y squared}\nNow consider the height $6 + 2y^2$, which does not depend on $x$. This solid is a prism: the same quadratic slice repeated along the $x$ direction. The slice has area\n\n$$\\int_{-1}^{1} (6 + 2y^2)\\,dy = \\left[6y + \\frac{2y^3}{3}\\right]_{-1}^{1} = \\frac{40}{3}$$\nand the base has length $2$ in the $x$ direction, giving volume $\\frac{80}{3}$.\n\nWe are not expected to be able to integrate $x^2y^2$, so we approximate it above and below. Since $-1 \\leq x \\leq 1$,\n\n$$0 \\leq x^2 \\leq 1$$ $$0 \\leq x^2y^2 \\leq y^2$$\nso the volume it adds is less than that of the solid of height $y^2$, another prism, of volume $2 \\times \\frac{2}{3} = \\frac{4}{3}$.\n\n$$\\frac{80}{3} < V < \\frac{80}{3} + \\frac{4}{3}$$ $$\\frac{240}{9} < V < \\frac{252}{9}$$\nOnly $\\boxed{\\frac{244}{9}}$ lies strictly between these.\n\n$^*$To justify this, pair each point $(x,\\ y)$ of the base with $(-x,\\ y)$. A term with an odd power of $x$ takes opposite values at the two points, so the height it adds at one is exactly the height it removes at the other, and the pair contributes nothing. Pairing $(x,\\ y)$ with $(x,\\ -y)$ does the same for an odd power of $y$."
   }
 ]
