@@ -500,5 +500,25 @@
       { "key": "F", "text": "$\\frac{244}{9}$", "correct": true }
     ],
     "working": "First apply the fact that odd terms cancel (with symmetric limits) and extend to 2D$^*$.\n\nThe terms $x^3$, $-3xy$ and $xy^2$ have an odd power of $x$, and $-2x^2y$ has an odd power of $y$, so all four contribute nothing. Hence the solid has the same volume as the one of height\n\n$$6 + 2y^2 + x^2y^2$$ \\diagram{assets/diagrams/symmetry-solid-panels.svg}{Three solids drawn on the same square base: the given solid with a deep trough on one side and a tall corner on the other, the same solid after the odd terms are removed, and the prism of height 6 plus 2y squared}\nNow consider the height $6 + 2y^2$, which does not depend on $x$. This solid is a prism: the same quadratic slice repeated along the $x$ direction. The slice has area\n\n$$\\int_{-1}^{1} (6 + 2y^2)\\,dy = \\left[6y + \\frac{2y^3}{3}\\right]_{-1}^{1} = \\frac{40}{3}$$\nand the base has length $2$ in the $x$ direction, giving volume $\\frac{80}{3}$.\n\nWe are not expected to be able to integrate $x^2y^2$, so we approximate it above and below. Since $-1 \\leq x \\leq 1$,\n\n$$0 \\leq x^2 \\leq 1$$ $$0 \\leq x^2y^2 \\leq y^2$$\nso the volume it adds is less than that of the solid of height $y^2$, another prism, of volume $2 \\times \\frac{2}{3} = \\frac{4}{3}$.\n\n$$\\frac{80}{3} < V < \\frac{80}{3} + \\frac{4}{3}$$ $$\\frac{240}{9} < V < \\frac{252}{9}$$\nOnly $\\boxed{\\frac{244}{9}}$ lies strictly between these.\n\n$^*$To justify this, pair each point $(x,\\ y)$ of the base with $(-x,\\ y)$. A term with an odd power of $x$ takes opposite values at the two points, so the height it adds at one is exactly the height it removes at the other, and the pair contributes nothing. Pairing $(x,\\ y)$ with $(x,\\ -y)$ does the same for an odd power of $y$."
+  },
+  {
+    "paper": "Paper 1",
+    "topic": "Calculus",
+    "difficulty": 7.5,
+    "source": "Original · OpenTMUA",
+    "stem": "A continuous function $f$ satisfies $0 \\le f(x) \\le 1$ for all $x$ with $0 \\le x \\le 1$. It also satisfies, for every such $x$,\n\n$$f\\left(\\frac{x}{3}\\right) = \\frac{1}{2}f(x) \\qquad \\text{and} \\qquad f(1-x) = 1 - f(x)$$\nWhat is the value of $\\int_0^{\\frac{1}{3}} f(x)\\,dx$?",
+    "options": [
+      { "key": "A", "text": "$\\frac{1}{12}$", "correct": true },
+      { "key": "B", "text": "$\\frac{1}{6}$", "correct": false },
+      { "key": "C", "text": "$\\frac{1}{2}$", "correct": false },
+      { "key": "D", "text": "$\\frac{1}{18}$", "correct": false },
+      { "key": "E", "text": "$\\frac{1}{4}$", "correct": false },
+      {
+        "key": "F",
+        "text": "Not determined by the given conditions",
+        "correct": false
+      }
+    ],
+    "working": "First find the integral over the whole range. Let\n\n$$J = \\int_0^1 f(x)\\,dx$$\nReplacing $x$ by $1-x$ reflects the graph in the line $x = \\frac{1}{2}$. The range $0 \\le x \\le 1$ reflects onto itself, so the area underneath is unchanged:\n\n$$\\int_0^1 f(1-x)\\,dx = J$$\nBut the second equation says $f(1-x) = 1 - f(x)$, so this same integral is\n\n$$\\int_0^1 (1 - f(x))\\,dx = 1 - J$$\nHence\n$$J = 1 - J \\implies J = \\frac{1}{2}$$\n\\diagram{assets/diagrams/cantor-reflection.svg}{Two unit squares. Left: an increasing staircase graph of f with the region beneath it shaded and marked area J, and a dashed line at x = one half. Right: its mirror image, a decreasing staircase, with the region beneath shaded, marked area J and also area 1 minus J.}\nNow put $x = 3t$ in the first equation. This is allowed as long as $3t \\le 1$, that is $t \\le \\frac{1}{3}$:\n\n$$f(t) = \\frac{1}{2}f(3t)$$\nSo the graph over $0 \\le t \\le \\frac{1}{3}$ is the whole graph squashed: one third as wide and one half as tall. Squashing a shape this way multiplies its area by $\\frac{1}{3} \\times \\frac{1}{2}$, so\n\n$$\\int_0^{\\frac{1}{3}} f(x)\\,dx = \\frac{1}{3} \\times \\frac{1}{2} \\times J$$ $$= \\frac{1}{6} \\times \\frac{1}{2} = \\boxed{\\frac{1}{12}}$$\n\\diagram{assets/diagrams/cantor-squash.svg}{Three panels. First: the staircase graph of f in a square of width 1 and height 1, region beneath shaded, area J, with a dot at the left end of the middle plateau. Second: after putting x = 3t, the same graph squashed across into a box of width one third and height 1, area one third of J. Third: after halving, a box of width one third and height one half holding the graph of f over 0 to one third, area one sixth of J.} $^*$Note that the function in the diagrams has been carefully chosen to follow the rules given. When we follow these rules through, we find that compressing the graph (by $3$ times) and halving it gives the $\\textbf{same}$ function as the first $\\frac{1}{3}$ of the original graph. This therefore gives us the same area as the first $\\frac{1}{3}$ of the graph, which is exactly what the question asks for."
   }
 ]
