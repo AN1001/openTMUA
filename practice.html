@@ -9,7 +9,6 @@
       name="description"
       content="Work through TMUA-style practice questions by topic."
     />
-    <link rel="stylesheet" href="vendor/fonts/fonts.css" />
     <link rel="stylesheet" href="vendor/katex/katex.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/practice.css" />
@@ -17,16 +16,10 @@
   <body>
     <header class="site">
       <div class="wrap">
-        <a class="wordmark" href="index.html">Open<span>TMUA</span></a>
+        <a class="wordmark" href="index.html">OpenTMUA</a>
         <nav class="site-nav">
           <a href="practice.html">Practice</a>
-          <a href="index.html#papers">Papers</a>
-          <a
-            href="https://github.com/AN1001/openTMUA"
-            target="_blank"
-            rel="noopener"
-            >Source</a
-          >
+          <a href="https://github.com/AN1001/openTMUA" rel="noopener">Source</a>
         </nav>
       </div>
     </header>
@@ -34,36 +27,28 @@
     <main class="wrap practice-main">
       <h1 class="practice-title">Practice</h1>
 
-      <div
-        class="topic-pills mono"
-        id="topicPills"
-        aria-label="Filter by topic"
-      ></div>
+      <div class="topic-pills" id="topicPills" aria-label="Filter by topic"></div>
 
       <div class="practice-status">
-        <span class="mono" id="statusLine">Question 1 of 1</span>
+        <span id="statusLine">0%</span>
         <div class="progress-track">
           <div class="progress-fill" id="progressFill"></div>
         </div>
-        <p class="storage-note mono">
+        <p class="storage-note">
           Progress is saved locally in this browser only.
         </p>
       </div>
 
       <div class="question-layout">
-        <div
-          class="palette mono"
-          id="palette"
-          aria-label="Jump to question"
-        ></div>
+        <div class="palette" id="palette" aria-label="Jump to question"></div>
 
         <div class="question-card">
           <div class="qc-head">
             <span class="qc-head-main">
-              <span class="qlabel mono" id="qLabel">Q. —</span>
-              <span class="qdifficulty mono" id="qDifficulty"></span>
+              <span class="qlabel" id="qLabel">—</span>
+              <span class="qdifficulty" id="qDifficulty"></span>
             </span>
-            <span class="qsource mono" id="qSource">—</span>
+            <span class="qsource" id="qSource">—</span>
           </div>
           <div class="qc-body">
             <p class="stem-math" id="qStem">Loading questions…</p>
@@ -73,15 +58,15 @@
             <div class="feedback" id="feedback" aria-live="polite">
               <strong id="feedbackTitle"></strong>
               <span id="feedbackBody"></span>
-              <span class="working mono" id="feedbackWorking"></span>
+              <span class="working" id="feedbackWorking"></span>
             </div>
           </div>
           <div class="qc-nav">
-            <button class="nav-btn mono" id="prevBtn">&larr; Prev</button>
-            <button class="nav-btn mono" id="resetBtn" style="display: none">
+            <button class="nav-btn" id="prevBtn">← Previous</button>
+            <button class="nav-btn" id="resetBtn" style="display: none">
               Reset question
             </button>
-            <button class="nav-btn mono" id="nextBtn">Next &rarr;</button>
+            <button class="nav-btn" id="nextBtn">Next →</button>
           </div>
         </div>
       </div>
@@ -89,12 +74,12 @@
 
     <footer class="site">
       <div class="wrap">
-        <span>OpenTMUA — code under MIT, questions under CC BY-SA 4.0.</span>
-        <span
-          >Not affiliated with or endorsed by University Admissions Tests
+        <p>Code under MIT. Questions under CC BY-SA 4.0.</p>
+        <p>
+          Not affiliated with or endorsed by University Admissions Tests
           (UAT-UK) or Pearson VUE, who administer the TMUA. Questions are
-          provided as-is for practice.</span
-        >
+          provided as-is for practice.
+        </p>
       </div>
     </footer>
 

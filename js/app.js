@@ -2,8 +2,11 @@ import { renderMath } from "./math.js";
 
 const optionsList = document.getElementById("options");
 const demoLabel = document.getElementById("demoLabel");
+const demoPaper = document.getElementById("demoPaper");
+const demoSource = document.getElementById("demoSource");
 const demoStem = document.getElementById("demoStem");
 const demoWorking = document.getElementById("demoWorking");
+const bankSummary = document.getElementById("bankSummary");
 const feedback = document.getElementById("feedback");
 const feedbackTitle = document.getElementById("feedbackTitle");
 const feedbackBody = document.getElementById("feedbackBody");
@@ -49,7 +52,12 @@ function wireOptions() {
 }
 
 function renderQuestion(q) {
-  demoLabel.textContent = `Q. ${q.topic}`;
+  demoLabel.textContent = q.topic;
+  // The card used to sit under a hard-coded "PAPER 1" label while this function
+  // swapped in a question drawn from the whole bank — so a Paper 2 question was
+  // routinely shown labelled Paper 1. The paper now comes from the question.
+  demoPaper.textContent = q.paper;
+  demoSource.textContent = q.source;
   renderMath(q.stem, demoStem);
   renderMath(q.working, demoWorking);
   optionsList.replaceChildren();
@@ -97,7 +105,18 @@ fetch("data/questions.json")
     if (!answered && data.length) {
       renderQuestion(data[Math.floor(Math.random() * data.length)]);
     }
+    // Replace the hard-coded counts with the real ones so they can't drift as
+    // questions are added. The markup ships with the current numbers as a
+    // fallback for when this fetch can't run.
+    if (bankSummary && data.length) {
+      const p1 = data.filter((q) => q.paper === "Paper 1").length;
+      const p2 = data.filter((q) => q.paper === "Paper 2").length;
+      bankSummary.textContent =
+        `${data.length} question${data.length === 1 ? "" : "s"} so far — ` +
+        `${p1} for Paper 1 (Mathematical Thinking) and ` +
+        `${p2} for Paper 2 (Mathematical Reasoning).`;
+    }
   })
   .catch(() => {
-    /* keep the static demo question */
+    /* keep the static demo question and the fallback counts */
   });

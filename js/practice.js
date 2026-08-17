@@ -163,16 +163,16 @@ function renderQuestion() {
   if (!filtered.length) {
     els.qStem.textContent = "No questions in this topic yet.";
     els.options.replaceChildren();
-    els.qLabel.textContent = "Q. —";
+    els.qLabel.textContent = "—";
     els.qDifficulty.textContent = "";
     els.qSource.textContent = "—";
     els.statusLine.textContent = "Question 0 of 0";
-    els.progressFill.style.width = "0%";
+    els.progressFill.style.transform = "scaleX(0)";
     return;
   }
 
   const q = filtered[currentIndex];
-  els.qLabel.textContent = `Q. ${q.topic}`;
+  els.qLabel.textContent = q.topic;
   els.qDifficulty.textContent =
     typeof q.difficulty === "number"
       ? `Difficulty ${q.difficulty.toFixed(1)}`
@@ -185,7 +185,7 @@ function renderQuestion() {
   const completed = countCompleted();
   const pct = Math.round((completed / filtered.length) * 100);
   els.statusLine.textContent = `${pct}%`;
-  els.progressFill.style.width = `${pct}%`;
+  els.progressFill.style.transform = `scaleX(${pct / 100})`;
 
   els.options.replaceChildren();
   for (const opt of q.options) {

@@ -1,22 +1,41 @@
+/* OpenTMUA — shared styles.
+   The design is a plain document: white ground, one typeface, rules instead of
+   boxes, and no decoration anywhere. Nothing here exists to look like anything;
+   every rule earns its place by making the questions easier to read or the
+   controls easier to hit. Colour is reserved for answer state, which is the one
+   place it carries meaning. */
+
 :root {
-  --paper: #f1f2ed;
-  --paper-raised: #fbfbf8;
-  --grid-line: #d7d9ce;
-  --ink: #15181b;
-  --ink-soft: #565b57;
-  --ink-faint: #8a8f87;
-  --rule: #c7cabd;
-  --red: #a6392b;
-  --red-bg: #f4e3df;
-  --green: #1f6e4a;
-  --green-bg: #deeae2;
-  --navy: #24344b;
-  --radius: 4px;
-  --max: 1200px;
-  --card-w: 800px;
-  /* For text/borders sitting on the dark --ink background. */
-  --paper-soft: #c7cbbf;
-  --rule-dark: #4a5049;
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #5c5c5c;
+  --ink-faint: #767676;
+  --rule: #d4d4d4;
+  --rule-soft: #e8e8e8;
+  --correct: #0b6b39;
+  --correct-bg: #f0f7f2;
+  --incorrect: #a3231b;
+  --incorrect-bg: #fbf1f0;
+  --focus: #1a4fd6;
+  /* Two measures, because the question needs two.
+
+     --prose is 36rem = 72 characters, which is exactly what the original 800px
+     card measured at its larger root size. The stems were written and the
+     diagrams drawn against that, and stretching it turns them into ribbons.
+
+     --col is the structural column: rules, heads, options, prev/next, and the
+     maths. KaTeX cannot wrap, so a statement list confined to prose measure
+     gets sliced mid-word; giving the frame more room than the sentence is what
+     stops that. Every framed element shares --col, so there is still one edge;
+     only running text wraps early, the way text in any book does. */
+  --prose: 36rem;
+  --col: 48rem;
+  /* One family, the reader's own. A downloaded display face would be the first
+     decoration on a page that is meant to have none. */
+  --sans:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 * {
@@ -24,554 +43,427 @@
 }
 
 html {
-  /* The design targets ~130% of the browser's default text size. A percentage
-     (not a px value) so a visitor's own zoom/text-size settings still apply
-     on top of this baseline. All rem/ch sizes scale from here. */
-  font-size: 130%;
-  scroll-behavior: smooth;
+  /* 20px at default browser settings. The original design ran at 130% for a
+     reason — these are dense mathematical statements read for twenty minutes at
+     a stretch — and shrinking it was part of what made the column feel wrong.
+     A percentage, not px, so the visitor's own text-size setting still applies. */
+  font-size: 125%;
 }
 
 body {
   margin: 0;
   background: var(--paper);
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 36px 36px;
-  background-attachment: fixed;
   color: var(--ink);
-  font-family: "IBM Plex Sans", sans-serif;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Spectral", serif;
+  font-family: inherit;
   font-weight: 600;
+  line-height: 1.25;
   margin: 0;
+  text-wrap: balance;
+}
+h1 {
+  font-size: 1.85rem;
+  letter-spacing: -0.015em;
+}
+h2 {
+  font-size: 1.2rem;
+  margin-top: 2.6rem;
+  margin-bottom: 0.7rem;
+}
+h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+p {
+  margin: 0 0 1rem;
 }
 
 .mono {
-  font-family: "IBM Plex Mono", monospace;
-  letter-spacing: 0.02em;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
 }
 
 a {
-  color: var(--navy);
+  color: var(--ink);
+  text-underline-offset: 0.16em;
 }
-a:focus-visible,
-button:focus-visible,
-[tabindex]:focus-visible {
-  outline: 2px solid var(--navy);
-  outline-offset: 3px;
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: #dbe4fb;
+  color: var(--ink);
 }
 
 .wrap {
-  max-width: var(--max);
+  max-width: var(--col);
   margin: 0 auto;
+  padding: 0 1.35rem;
 }
 
-/* ---------- Header ---------- */
+/* Homepage intro copy stops at reading measure — it is short, and nothing sits
+   beside it to line up with.
+
+   Question text deliberately does NOT: the stem and the worked solution fill
+   the block, so their lines end on the same edge as the rules, the head, the
+   options and the prev/next row. Capping them shorter left the text stopping
+   well before the container it sits in, which read as a mistake rather than as
+   typesetting. */
+.lede,
+.home-main > p,
+.home-main > .facts,
+.home-main > ul.plain {
+  max-width: var(--prose);
+}
+
+/* ---------- Header / footer ---------- */
 header.site {
-  padding: 25px 26px;
   border-bottom: 1px solid var(--rule);
-  background: var(--paper);
+  padding: 0.9rem 0;
 }
 header.site .wrap {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
+  gap: 1rem;
 }
 .wordmark {
-  font-family: "Spectral", serif;
   font-weight: 600;
-  font-size: 1.4rem;
-  letter-spacing: -0.01em;
-  color: var(--ink);
+  font-size: 1rem;
   text-decoration: none;
-}
-.wordmark span {
-  color: var(--ink-soft);
-  font-weight: 500;
-}
-
-/* Stands in for the header on the mobile homepage hero — see the
-   body.home media-query rule below, which hides header.site and reveals this. */
-.hero-logo {
-  display: none;
-  font-family: "Spectral", serif;
-  font-weight: 600;
-  font-size: 1.7rem;
   letter-spacing: -0.01em;
-  color: var(--ink);
-  margin-bottom: 24px;
-}
-.hero-logo span {
-  color: var(--ink-soft);
-  font-weight: 500;
 }
 nav.site-nav {
   display: flex;
-  gap: 36px;
+  gap: 1.1rem;
+  font-size: 0.9rem;
 }
 nav.site-nav a {
-  text-decoration: none;
   color: var(--ink-soft);
-  font-family: "Spectral", serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-bottom: 1px solid transparent;
-  padding-top: 1px;
 }
 nav.site-nav a:hover {
   color: var(--ink);
-  border-bottom-color: var(--ink-soft);
 }
 
-/* ---------- Hero ---------- */
-.hero {
-  padding: 65px 26px;
+footer.site {
+  border-top: 1px solid var(--rule);
+  margin-top: 3.5rem;
+  padding: 1.4rem 0 2.5rem;
+  color: var(--ink-faint);
+  font-size: 0.8rem;
 }
-.eyebrow {
+footer.site p {
+  margin: 0 0 0.5rem;
+}
+footer.site a {
+  color: var(--ink-faint);
+}
+
+/* ---------- Homepage ---------- */
+main.home-main {
+  padding-top: 2.6rem;
+}
+.lede {
+  font-size: 1.1rem;
+  margin-top: 0.9rem;
+}
+/* The one call to action. A bordered box rather than a filled button: the page
+   has no other filled surface and one would read as decoration. */
+.action {
   display: inline-block;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.78rem;
-  color: var(--red);
-  background: var(--red-bg);
-  padding: 4px 12px;
-  border-radius: var(--radius);
-  margin: 24px 0;
+  border: 1px solid var(--ink);
+  padding: 0.5rem 1.1rem;
+  text-decoration: none;
+  font-size: 0.95rem;
 }
-.hero h1 {
-  font-size: clamp(2.1rem, 4.6vw, 3.2rem);
-  line-height: 1.08;
-  max-width: 15ch;
-  letter-spacing: -0.01em;
-}
-.hero .sub {
-  margin-top: 20px;
-  max-width: 46ch;
-  color: var(--ink-soft);
-  font-size: 1.05rem;
-}
-.hero-cta {
-  display: block;
-  width: fit-content;
-  margin-top: 28px;
-  margin-bottom: 6px;
+.action:hover {
   background: var(--ink);
   color: var(--paper);
-  font-size: 0.85rem;
-  text-decoration: none;
-  padding: 14px 26px;
-  border-radius: var(--radius);
-}
-.hero-cta:hover {
-  opacity: 0.88;
 }
 
-/* ---------- Question card (signature element) ---------- */
+/* Fact list — replaces the three-column feature strip. Same information, no
+   columns, no labels pretending to be badges. */
+.facts {
+  margin: 0;
+}
+.facts dt {
+  font-weight: 600;
+  margin-top: 1rem;
+}
+.facts dd {
+  margin: 0.15rem 0 0;
+  color: var(--ink-soft);
+}
+.facts dt:first-child {
+  margin-top: 0;
+}
+
+ul.plain {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+ul.plain li {
+  margin-bottom: 0.35rem;
+}
+
+/* ---------- Question ---------- */
+/* Not a card. A rule above and below is enough to say "this is the question",
+   and it costs the page no border, radius, shadow or fill. */
 .question-card {
-  background: var(--paper-raised);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  box-shadow: 0 1px 0 var(--rule);
-  max-width: var(--card-w);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.1rem 0 1.3rem;
 }
 .qc-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  padding: 18px 26px;
-  border-bottom: 1px solid var(--grid-line);
+  gap: 0.2rem 1.2rem;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-bottom: 1.1rem;
 }
 .qc-head-main {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 0.7rem;
 }
 .qc-head .qlabel {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.85rem;
   color: var(--ink-soft);
+  font-weight: 600;
 }
-.qc-head .qdifficulty {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.7rem;
-  color: var(--ink-faint);
+.qc-head .qdifficulty,
+.qc-head .qpaper,
+.qc-head .qsource {
+  font-variant-numeric: tabular-nums;
 }
 .qc-head .qdifficulty:empty {
   display: none;
 }
-.qc-head .qsource {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.75rem;
-  color: var(--ink-faint);
-}
-.qc-body {
-  padding: 28px 26px 26px;
-}
-.qc-body p {
-  margin: 0 0 24px;
-  font-size: 1rem;
-}
+
 .qc-body .stem-math {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.98rem;
+  font-size: 1rem;
+  line-height: 1.62;
+  margin-bottom: 1.2rem;
 }
+/* Diagrams are figures: centred in the column, and framed so a transparent SVG
+   reads as a picture rather than as loose strokes on the page. The `auto` in
+   the margin is load-bearing — dropping it left every diagram jammed against
+   the left margin.
+
+   Size: max-height caps how tall a figure may run on desktop (a squarish or
+   portrait SVG would otherwise fill the column and tower over the question),
+   and width follows from the aspect ratio. On a phone max-width bites first,
+   so the drawing gets the full screen width — the cap only exists where there
+   is room to spare. This lives here, not in the SVG canvases: padding the
+   canvas out would shrink the drawing on exactly the screens that have the
+   least room. */
 .question-diagram {
   display: block;
+  width: auto;
   max-width: 100%;
   height: auto;
-  margin: 14px auto;
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  background: var(--paper-raised);
+  max-height: 24rem;
+  margin: 1.1rem auto;
+  border: 1px solid var(--rule-soft);
+  background: var(--paper);
 }
 
-/* KaTeX doesn't line-wrap maths. A long display equation ($$…$$) would
-   otherwise run off the card. renderMath wraps each display equation in a
-   .math-scroll block whose width is capped at the card and which scrolls
-   horizontally when the equation is wider. It must be display:block (not the
-   default inline span) so max-width resolves against the card, not the
-   equation's own content width. overflow-y stays visible so tall fractions
-   aren't clipped; the small padding keeps the scrollbar off the equation. */
+/* KaTeX does not line-wrap, so a wide display equation would overflow. Each one
+   is wrapped in a scroll container capped at the column width. The shadows are
+   a scroll affordance: macOS overlay scrollbars are invisible until touched, so
+   without them a clipped equation looks merely cut off. Two paper-coloured
+   "cover" gradients scroll with the content and hide the shadow beneath at each
+   end; scroll away and the shadow appears. */
 .math-scroll {
   display: block;
+  /* Shrink-wrap small equations; let wide ones grow to the container and only
+     then scroll. The bound must be 100%, never a fixed column width — a fixed
+     bound wider than a phone screen makes every wide equation drag the whole
+     page sideways instead of scrolling inside its own box. */
+  width: max-content;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   padding-bottom: 2px;
-  /* Scroll affordance (macOS overlay scrollbars are invisible until you touch
-     them, so the equation could look cut off with no hint it scrolls). Lea
-     Verou's pure-CSS scroll shadows: a soft shadow at each edge that shows only
-     when the equation overflows there and fades as you scroll to that end.
-     How it works — two "cover" gradients (paper-coloured, background-attachment:
-     local) scroll with the equation and sit on top; two "shadow" gradients
-     (attachment: scroll) are pinned to the container's left/right edges beneath.
-     At an end, the matching cover lines up with that edge and hides its shadow;
-     scroll away and the cover moves off, revealing the shadow. If the equation
-     fits, both covers sit at both edges and no shadow ever shows.
-     Colours are hard-coded to --paper-raised (#fbfbf8) because a gradient stop
-     needs that colour at zero alpha, which a CSS var can't express. */
   background:
-    linear-gradient(to right, #fbfbf8 30%, rgba(251, 251, 248, 0)) left center,
-    linear-gradient(to left, #fbfbf8 30%, rgba(251, 251, 248, 0)) right center,
-    linear-gradient(to right, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0)) left center,
-    linear-gradient(to left, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0)) right center;
+    linear-gradient(to right, #fff 30%, rgba(255, 255, 255, 0)) left center,
+    linear-gradient(to left, #fff 30%, rgba(255, 255, 255, 0)) right center,
+    linear-gradient(to right, rgba(0, 0, 0, 0.13), rgba(0, 0, 0, 0)) left center,
+    linear-gradient(to left, rgba(0, 0, 0, 0.13), rgba(0, 0, 0, 0)) right center;
   background-repeat: no-repeat;
-  background-size: 34px 100%, 34px 100%, 16px 100%, 16px 100%;
+  background-size: 30px 100%, 30px 100%, 14px 100%, 14px 100%;
   background-attachment: local, local, scroll, scroll;
 }
-/* KaTeX centres display maths and adds vertical margins; keep those but let
-   the scroll container own the horizontal overflow. */
 .math-scroll .katex-display {
   margin: 0.6em 0;
 }
 
+/* Mobile guards. Inline maths flows mid-sentence and cannot wrap, so on a
+   narrow screen a long formula can poke a few pixels past the column — and on
+   iOS even a small protrusion lets the whole page pan sideways. Two rules,
+   one principle: the page never moves left-right, and anything that genuinely
+   doesn't fit scrolls locally inside the question body instead. Both are
+   inert at widths where the content fits. */
+@media (max-width: 48rem) {
+  html,
+  body {
+    overflow-x: hidden; /* fallback for older Safari */
+    overflow-x: clip;
+  }
+  .qc-body {
+    overflow-x: auto;
+  }
+  /* Header reduces to the wordmark; it is the way back home. */
+  nav.site-nav {
+    display: none;
+  }
+}
+
+/* ---------- Options ---------- */
+/* Full width of the question block on purpose. The answers, the stem, the head
+   and the prev/next row all end on the same right edge; capping this list to a
+   tidier width was the one thing inside the block that broke that line. */
 .options {
   display: grid;
-  gap: 10px;
+  gap: 0.4rem;
   list-style: none;
-  margin: 0 0 20px;
+  margin: 0;
   padding: 0;
 }
 .option {
   display: flex;
+  /* Centre, not baseline. KaTeX puts a fraction's baseline at the fraction
+     bar, so baseline-keying the letter parks it level with the numerator and
+     it reads as misaligned on every fraction answer. Centring keys the letter
+     to the answer's rendered height instead, which holds for plain text and
+     tall maths alike — the row is the unit, so the row's centre is the truth. */
   align-items: center;
-  gap: 16px;
+  gap: 0.8rem;
   width: 100%;
   text-align: left;
-  background: transparent;
+  background: var(--paper);
   border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  padding: 13px 18px;
-  font-family: "IBM Plex Sans", sans-serif;
-  font-size: 0.95rem;
+  border-radius: 0;
+  padding: 0.6rem 0.8rem;
+  font-family: inherit;
+  font-size: 0.98rem;
   color: var(--ink);
   cursor: pointer;
-  transition:
-    border-color 0.12s ease,
-    background 0.12s ease;
 }
-.option:hover {
-  border-color: var(--ink-soft);
+.option:hover:not([disabled]) {
+  border-color: var(--ink);
 }
 .option .tag {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.8rem;
   color: var(--ink-faint);
-  width: 1.2em;
+  font-size: 0.82rem;
+  /* Tight line box. The tag is a marker glyph, not running text: with the
+     inherited 1.6 leading its box carries half-leading that shifts the glyph
+     off the box's centre, and centring the box then mis-centres the letter.
+     line-height: 1 makes the box the glyph, so centring the box centres the
+     letter — the same reason the answer-state labels below set it too. */
+  line-height: 1;
+  width: 1.1em;
+  flex: none;
 }
 .option[disabled] {
   cursor: default;
 }
 .option.correct {
-  background: var(--green-bg);
-  border-color: var(--green);
-}
-.option.correct .tag {
-  color: var(--green);
+  border-color: var(--correct);
+  background: var(--correct-bg);
 }
 .option.incorrect {
-  background: var(--red-bg);
-  border-color: var(--red);
+  border-color: var(--incorrect);
+  background: var(--incorrect-bg);
 }
-.option.incorrect .tag {
-  color: var(--red);
+/* State is named in words as well as colour, so it survives a colour-blind
+   reader, a greyscale print, and a screenshot. */
+.option.correct::after,
+.option.incorrect::after {
+  margin-left: auto;
+  padding-left: 0.8rem;
+  font-size: 0.72rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex: none;
+}
+.option.correct::after {
+  content: "correct";
+  color: var(--correct);
+}
+.option.incorrect::after {
+  content: "your answer";
+  color: var(--incorrect);
 }
 .option.dim {
-  opacity: 0.55;
+  color: var(--ink-faint);
 }
 
+/* ---------- Feedback ---------- */
 .feedback {
   display: none;
-  border-top: 1px dashed var(--rule);
-  padding-top: 18px;
-  margin-top: 5px;
-  font-size: 0.92rem;
-  color: var(--ink-soft);
+  margin-top: 1.3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 0.95rem;
 }
 .feedback.show {
   display: block;
 }
 .feedback strong {
-  color: var(--ink);
+  font-weight: 600;
 }
 .feedback .working {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.85rem;
   display: block;
-  margin-top: 10px;
+  margin-top: 0.7rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
 }
 .try-again {
-  margin-top: 18px;
+  margin-top: 1rem;
   background: none;
-  border: none;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.8rem;
-  color: var(--navy);
-  cursor: pointer;
+  border: 0;
   padding: 0;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  cursor: pointer;
   text-decoration: underline;
+  text-underline-offset: 0.16em;
   display: none;
 }
 .try-again.show {
   display: inline-block;
 }
 
-/* ---------- Value strip ---------- */
-.strip {
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper-raised);
-  margin-bottom: 52px;
-}
-.strip .wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-}
-.strip-item {
-  flex: 1 1 286px;
-  padding: 24px 26px;
-  border-right: 1px solid var(--grid-line);
-}
-.strip-item:last-child {
-  border-right: none;
-}
-.strip-item .k {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  color: var(--red);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  display: block;
-  margin-bottom: 8px;
-}
-.strip-item .v {
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-}
-
-/* ---------- Papers ---------- */
-.section {
-  padding: 0 26px 42px 26px;
-}
-.section-head {
-  margin-bottom: 40px;
-  max-width: 56ch;
-}
-.section-head .eyebrow-lite {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.78rem;
-  color: var(--ink-faint);
-  display: block;
-  margin-bottom: 10px;
-}
-.section-head h2 {
-  font-size: 1.6rem;
-}
-.section-head p {
-  color: var(--ink-soft);
-  margin-top: 13px;
-}
-
-.paper-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 20px;
-}
-.paper-card {
-  background: var(--paper-raised);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  padding: 26px;
-}
-.paper-card .num {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.78rem;
-  color: var(--red);
-  display: block;
-  margin-bottom: 13px;
-}
-.paper-card h3 {
-  font-size: 1.15rem;
-  margin-bottom: 10px;
-}
-.paper-card p {
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-  margin: 0;
-}
-.paper-card .status {
-  display: inline-block;
-  margin-top: 18px;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  color: var(--ink-faint);
-  border: 1px solid var(--grid-line);
-  padding: 3px 10px;
-  border-radius: var(--radius);
-}
-
-/* ---------- Open source ---------- */
-.oss {
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: var(--radius);
-  padding: 52px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  align-items: center;
-  justify-content: space-between;
-}
-.oss h2 {
-  color: var(--paper);
-  font-size: 1.5rem;
-  max-width: 22ch;
-}
-.oss p {
-  color: var(--paper-soft);
-  max-width: 40ch;
-  margin-top: 13px;
-  font-size: 0.92rem;
-}
-.oss-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.btn {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.85rem;
-  text-decoration: none;
-  padding: 13px 24px;
-  border-radius: var(--radius);
-  border: 1px solid var(--rule-dark);
-  color: var(--paper);
-  white-space: nowrap;
-}
-.btn.primary {
-  background: var(--paper);
-  color: var(--ink);
-  border-color: var(--paper);
-}
-.btn:hover {
-  opacity: 0.85;
-}
-
-/* ---------- Footer ---------- */
-footer.site {
-  border-top: 1px solid var(--rule);
-  padding: 32px 26px;
-  background: var(--paper);
-}
-footer.site .wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 13px;
-  font-size: 0.82rem;
-  color: var(--ink-faint);
-}
-footer.site a {
-  color: var(--ink-soft);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   * {
     transition: none !important;
   }
 }
 
-@media (max-width: 830px) {
+@media (max-width: 34rem) {
+  h1 {
+    font-size: 1.55rem;
+  }
   nav.site-nav {
-    display: none;
-  }
-  /* On the homepage, drop the header bar entirely on mobile (nav links are
-     already hidden, so it's just a thin bar) and show a large logo in the
-     hero instead — the hero-cta button below it still covers navigation. */
-  body.home header.site {
-    display: none;
-  }
-  .hero {
-    padding-top: 26px;
-  }
-  .hero-logo {
-    display: block;
-    font-size: 2.9em;
-    margin: 0 0 6px 0;
-  }
-  .oss {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-/* The strip's 3-column row gets uncomfortably narrow (each item wrapping its
-   text and leaving whitespace below) before the site's other 830px mobile
-   breakpoint kicks in, so it switches to a stacked column earlier. */
-@media (max-width: 910px) {
-  .strip {
-    margin-bottom: 36px;
-  }
-  .strip .wrap {
-    flex-direction: column;
-  }
-  .strip-item {
-    padding: 26px;
-    border-right: none;
-    border-bottom: 1px solid var(--grid-line);
-    flex: 1 1 auto;
-  }
-  .strip-item:last-child {
-    border-bottom: none;
+    gap: 0.85rem;
   }
 }

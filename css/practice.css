@@ -1,45 +1,54 @@
-/* Practice page additions — assumes styles.css already defines the
-   :root tokens (--paper, --ink, --rule, --card-w, --radius, …) and the base
-   .wrap / .site / .wordmark / .question-card / .options / .option /
-   .feedback / .qc-head / .qc-body / .stem-math / .eyebrow / mono classes. */
+/* Practice page additions — assumes styles.css defines the :root tokens and the
+   base .wrap / .site / .question-card / .options / .option / .feedback / .mono
+   classes. Same plain-document rules apply here: no boxes, no fills, no radii.
+   This page is a tool, so the only thing that gets emphasis is answer state. */
 
 :root {
-  --palette-w: 252px; /* 5 cols of 44px + 4 gaps of 8px */
-  --layout-gap: 24px;
+  --palette-w: 12rem;
+  --layout-gap: 2rem;
+  /* Sized so the question column lands on the same 36rem / 72-character measure
+     the questions were written against; the palette rail is added on top rather
+     than taken out of it. */
+  --practice-w: calc(var(--palette-w) + var(--layout-gap) + var(--col) + 2.7rem);
 }
 
-/* Combined width of the palette column + gap + question box (+ side padding).
-   Constraining .practice-main to this makes the title, pills, status/progress
-   and the palette+box row all share the same left/right edges. */
 .practice-main {
-  padding: 34px 26px 94px;
-  max-width: calc(var(--palette-w) + var(--layout-gap) + var(--card-w) + 52px);
+  max-width: var(--practice-w);
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+/* The header and footer default to the narrower document column; pull them onto
+   the practice column so every edge on the page lines up. */
+header.site .wrap,
+footer.site .wrap {
+  max-width: var(--practice-w);
 }
 
 .practice-title {
-  font-family: "Spectral", serif;
-  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
-  margin: 18px 0 36px;
+  font-size: 1.5rem;
+  margin-bottom: 1.4rem;
 }
 
-/* ---------- Topic pills ---------- */
+/* ---------- Topic filter ---------- */
 .topic-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 36px;
+  gap: 0.4rem;
+  margin-bottom: 1.4rem;
 }
 .topic-pill {
-  font-size: 0.8rem;
-  background: var(--paper-raised);
+  font-family: inherit;
+  font-size: 0.85rem;
+  background: var(--paper);
   border: 1px solid var(--rule);
-  border-radius: 999px;
-  padding: 8px 18px;
+  border-radius: 0;
+  padding: 0.35rem 0.7rem;
   cursor: pointer;
   color: var(--ink-soft);
 }
 .topic-pill:hover {
-  border-color: var(--ink-soft);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 .topic-pill[aria-pressed="true"] {
   background: var(--ink);
@@ -47,144 +56,180 @@
   color: var(--paper);
 }
 
-/* ---------- Status + progress ---------- */
+/* ---------- Progress ---------- */
 .practice-status {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px 20px;
-  margin-bottom: 24px;
+  gap: 0.4rem 0.9rem;
+  margin-bottom: 1.6rem;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
 }
 .practice-status #statusLine {
-  font-size: 0.85rem;
-  color: var(--ink-soft);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 .storage-note {
   flex-basis: 100%;
   margin: 0;
-  font-size: 0.72rem;
   color: var(--ink-faint);
 }
 .progress-track {
   flex: 1;
-  height: 8px;
-  background: var(--grid-line);
-  border-radius: 999px;
+  min-width: 8rem;
+  height: 4px;
+  background: var(--rule-soft);
   overflow: hidden;
 }
+/* Scaled rather than width-animated: transitioning width relayouts the bar on
+   every answer, transform does not. practice.js sets the scale. */
 .progress-fill {
   height: 100%;
-  background: var(--red);
-  width: 0%;
-  transition: width 0.15s ease;
+  width: 100%;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.15s ease;
 }
 
-/* ---------- Question layout: palette (LHS) + question box ---------- */
+/* ---------- Layout: palette + question ---------- */
 .question-layout {
   display: flex;
-  align-items: stretch; /* palette column matches the question box height */
+  align-items: flex-start;
   gap: var(--layout-gap);
 }
 .question-layout .question-card {
   flex: 1 1 auto;
-  max-width: none; /* override the --card-w cap from styles.css */
   min-width: 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.1rem;
 }
 
 /* ---------- Question palette ---------- */
 .palette {
   flex: 0 0 var(--palette-w);
   display: grid;
-  grid-template-columns: repeat(5, 44px);
-  grid-auto-rows: 44px;
-  align-content: start; /* numbers sit at the top when the box is taller */
-  gap: 8px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.3rem;
+  align-content: start;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.1rem;
 }
 .palette-item {
-  width: 44px;
-  height: 44px;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: inherit;
   font-size: 0.8rem;
-  background: var(--paper-raised);
+  background: var(--paper);
   border: 1px solid var(--rule);
-  border-radius: var(--radius);
+  border-radius: 0;
   color: var(--ink-soft);
   cursor: pointer;
+  font-variant-numeric: tabular-nums;
 }
 .palette-item:hover {
-  border-color: var(--ink-soft);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 .palette-item[aria-current="true"] {
-  border-color: var(--navy);
-  border-width: 2px;
+  border-color: var(--ink);
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--ink);
 }
 .palette-item[data-state="correct"] {
-  background: var(--green-bg);
-  border-color: var(--green);
-  color: var(--green);
+  border-color: var(--correct);
+  background: var(--correct-bg);
+  color: var(--correct);
 }
 .palette-item[data-state="incorrect"] {
-  background: var(--red-bg);
-  border-color: var(--red);
-  color: var(--red);
+  border-color: var(--incorrect);
+  background: var(--incorrect-bg);
+  color: var(--incorrect);
 }
 
-/* ---------- Question nav (prev/next/reset) ---------- */
+/* ---------- Prev / next ---------- */
 .qc-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 26px;
-  border-top: 1px solid var(--grid-line);
+  gap: 0.6rem;
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule-soft);
 }
 .nav-btn {
   background: none;
   border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  padding: 10px 20px;
-  font-size: 0.8rem;
+  border-radius: 0;
+  padding: 0.45rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.85rem;
   color: var(--ink-soft);
   cursor: pointer;
 }
-.nav-btn:hover {
-  border-color: var(--ink-soft);
+.nav-btn:hover:not(:disabled) {
+  border-color: var(--ink);
   color: var(--ink);
 }
 .nav-btn:disabled {
   opacity: 0.4;
   cursor: default;
 }
-.nav-btn:disabled:hover {
-  border-color: var(--rule);
-  color: var(--ink-soft);
-}
 
-/* Stack the palette above the box once there isn't room for a side column. */
-@media (max-width: 830px) {
+/* Stack once there is no room for a side column. The question comes first and
+   the palette moves below it — on a phone the reader came for the question,
+   not for twenty-five numbered buttons to scroll past. (Visual order only;
+   DOM order is unchanged, so the palette still precedes the card for
+   keyboard and screen-reader users, as it does on desktop.) */
+@media (max-width: 48rem) {
   .question-layout {
     flex-direction: column;
+    gap: 1.6rem;
   }
   .palette {
+    order: 2;
     flex: 0 0 auto;
-    grid-template-columns: repeat(auto-fill, 44px);
-    margin-bottom: 5px;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(2.2rem, 1fr));
+    /* The card above already closes with its own border-bottom; keeping the
+       palette's border-top drew two rules a gap apart. */
+    border-top: 0;
+    padding-top: 0;
   }
-  /* Hide the reset button to keep the nav to Prev/Next on narrow screens.
-     !important is needed because practice.js toggles resetBtn.style.display
-     inline, which would otherwise win over this rule. */
+  .question-layout .question-card {
+    border-top: 1px solid var(--rule);
+    width: 100%;
+  }
+  /* Previous / Next only. !important because practice.js toggles the reset
+     button's inline display when a question is answered, which would
+     otherwise win over this rule. Reset stays reachable on desktop. */
   #resetBtn {
     display: none !important;
   }
-}
-
-@media (max-width: 625px) {
   .qc-nav {
     flex-wrap: wrap;
-    gap: 10px;
+  }
+  /* Mobile is for working through questions, not managing them: no topic
+     filter, no storage note, and no topic label in the card head — the head
+     keeps difficulty on the left and the source on the right. */
+  .topic-pills,
+  .storage-note,
+  .qc-head .qlabel {
+    display: none;
+  }
+  /* Without the pills the title sits directly above the progress row. */
+  .practice-title {
+    margin-bottom: 1rem;
+  }
+  /* Trim the run-out after the palette; desktop keeps the longer tail. */
+  .practice-main {
+    padding-bottom: 1.5rem;
+  }
+  footer.site {
+    margin-top: 1.5rem;
   }
 }

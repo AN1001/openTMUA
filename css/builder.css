@@ -2,14 +2,27 @@
    .question-card family. Not linked from the site nav; reached only via
    CONTRIBUTING.md. */
 
+/* This page was written against the previous token set. Rather than rewrite it
+   line by line, the old names are mapped onto the current ones here, so the
+   builder inherits the plain-document look automatically and styles.css keeps
+   no tokens the site itself no longer uses. */
+:root {
+  --paper-raised: var(--paper);
+  --radius: 0;
+  --navy: var(--focus);
+  --red: var(--incorrect);
+  --red-bg: var(--incorrect-bg);
+  --green: var(--correct);
+  --green-bg: var(--correct-bg);
+}
+
 .builder-main {
   max-width: 1560px;
   padding: 34px 26px 94px;
 }
 
 .builder-title {
-  font-family: "Spectral", serif;
-  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  font-size: 1.5rem;
   margin: 18px 0 10px;
 }
 
@@ -80,7 +93,7 @@
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 10px 12px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--mono);
   font-size: 0.85rem;
   color: var(--ink);
 }
@@ -103,7 +116,7 @@
   margin-bottom: 10px;
 }
 .option-row .key {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--mono);
   font-size: 0.8rem;
   color: var(--ink-faint);
   width: 1.2em;
@@ -121,7 +134,7 @@
   background: none;
   border: 1px solid transparent;
   border-radius: var(--radius);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--mono);
   font-size: 0.85rem;
   line-height: 1;
   color: var(--ink-faint);
